@@ -4,21 +4,22 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>For You ❤️</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
 
     <style>
+
         /* =====================================================
-   BASIC
-===================================================== */
+           BASIC
+        ===================================================== */
 
         * {
             margin: 0;
@@ -40,13 +41,13 @@
 
             overflow-x: hidden;
 
-            cursor: default;
+            min-width: 320px;
         }
 
 
         /* =====================================================
-   MOVING BACKGROUND
-===================================================== */
+           BACKGROUND
+        ===================================================== */
 
         body::before {
 
@@ -54,25 +55,31 @@
 
             position: fixed;
 
-            inset: -50%;
+            inset: -30%;
 
             z-index: -10;
 
             background:
 
-                radial-gradient(circle at 20% 30%,
+                radial-gradient(
+                    circle at 20% 30%,
                     rgba(255, 0, 90, .20),
-                    transparent 25%),
+                    transparent 25%
+                ),
 
-                radial-gradient(circle at 80% 20%,
+                radial-gradient(
+                    circle at 80% 20%,
                     rgba(170, 0, 255, .16),
-                    transparent 25%),
+                    transparent 25%
+                ),
 
-                radial-gradient(circle at 50% 80%,
+                radial-gradient(
+                    circle at 50% 80%,
                     rgba(255, 50, 130, .12),
-                    transparent 30%);
+                    transparent 30%
+                );
 
-            animation: bgMove 15s ease-in-out infinite alternate;
+            animation: bgMove 18s ease-in-out infinite alternate;
         }
 
 
@@ -83,19 +90,19 @@
             }
 
             50% {
-                transform: translate(4%, -3%) scale(1.08);
+                transform: translate(3%, -2%) scale(1.05);
             }
 
             100% {
-                transform: translate(-4%, 4%) scale(1.15);
+                transform: translate(-3%, 3%) scale(1.1);
             }
 
         }
 
 
         /* =====================================================
-   NOISE
-===================================================== */
+           NOISE
+        ===================================================== */
 
         body::after {
 
@@ -112,22 +119,22 @@
             opacity: .035;
 
             background-image:
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
 
         /* =====================================================
-   MOUSE LIGHT
-===================================================== */
+           MOUSE LIGHT
+        ===================================================== */
 
         #mouseLight {
 
             position: fixed;
 
-            width: 300px;
+            width: 250px;
 
-            height: 300px;
+            height: 250px;
 
             border-radius: 50%;
 
@@ -136,21 +143,25 @@
             z-index: 90;
 
             background:
-                radial-gradient(circle,
+
+                radial-gradient(
+                    circle,
                     rgba(255, 80, 130, .12),
-                    transparent 65%);
+                    transparent 65%
+                );
 
             transform:
                 translate(-50%, -50%);
 
             filter: blur(10px);
 
+            display: none;
         }
 
 
         /* =====================================================
-   PARTICLES
-===================================================== */
+           PARTICLES
+        ===================================================== */
 
         #particles {
 
@@ -161,7 +172,6 @@
             pointer-events: none;
 
             z-index: 3;
-
         }
 
 
@@ -169,21 +179,22 @@
 
             position: absolute;
 
-            width: 3px;
+            width: 2px;
 
-            height: 3px;
+            height: 2px;
 
-            background: #fff;
+            background: white;
 
             border-radius: 50%;
 
             box-shadow:
-                0 0 8px #fff,
-                0 0 15px rgba(255, 100, 160, .8);
+                0 0 6px white,
+                0 0 12px rgba(255, 100, 160, .8);
 
-            animation: particleFloat linear infinite;
+            animation:
+                particleFloat linear infinite;
 
-            opacity: .7;
+            opacity: .6;
         }
 
 
@@ -192,39 +203,35 @@
             0% {
 
                 transform:
-                    translateY(110vh) scale(.3);
+                    translateY(110vh)
+                    scale(.3);
 
                 opacity: 0;
-
             }
 
             15% {
-
                 opacity: .8;
-
             }
 
             85% {
-
                 opacity: .8;
-
             }
 
             100% {
 
                 transform:
-                    translateY(-10vh) scale(1.3);
+                    translateY(-10vh)
+                    scale(1.3);
 
                 opacity: 0;
-
             }
 
         }
 
 
         /* =====================================================
-   SIDE GALLERY
-===================================================== */
+           SIDE GALLERY
+        ===================================================== */
 
         .side {
 
@@ -234,9 +241,9 @@
 
             bottom: 0;
 
-            width: 21vw;
+            width: 17vw;
 
-            max-width: 310px;
+            max-width: 100px;
 
             overflow: hidden;
 
@@ -245,25 +252,23 @@
             pointer-events: none;
 
             mask-image:
-                linear-gradient(transparent,
+
+                linear-gradient(
+                    transparent,
                     black 10%,
                     black 90%,
-                    transparent);
-
+                    transparent
+                );
         }
 
 
         .side.left {
-
-            left: 15px;
-
+            left: 5px;
         }
 
 
         .side.right {
-
-            right: 15px;
-
+            right: 5px;
         }
 
 
@@ -273,11 +278,10 @@
 
             flex-direction: column;
 
-            gap: 18px;
+            gap: 10px;
 
             animation:
-                galleryMove 35s linear infinite;
-
+                galleryMove 40s linear infinite;
         }
 
 
@@ -285,8 +289,7 @@
 
             animation-direction: reverse;
 
-            animation-duration: 42s;
-
+            animation-duration: 45s;
         }
 
 
@@ -294,37 +297,24 @@
 
             width: 100%;
 
-            height: 210px;
+            height: 115px;
 
             object-fit: cover;
 
-            border-radius: 20px;
+            border-radius: 10px;
 
-            opacity: .55;
+            opacity: .35;
 
             filter:
-                brightness(.55) saturate(.8);
+                brightness(.45)
+                saturate(.7);
 
-            border: 1px solid rgba(255, 100, 150, .25);
+            border:
+                1px solid rgba(255, 100, 150, .20);
 
             box-shadow:
-                0 10px 40px rgba(255, 0, 100, .10);
-
-            transition: .5s;
-
-        }
-
-
-        .side img:hover {
-
-            opacity: 1;
-
-            filter:
-                brightness(1) saturate(1.2);
-
-            transform:
-                scale(1.05);
-
+                0 5px 20px
+                rgba(255, 0, 100, .08);
         }
 
 
@@ -342,31 +332,30 @@
 
 
         /* =====================================================
-   MAIN
-===================================================== */
+           MAIN
+        ===================================================== */
 
         main {
 
-            width: 56%;
+            width: calc(100% - 120px);
 
-            max-width: 850px;
+            max-width: 650px;
 
             margin: auto;
 
             position: relative;
 
             z-index: 10;
-
         }
 
 
         /* =====================================================
-   HERO
-===================================================== */
+           HERO
+        ===================================================== */
 
         .hero {
 
-            min-height: 100vh;
+            min-height: 100svh;
 
             display: flex;
 
@@ -378,14 +367,18 @@
 
             position: relative;
 
+            padding:
+                40px 5px;
         }
 
 
         .hero-content {
 
-            animation:
-                heroIn 2s cubic-bezier(.2, .8, .2, 1);
+            width: 100%;
 
+            animation:
+                heroIn 1.5s
+                cubic-bezier(.2, .8, .2, 1);
         }
 
 
@@ -396,10 +389,10 @@
                 opacity: 0;
 
                 transform:
-                    translateY(60px) scale(.9);
+                    translateY(40px)
+                    scale(.95);
 
-                filter: blur(15px);
-
+                filter: blur(10px);
             }
 
             to {
@@ -407,10 +400,10 @@
                 opacity: 1;
 
                 transform:
-                    translateY(0) scale(1);
+                    translateY(0)
+                    scale(1);
 
                 filter: blur(0);
-
             }
 
         }
@@ -420,12 +413,11 @@
 
             color: #ff7298;
 
-            letter-spacing: 7px;
+            letter-spacing: 3px;
 
-            font-size: 11px;
+            font-size: 9px;
 
-            margin-bottom: 25px;
-
+            margin-bottom: 18px;
         }
 
 
@@ -436,33 +428,39 @@
                 serif;
 
             font-size:
-                clamp(55px, 9vw, 120px);
+                clamp(48px, 14vw, 72px);
 
-            line-height: .85;
+            line-height: .9;
 
             font-weight: 500;
 
+            word-break: keep-all;
         }
 
 
         .hero h1 span {
 
+            display: block;
+
             background:
 
-                linear-gradient(90deg,
+                linear-gradient(
+                    90deg,
                     #ff315f,
                     #ffb0c2,
-                    #ff315f);
+                    #ff315f
+                );
 
             background-size: 300%;
 
             -webkit-background-clip: text;
 
+            background-clip: text;
+
             color: transparent;
 
             animation:
                 textGradient 5s linear infinite;
-
         }
 
 
@@ -477,124 +475,41 @@
 
         .hero-description {
 
-            margin-top: 35px;
+            margin-top: 25px;
 
             color: #bbb;
 
-            line-height: 2;
+            line-height: 1.9;
+
+            font-size: 13px;
 
             font-weight: 300;
-
         }
 
 
         /* =====================================================
-   MAGIC BUTTON
-===================================================== */
-
-        .magic-button {
-
-            position: relative;
-
-            margin-top: 40px;
-
-            padding: 17px 32px;
-
-            border-radius: 50px;
-
-            border:
-                1px solid rgba(255, 100, 140, .5);
-
-            background:
-                rgba(255, 50, 100, .08);
-
-            color: white;
-
-            font-family: "Kanit";
-
-            font-size: 15px;
-
-            cursor: pointer;
-
-            overflow: hidden;
-
-            transition: .4s;
-
-            box-shadow:
-                0 0 20px rgba(255, 40, 100, .1);
-
-        }
-
-
-        .magic-button::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-
-            left: -100%;
-
-            width: 100%;
-
-            height: 100%;
-
-            background:
-                linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, .25),
-                    transparent);
-
-            transition: .7s;
-
-        }
-
-
-        .magic-button:hover::before {
-
-            left: 100%;
-
-        }
-
-
-        .magic-button:hover {
-
-            transform:
-                translateY(-5px) scale(1.05);
-
-            box-shadow:
-
-                0 0 25px rgba(255, 50, 100, .4),
-
-                0 0 80px rgba(255, 50, 100, .15);
-
-        }
-
-
-        /* =====================================================
-   SCROLL
-===================================================== */
+           SCROLL
+        ===================================================== */
 
         .scroll {
 
             position: absolute;
 
-            bottom: 30px;
+            bottom: 25px;
 
             left: 50%;
 
-            transform: translateX(-50%);
+            transform:
+                translateX(-50%);
 
             color: #666;
 
-            font-size: 10px;
+            font-size: 8px;
 
-            letter-spacing: 4px;
+            letter-spacing: 3px;
 
             animation:
                 scrollBounce 2s infinite;
-
         }
 
 
@@ -602,25 +517,27 @@
 
             0%,
             100% {
+
                 transform:
                     translate(-50%, 0);
             }
 
             50% {
+
                 transform:
-                    translate(-50%, 10px);
+                    translate(-50%, 8px);
             }
 
         }
 
 
         /* =====================================================
-   STORY
-===================================================== */
+           STORY
+        ===================================================== */
 
         .story {
 
-            min-height: 100vh;
+            min-height: 100svh;
 
             display: flex;
 
@@ -630,21 +547,23 @@
 
             text-align: center;
 
-            padding: 100px 20px;
-
+            padding:
+                80px 8px;
         }
 
 
         .story-inner {
 
+            width: 100%;
+
             opacity: 0;
 
             transform:
-                translateY(60px);
+                translateY(50px);
 
             transition:
-                1.5s cubic-bezier(.2, .8, .2, 1);
-
+                1.3s
+                cubic-bezier(.2, .8, .2, 1);
         }
 
 
@@ -654,7 +573,6 @@
 
             transform:
                 translateY(0);
-
         }
 
 
@@ -662,50 +580,48 @@
 
             color: #ff668d;
 
-            letter-spacing: 6px;
+            letter-spacing: 4px;
 
-            font-size: 11px;
-
+            font-size: 9px;
         }
 
 
         .story h2 {
 
             font-family:
-                "Playfair Display";
+                "Playfair Display",
+                serif;
 
             font-size:
-                clamp(45px, 6vw, 75px);
+                clamp(32px, 9vw, 50px);
 
             font-weight: 500;
 
-            line-height: 1.1;
+            line-height: 1.15;
 
-            margin-top: 20px;
-
+            margin-top: 18px;
         }
 
 
         .story h2 span {
 
             color: #ff668d;
-
         }
 
 
         .divider {
 
-            width: 70px;
+            width: 50px;
 
             height: 2px;
 
             background: #ff668d;
 
-            margin: 30px auto;
+            margin:
+                25px auto;
 
             box-shadow:
-                0 0 20px #ff668d;
-
+                0 0 15px #ff668d;
         }
 
 
@@ -713,20 +629,47 @@
 
             color: #aaa;
 
-            line-height: 2;
+            line-height: 1.9;
+
+            font-size: 13px;
 
             font-weight: 300;
+        }
 
+
+        .story p img {
+
+            width: 100%;
+
+            max-width: 330px;
+
+            height: auto;
+
+            display: block;
+
+            margin:
+                0 auto 20px;
+
+            border-radius: 15px;
+
+            border:
+                1px solid
+                rgba(255, 100, 150, .25);
+
+            box-shadow:
+
+                0 10px 40px
+                rgba(255, 0, 100, .15);
         }
 
 
         /* =====================================================
-   FINAL
-===================================================== */
+           FINAL
+        ===================================================== */
 
         .final {
 
-            min-height: 100vh;
+            min-height: 100svh;
 
             display: flex;
 
@@ -736,21 +679,22 @@
 
             text-align: center;
 
-            padding: 100px 20px;
-
+            padding:
+                90px 8px;
         }
 
 
         .final-box {
 
+            width: 100%;
+
             opacity: 0;
 
             transform:
-                translateY(70px);
+                translateY(60px);
 
             transition:
-                1.5s ease;
-
+                1.3s ease;
         }
 
 
@@ -760,13 +704,12 @@
 
             transform:
                 translateY(0);
-
         }
 
 
         .final-heart {
 
-            font-size: 80px;
+            font-size: 65px;
 
             display: inline-block;
 
@@ -774,8 +717,10 @@
                 heartBeat 1.3s infinite;
 
             filter:
-                drop-shadow(0 0 25px rgba(255, 50, 100, .6));
-
+                drop-shadow(
+                    0 0 20px
+                    rgba(255, 50, 100, .6)
+                );
         }
 
 
@@ -783,11 +728,15 @@
 
             0%,
             100% {
-                transform: scale(1);
+
+                transform:
+                    scale(1);
             }
 
             50% {
-                transform: scale(1.25);
+
+                transform:
+                    scale(1.2);
             }
 
         }
@@ -796,60 +745,63 @@
         .final h2 {
 
             font-family:
-                "Playfair Display";
+                "Playfair Display",
+                serif;
 
             font-size:
-                clamp(40px, 6vw, 70px);
+                clamp(31px, 8vw, 50px);
 
             font-weight: 500;
 
             line-height: 1.15;
 
-            margin-top: 30px;
-
+            margin-top: 22px;
         }
 
 
         .final h2 span {
 
             color: #ff668d;
-
         }
 
 
         .final-text {
 
-            margin-top: 35px;
+            margin-top: 25px;
 
             color: #aaa;
 
             line-height: 2;
 
+            font-size: 13px;
+
             font-weight: 300;
 
+            white-space: normal;
         }
 
 
         .forever {
 
-            margin-top: 40px;
+            margin-top: 30px;
 
             font-family:
-                "Playfair Display";
+                "Playfair Display",
+                serif;
 
-            font-size: 30px;
+            font-size: 23px;
 
             color: #ff8ba8;
 
             text-shadow:
-                0 0 20px rgba(255, 80, 130, .4);
-
+                0 0 15px
+                rgba(255, 80, 130, .4);
         }
 
 
         /* =====================================================
-   HEARTS
-===================================================== */
+           FLOATING HEART
+        ===================================================== */
 
         .heart {
 
@@ -863,7 +815,6 @@
 
             animation:
                 heartFloat linear forwards;
-
         }
 
 
@@ -872,10 +823,11 @@
             0% {
 
                 transform:
-                    translateY(0) rotate(0) scale(.5);
+                    translateY(0)
+                    rotate(0)
+                    scale(.5);
 
                 opacity: 0;
-
             }
 
             15% {
@@ -885,18 +837,19 @@
             100% {
 
                 transform:
-                    translateY(-110vh) rotate(360deg) scale(1.3);
+                    translateY(-110vh)
+                    rotate(360deg)
+                    scale(1.3);
 
                 opacity: 0;
-
             }
 
         }
 
 
         /* =====================================================
-   CLICK BURST
-===================================================== */
+           CLICK BURST
+        ===================================================== */
 
         .burst {
 
@@ -906,11 +859,10 @@
 
             z-index: 200;
 
-            font-size: 20px;
+            font-size: 17px;
 
             animation:
                 burstAnim 1s ease forwards;
-
         }
 
 
@@ -919,88 +871,104 @@
             from {
 
                 transform:
-                    translate(0, 0) scale(.5);
+                    translate(0, 0)
+                    scale(.5);
 
                 opacity: 1;
-
             }
 
             to {
 
                 transform:
-                    translate(var(--x),
-                        var(--y)) scale(1.5);
+                    translate(
+                        var(--x),
+                        var(--y)
+                    )
+                    scale(1.5);
 
                 opacity: 0;
-
             }
 
         }
 
 
         /* =====================================================
-   MOBILE
-===================================================== */
+           SMALL PHONE
+        ===================================================== */
 
-        @media(max-width:800px) {
+        @media(max-width:380px) {
 
             .side {
 
-                width: 18vw;
-
-                opacity: .45;
-
+                width: 15vw;
             }
 
 
             .side img {
 
-                height: 145px;
+                height: 100px;
 
+                border-radius: 8px;
             }
 
 
             main {
 
-                width: 70%;
-
-            }
-
-        }
-
-
-        @media(max-width:500px) {
-
-            .side {
-
-                width: 16vw;
-
-            }
-
-
-            .side img {
-
-                height: 115px;
-
-                border-radius: 10px;
-
-            }
-
-
-            main {
-
-                width: 72%;
-
+                width:
+                    calc(100% - 95px);
             }
 
 
             .hero h1 {
 
-                font-size: 50px;
+                font-size: 43px;
+            }
 
+
+            .story h2 {
+
+                font-size: 29px;
+            }
+
+
+            .final h2 {
+
+                font-size: 28px;
+            }
+
+
+            .final-text,
+            .story p {
+
+                font-size: 12px;
+
+                line-height: 1.9;
             }
 
         }
+
+
+        /* =====================================================
+           REDUCE MOTION
+        ===================================================== */
+
+        @media(prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration: .01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                scroll-behavior: auto !important;
+
+                transition-duration: .01ms !important;
+            }
+
+        }
+
     </style>
 
 </head>
@@ -1020,8 +988,8 @@
 
 
     <!-- =====================================================
-     LEFT GALLERY
-===================================================== -->
+         LEFT GALLERY
+    ===================================================== -->
 
     <div class="side left">
 
@@ -1047,8 +1015,8 @@
 
 
     <!-- =====================================================
-     RIGHT GALLERY
-===================================================== -->
+         RIGHT GALLERY
+    ===================================================== -->
 
     <div class="side right">
 
@@ -1074,8 +1042,8 @@
 
 
     <!-- =====================================================
-     MAIN
-===================================================== -->
+         MAIN
+    ===================================================== -->
 
     <main>
 
@@ -1087,7 +1055,7 @@
             <div class="hero-content">
 
                 <div class="eyebrow">
-                   VISANU & TIDAPA
+                    VISANU & TIDAPA
                 </div>
 
 
@@ -1110,15 +1078,12 @@
 
                 </p>
 
-
-               
-
             </div>
 
 
             <div class="scroll">
 
-                
+                ↓
 
             </div>
 
@@ -1153,13 +1118,14 @@
 
                 <p>
 
-                    <img src="01.jpg"><br>
+                    <img src="01.jpg">
 
-                    ตอนนั้นเค้ามีความสุขมากๆเลย  เเต่เค้าก็ทำมันพัง
+                    ตอนนั้นเค้ามีความสุขมากๆเลย
+                    แต่เค้าก็ทำมันพัง
 
                     <br><br>
 
-                    ขอบคุณที่ให้โอกาศนะ ❤️
+                    ขอบคุณที่ให้โอกาสนะ ❤️
 
                 </p>
 
@@ -1174,6 +1140,7 @@
         <section class="final">
 
             <div class="final-box">
+
 
                 <div class="final-heart">
                     ❤️
@@ -1202,17 +1169,57 @@
 
                     สุขสันต์วันครบรอบนะ ❤️
 
-ขอบคุณที่ให้โอกาสเค้ากลับมาคบกับเธออีกครั้ง ขอบคุณที่ยังเลือกจับมือกัน และอยู่สร้างทุกอย่างไปด้วยกัน ถึงระหว่างทางจะมีทั้งวันที่มีความสุข วันที่เหนื่อย หรือวันที่เราไม่เข้าใจกันบ้าง
- แต่เค้าดีใจนะที่ทุกครั้งเรายังเลือกที่จะอยู่ข้างกันเสมอ
+                    <br><br>
 
-ขอบคุณที่คอยอยู่เคียงข้าง คอยเป็นกำลังใจ และคอยเดินไปด้วยกันในทุกๆ เรื่อง จากวันแรกจนถึงวันนี้ เราสร้างอะไรหลายๆ อย่างมาด้วยกัน และเค้าอยากให้ต่อจากนี้เรายังคงสร้างอนาคตของเราไปด้วยกันแบบนี้เรื่อยๆ
+                    ขอบคุณที่ให้โอกาสเค้ากลับมาคบกับเธออีกครั้ง
+                    ขอบคุณที่ยังเลือกจับมือกัน
+                    และอยู่สร้างทุกอย่างไปด้วยกัน
 
-เค้าอาจจะไม่ได้เป็นคนที่ดีที่สุด แต่เค้าจะพยายามเป็นคนที่ดีขึ้นเพื่อเธอในทุกๆ วันนะ ❤️
+                    <br><br>
 
-ขอบคุณสำหรับทุกอย่างที่ผ่านมา และขอบคุณที่กลับมาเป็นส่วนหนึ่งในชีวิตเค้าอีกครั้งนะ
-รักเธอ และอยากมีเธอกับมินนิทอยู่ข้างๆ แบบนี้ไปนานๆ เลยนะ 🥰❤️
+                    ถึงระหว่างทางจะมีทั้งวันที่มีความสุข
+                    วันที่เหนื่อย
+                    หรือวันที่เราไม่เข้าใจกันบ้าง
 
-รักกิ๊ฟทู๊กกกกวัน 🤍
+                    <br><br>
+
+                    แต่เค้าดีใจนะที่ทุกครั้ง
+                    เรายังเลือกที่จะอยู่ข้างกันเสมอ
+
+                    <br><br>
+
+                    ขอบคุณที่คอยอยู่เคียงข้าง
+                    คอยเป็นกำลังใจ
+                    และคอยเดินไปด้วยกันในทุกๆ เรื่อง
+
+                    <br><br>
+
+                    จากวันแรกจนถึงวันนี้
+                    เราสร้างอะไรหลายๆ อย่างมาด้วยกัน
+                    และเค้าอยากให้ต่อจากนี้
+                    เรายังคงสร้างอนาคตของเรา
+                    ไปด้วยกันแบบนี้เรื่อยๆ
+
+                    <br><br>
+
+                    เค้าอาจจะไม่ได้เป็นคนที่ดีที่สุด
+                    แต่เค้าจะพยายามเป็นคนที่ดีขึ้น
+                    เพื่อเธอในทุกๆ วันนะ ❤️
+
+                    <br><br>
+
+                    ขอบคุณสำหรับทุกอย่างที่ผ่านมา
+                    และขอบคุณที่กลับมาเป็นส่วนหนึ่ง
+                    ในชีวิตเค้าอีกครั้งนะ
+
+                    <br><br>
+
+                    รักเธอ และอยากมีเธอกับมินนิท
+                    อยู่ข้างๆ แบบนี้ไปนานๆ เลยนะ 🥰❤️
+
+                    <br><br>
+
+                    รักกิ๊ฟทู๊กกกกวัน 🤍
 
                     <br><br>
 
@@ -1240,6 +1247,7 @@
 
     <script>
 
+
         /* =====================================================
            MOUSE LIGHT
         ===================================================== */
@@ -1248,17 +1256,27 @@
             document.getElementById("mouseLight");
 
 
-        document.addEventListener(
-            "mousemove",
-            (e) => {
+        if (
+            window.matchMedia("(pointer:fine)").matches
+        ) {
 
-                mouseLight.style.left =
-                    e.clientX + "px";
+            mouseLight.style.display = "block";
 
-                mouseLight.style.top =
-                    e.clientY + "px";
 
-            });
+            document.addEventListener(
+                "mousemove",
+                (e) => {
+
+                    mouseLight.style.left =
+                        e.clientX + "px";
+
+                    mouseLight.style.top =
+                        e.clientY + "px";
+
+                }
+            );
+
+        }
 
 
         /* =====================================================
@@ -1269,24 +1287,41 @@
             document.getElementById("particles");
 
 
-        for (let i = 0; i < 70; i++) {
+        const particleCount =
+            window.innerWidth <= 500
+                ? 30
+                : 70;
+
+
+        for (
+            let i = 0;
+            i < particleCount;
+            i++
+        ) {
 
             const p =
                 document.createElement("div");
 
-            p.className = "particle";
+
+            p.className =
+                "particle";
+
 
             p.style.left =
                 Math.random() * 100 + "%";
 
+
             p.style.animationDuration =
                 (Math.random() * 10 + 8) + "s";
+
 
             p.style.animationDelay =
                 Math.random() * 10 + "s";
 
+
             p.style.transform =
                 `scale(${Math.random() + .3})`;
+
 
             particles.appendChild(p);
 
@@ -1298,10 +1333,15 @@
         ===================================================== */
 
         const story =
-            document.querySelector(".story-inner");
+            document.querySelector(
+                ".story-inner"
+            );
+
 
         const finalBox =
-            document.querySelector(".final-box");
+            document.querySelector(
+                ".final-box"
+            );
 
 
         const observer =
@@ -1309,20 +1349,26 @@
 
                 (entries) => {
 
-                    entries.forEach(entry => {
+                    entries.forEach(
+                        entry => {
 
-                        if (entry.isIntersecting) {
+                            if (
+                                entry.isIntersecting
+                            ) {
 
-                            entry.target.classList.add("show");
+                                entry.target
+                                    .classList
+                                    .add("show");
+
+                            }
 
                         }
-
-                    });
+                    );
 
                 },
 
                 {
-                    threshold: .2
+                    threshold: .15
                 }
 
             );
@@ -1335,71 +1381,78 @@
 
 
         /* =====================================================
-           BUTTON
-        ===================================================== */
-
-        document
-            .getElementById("startButton")
-            .addEventListener(
-                "click",
-                () => {
-
-                    document
-                        .getElementById("story")
-                        .scrollIntoView({
-
-                            behavior: "smooth"
-
-                        });
-
-                    createBurst(
-                        window.innerWidth / 2,
-                        window.innerHeight / 2
-                    );
-
-                });
-
-
-
-        /* =====================================================
            FLOATING HEART
         ===================================================== */
 
         function createHeart() {
 
             const heart =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
-            heart.className = "heart";
+
+            heart.className =
+                "heart";
+
 
             heart.innerHTML =
-                ["❤️", "💗", "💖", "💕", "✨"]
-                [Math.floor(Math.random() * 5)];
+
+                [
+                    "❤️",
+                    "💗",
+                    "💖",
+                    "💕",
+                    "✨"
+                ]
+
+                [
+                    Math.floor(
+                        Math.random() * 5
+                    )
+                ];
+
 
             heart.style.left =
                 Math.random() * 100 + "vw";
 
+
             heart.style.fontSize =
-                (Math.random() * 20 + 12) + "px";
+                (
+                    Math.random() * 15 + 12
+                ) + "px";
+
 
             heart.style.animationDuration =
-                (Math.random() * 5 + 5) + "s";
+                (
+                    Math.random() * 5 + 5
+                ) + "s";
 
-            document.body.appendChild(heart);
+
+            document.body.appendChild(
+                heart
+            );
 
 
-            setTimeout(() => {
+            setTimeout(
+                () => {
 
-                heart.remove();
+                    heart.remove();
 
-            }, 10000);
+                },
+                10000
+            );
 
         }
 
 
+        /* มือถือสร้างหัวใจช้าลง */
+
         setInterval(
             createHeart,
-            500
+            window.innerWidth <= 500
+                ? 900
+                : 500
         );
 
 
@@ -1417,57 +1470,89 @@
                     e.clientY
                 );
 
-            });
+            }
+        );
 
 
         function createBurst(x, y) {
 
-            for (let i = 0; i < 10; i++) {
+            for (
+                let i = 0;
+                i < 8;
+                i++
+            ) {
 
                 const b =
-                    document.createElement("div");
+                    document.createElement(
+                        "div"
+                    );
 
-                b.className = "burst";
+
+                b.className =
+                    "burst";
+
 
                 b.innerHTML =
-                    ["❤️", "✨", "💗", "💕"]
-                    [Math.floor(Math.random() * 4)];
+
+                    [
+                        "❤️",
+                        "✨",
+                        "💗",
+                        "💕"
+                    ]
+
+                    [
+                        Math.floor(
+                            Math.random() * 4
+                        )
+                    ];
 
 
                 b.style.left =
                     x + "px";
+
 
                 b.style.top =
                     y + "px";
 
 
                 const angle =
-                    Math.random() * Math.PI * 2;
+                    Math.random() *
+                    Math.PI * 2;
+
 
                 const distance =
-                    Math.random() * 100 + 50;
+                    Math.random() *
+                    80 + 40;
 
 
                 b.style.setProperty(
                     "--x",
-                    Math.cos(angle) * distance + "px"
+                    Math.cos(angle) *
+                    distance + "px"
                 );
 
 
                 b.style.setProperty(
                     "--y",
-                    Math.sin(angle) * distance + "px"
+                    Math.sin(angle) *
+                    distance + "px"
                 );
 
 
-                document.body.appendChild(b);
+                document.body.appendChild(
+                    b
+                );
 
 
-                setTimeout(() => {
+                setTimeout(
+                    () => {
 
-                    b.remove();
+                        b.remove();
 
-                }, 1000);
+                    },
+                    1000
+                );
 
             }
 
