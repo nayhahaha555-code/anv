@@ -466,7 +466,7 @@
         .photo {
 
             width: 50px;
-            height: px;50
+            height: 50px;
 
             object-fit: cover;
 
@@ -1126,14 +1126,7 @@
 
 <body>
 
-    <!-- =========================================================
-         SPACE
-    ========================================================== -->
-
     <div id="space">
-
-
-        <!-- TOP TITLE -->
 
         <div class="galaxy-title">
 
@@ -1142,25 +1135,14 @@
         </div>
 
 
-        <!-- WORLD -->
-
         <div id="world">
 
-
-            <!-- HEART -->
-
             <div id="heart"></div>
-
-
-            <!-- PHOTOS -->
 
             <div id="photos"></div>
 
 
-            <!-- MESSAGE -->
-
             <div class="love-message">
-
 
                 <div class="love-title">
 
@@ -1209,32 +1191,21 @@
 
                 </div>
 
-
             </div>
 
-
-            <!-- CENTER BUTTON -->
 
             <button
                 id="heartButton"
                 aria-label="เปิดข้อความ"
             ></button>
 
-
         </div>
 
 
-        <!-- CLICK TEXT -->
+        <div id="clickText"></div>
 
-        <div id="clickText">
-
-        </div>
-
-
-        <!-- CONTROLS -->
 
         <div id="controls">
-
 
             <button
                 class="control-btn"
@@ -1262,7 +1233,6 @@
                 −
             </button>
 
-
         </div>
 
 
@@ -1271,7 +1241,6 @@
             Zoom 55%
 
         </div>
-
 
     </div>
 
@@ -1365,12 +1334,13 @@
 
         /* =========================================================
            HEART CURVE
+           ปรับให้หัวใจกว้าง + สูงขึ้น
         ========================================================== */
 
         function heartCurve(t) {
 
             const x =
-                16 *
+                18 *
                 Math.pow(
                     Math.sin(t),
                     3
@@ -1379,13 +1349,13 @@
 
             const y =
                 -(
-                    13 * Math.cos(t)
+                    14.5 * Math.cos(t)
                     -
-                    5 * Math.cos(2 * t)
+                    5.5 * Math.cos(2 * t)
                     -
-                    2 * Math.cos(3 * t)
+                    2.2 * Math.cos(3 * t)
                     -
-                    Math.cos(4 * t)
+                    1.1 * Math.cos(4 * t)
                 );
 
 
@@ -1616,11 +1586,6 @@
 
             heart.innerHTML = "";
 
-
-            /*
-                ลดจำนวน particle
-                เพื่อให้มือถือทำงานเบาลง
-            */
 
             const mainAmount = 450;
 
@@ -1939,6 +1904,9 @@
 
         /* =========================================================
            PHOTO SCALE
+           
+           รูปจะไม่ขยายใหญ่เกินไปตอนซูม
+           สูงสุดประมาณ 70% ของขนาดเดิม
         ========================================================== */
 
         function updatePhotoScale() {
@@ -1984,7 +1952,7 @@
                             .015 +
                             progress *
                             (
-                                .08 -
+                                .07 -
                                 .015
                             );
 
@@ -2011,11 +1979,11 @@
 
 
                         scale =
-                            .08 +
+                            .07 +
                             progress *
                             (
-                                .45 -
-                                .08
+                                .32 -
+                                .07
                             );
 
 
@@ -2041,9 +2009,12 @@
 
 
                         scale =
-                            .45 +
+                            .32 +
                             progress *
-                            .55;
+                            (
+                                .70 -
+                                .32
+                            );
 
 
                         opacity = 1;
@@ -2052,7 +2023,7 @@
 
                     else {
 
-                        scale = 1;
+                        scale = .70;
 
                         opacity = 1;
 
@@ -2469,10 +2440,6 @@
                 event.preventDefault();
 
 
-                /* =========================
-                   1 นิ้ว = PAN
-                ========================== */
-
                 if (
                     event.touches.length ===
                     1
@@ -2503,10 +2470,6 @@
 
                 }
 
-
-                /* =========================
-                   2 นิ้ว = PINCH
-                ========================== */
 
                 else if (
                     event.touches.length ===
@@ -2554,10 +2517,6 @@
                 event.preventDefault();
 
 
-                /* =========================
-                   PAN 1 นิ้ว
-                ========================== */
-
                 if (
                     touchMode === "pan" &&
                     event.touches.length === 1
@@ -2587,10 +2546,6 @@
 
                 }
 
-
-                /* =========================
-                   PINCH 2 นิ้ว
-                ========================== */
 
                 else if (
                     touchMode === "pinch" &&
@@ -2863,13 +2818,8 @@
         /* =========================================================
            RESIZE
            
-           ขยายหัวใจเฉพาะมือถือ
-           
-           Desktop เดิม
-           Tablet เดิม
-           
-           Mobile:
-           จาก .60 -> .72
+           หัวใจยังคงขนาดเดิมตามที่ตั้งไว้
+           แต่รูปร่างกว้างและสูงขึ้นจาก heartCurve()
         ========================================================== */
 
         function resize() {
@@ -2903,14 +2853,6 @@
             }
 
             else {
-
-                /*
-                    MOBILE
-
-                    เดิม .60
-                    เปลี่ยนเป็น .72
-                    เพื่อขยายหัวใจ
-                */
 
                 heartSize =
                     Math.min(
