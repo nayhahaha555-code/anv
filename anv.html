@@ -4,23 +4,34 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>For You ❤️</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <title>Our Galaxy ❤️</title>
 
     <style>
 
-        /* =====================================================
-           BASIC
-        ===================================================== */
+        /* =========================================================
+           FONTS
+        ========================================================= */
+
+        @import url(
+            'https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap'
+        );
+
+        :root {
+            --font-thai: 'Kanit', sans-serif;
+            --font-display: 'Playfair Display', serif;
+            --font-tech: 'Orbitron', sans-serif;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
 
         * {
             margin: 0;
@@ -28,1098 +39,1766 @@
             box-sizing: border-box;
         }
 
-
-        html {
-            scroll-behavior: smooth;
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
-
 
         body {
-
-            background: #050307;
-
+            background: #000;
             color: white;
+            font-family: var(--font-thai);
+            user-select: none;
+            cursor: grab;
+        }
 
-            font-family: "Kanit", sans-serif;
-
-            overflow-x: hidden;
-
-            cursor: default;
+        body.dragging {
+            cursor: grabbing;
         }
 
 
-        /* =====================================================
-           MOVING BACKGROUND
-        ===================================================== */
+        /* =========================================================
+           UNIVERSE
+        ========================================================= */
 
-        body::before {
-
-            content: "";
-
+        .universe {
             position: fixed;
-
-            inset: -30%;
-
-            z-index: -20;
+            inset: 0;
+            overflow: hidden;
 
             background:
-
                 radial-gradient(
-                    circle at 20% 20%,
-                    rgba(255, 0, 90, .25),
-                    transparent 30%
-                ),
-
-                radial-gradient(
-                    circle at 80% 30%,
-                    rgba(170, 0, 255, .22),
-                    transparent 30%
-                ),
-
-                radial-gradient(
-                    circle at 50% 80%,
-                    rgba(255, 50, 130, .18),
-                    transparent 35%
+                    ellipse at center,
+                    #220538 0%,
+                    #0b0118 28%,
+                    #030008 65%,
+                    #000 100%
                 );
-
-            animation:
-                bgMove 18s ease-in-out infinite alternate;
         }
 
 
-        @keyframes bgMove {
+        /* =========================================================
+           GALAXY
+        ========================================================= */
 
-            0% {
+        .galaxy {
+            position: absolute;
 
+            width: 180vw;
+            height: 75vw;
+
+            min-width: 1200px;
+            min-height: 600px;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%)
+                rotate(-20deg);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    ellipse at center,
+                    rgba(255, 0, 160, .40),
+                    rgba(100, 20, 255, .25) 25%,
+                    rgba(0, 100, 255, .15) 45%,
+                    transparent 70%
+                );
+
+            filter: blur(40px);
+
+            animation:
+                galaxyRotate 70s linear infinite;
+        }
+
+        @keyframes galaxyRotate {
+
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(-20deg);
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(340deg);
+            }
+
+        }
+
+
+        /* =========================================================
+           SECOND GALAXY
+        ========================================================= */
+
+        .galaxy2 {
+            position: absolute;
+
+            width: 150vw;
+            height: 45vw;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%)
+                rotate(35deg);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(0, 220, 255, .20),
+                    rgba(80, 0, 255, .18),
+                    transparent 70%
+                );
+
+            filter: blur(50px);
+
+            animation:
+                galaxyRotate2 55s linear infinite reverse;
+        }
+
+        @keyframes galaxyRotate2 {
+
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(35deg);
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(395deg);
+            }
+
+        }
+
+
+        /* =========================================================
+           NEBULA
+        ========================================================= */
+
+        .nebula {
+            position: absolute;
+
+            border-radius: 50%;
+
+            filter: blur(70px);
+
+            pointer-events: none;
+        }
+
+        .nebula1 {
+            width: 600px;
+            height: 400px;
+
+            background:
+                rgba(255, 0, 150, .18);
+
+            left: -100px;
+            top: 10%;
+
+            animation:
+                nebulaMove 15s infinite alternate;
+        }
+
+        .nebula2 {
+            width: 600px;
+            height: 450px;
+
+            background:
+                rgba(0, 100, 255, .18);
+
+            right: -100px;
+            bottom: 5%;
+
+            animation:
+                nebulaMove 18s infinite alternate-reverse;
+        }
+
+        .nebula3 {
+            width: 500px;
+            height: 300px;
+
+            background:
+                rgba(150, 0, 255, .20);
+
+            left: 30%;
+            bottom: -150px;
+
+            animation:
+                nebulaMove 20s infinite alternate;
+        }
+
+        @keyframes nebulaMove {
+
+            from {
                 transform:
                     translate(0, 0)
                     scale(1);
             }
 
-            50% {
-
+            to {
                 transform:
-                    translate(3%, -2%)
-                    scale(1.05);
-            }
-
-            100% {
-
-                transform:
-                    translate(-3%, 3%)
-                    scale(1.1);
+                    translate(80px, -50px)
+                    scale(1.2);
             }
 
         }
 
 
-        /* =====================================================
-           DARK OVERLAY
-        ===================================================== */
+        /* =========================================================
+           BACKGROUND STARS
+        ========================================================= */
 
-        body::after {
-
-            content: "";
-
-            position: fixed;
+        #stars {
+            position: absolute;
 
             inset: 0;
 
+            width: 100%;
+            height: 100%;
+
             z-index: 2;
-
-            pointer-events: none;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    rgba(5, 3, 7, .15),
-                    rgba(5, 3, 7, .72) 18%,
-                    rgba(5, 3, 7, .78) 82%,
-                    rgba(5, 3, 7, .15)
-                );
         }
 
 
-        /* =====================================================
-           MOUSE LIGHT
-        ===================================================== */
+        /* =========================================================
+           HEART GALAXY
+        ========================================================= */
 
-        #mouseLight {
+        .heart-galaxy {
+            position: absolute;
 
-            position: fixed;
+            left: 50%;
+            top: 50%;
 
-            width: 280px;
-
-            height: 280px;
-
-            border-radius: 50%;
-
-            pointer-events: none;
-
-            z-index: 90;
-
-            background:
-
-                radial-gradient(
-                    circle,
-                    rgba(255, 80, 130, .13),
-                    transparent 65%
-                );
+            width: 620px;
+            height: 560px;
 
             transform:
                 translate(-50%, -50%);
 
-            filter: blur(10px);
-        }
-
-
-        /* =====================================================
-           PARTICLES
-        ===================================================== */
-
-        #particles {
-
-            position: fixed;
-
-            inset: 0;
+            z-index: 15;
 
             pointer-events: none;
 
-            z-index: 4;
+            filter:
+                drop-shadow(
+                    0 0 15px
+                    rgba(255, 50, 180, .8)
+                )
+                drop-shadow(
+                    0 0 40px
+                    rgba(150, 50, 255, .5)
+                );
         }
 
 
-        .particle {
+        /* =========================================================
+           HEART NEBULA
+        ========================================================= */
 
+        .heart-nebula {
             position: absolute;
 
-            width: 2px;
+            left: 50%;
+            top: 50%;
 
-            height: 2px;
+            width: 100%;
+            height: 100%;
 
-            background: white;
+            transform:
+                translate(-50%, -50%);
 
             border-radius: 50%;
 
-            box-shadow:
-                0 0 6px white,
-                0 0 12px rgba(255, 100, 160, .8);
+            background:
+                radial-gradient(
+                    ellipse,
+                    rgba(255, 0, 150, .15),
+                    rgba(120, 0, 255, .10) 35%,
+                    rgba(0, 190, 255, .05) 55%,
+                    transparent 70%
+                );
+
+            filter: blur(25px);
 
             animation:
-                particleFloat linear infinite;
+                heartNebula 5s ease-in-out infinite;
+        }
 
-            opacity: .6;
+        @keyframes heartNebula {
+
+            0%,
+            100% {
+                opacity: .45;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(.90);
+            }
+
+            50% {
+                opacity: 1;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.08);
+            }
+
         }
 
 
-        @keyframes particleFloat {
+        /* =========================================================
+           HEART GALAXY STARS
+        ========================================================= */
+
+        .heart-star {
+            position: absolute;
+
+            width: 3px;
+            height: 3px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            box-shadow:
+                0 0 4px white,
+                0 0 9px #ff65bd,
+                0 0 18px #b45cff;
+
+            animation:
+                heartStarTwinkle
+                var(--twinkle)
+                ease-in-out infinite alternate;
+        }
+
+        .heart-star.big {
+            width: 6px;
+            height: 6px;
+
+            box-shadow:
+                0 0 6px white,
+                0 0 15px #ff4caf,
+                0 0 30px #9d5cff,
+                0 0 45px #5ceaff;
+        }
+
+        .heart-star.blue {
+            background: #a9f7ff;
+
+            box-shadow:
+                0 0 5px #fff,
+                0 0 12px #28e8ff,
+                0 0 25px #286cff;
+        }
+
+        .heart-star.gold {
+            background: #fff3a0;
+
+            box-shadow:
+                0 0 5px white,
+                0 0 12px #ffd21f,
+                0 0 25px #ff8c00;
+        }
+
+        @keyframes heartStarTwinkle {
 
             0% {
-
-                transform:
-                    translateY(110vh)
-                    scale(.3);
-
-                opacity: 0;
+                opacity: .2;
+                transform: scale(.5);
             }
 
-            15% {
-                opacity: .7;
-            }
-
-            85% {
+            50% {
                 opacity: .7;
             }
 
             100% {
-
-                transform:
-                    translateY(-10vh)
-                    scale(1.2);
-
-                opacity: 0;
+                opacity: 1;
+                transform: scale(1.7);
             }
 
         }
 
 
-        /* =====================================================
-           SIDE PHOTO GALLERY
-        ===================================================== */
+        /* =========================================================
+           HEADER
+        ========================================================= */
 
-        .side {
-
+        .header {
             position: fixed;
 
-            top: 0;
-
-            bottom: 0;
-
-            width: 27vw;
-
-            max-width: 145px;
-
-            overflow: hidden;
-
-            z-index: 1;
-
-            pointer-events: none;
-
-            mask-image:
-
-                linear-gradient(
-                    transparent,
-                    black 5%,
-                    black 95%,
-                    transparent
-                );
-        }
-
-
-        .side.left {
+            top: 30px;
             left: 0;
-        }
-
-
-        .side.right {
-            right: 0;
-        }
-
-
-        .track {
-
-            display: flex;
-
-            flex-direction: column;
-
-            gap: 10px;
-
-            animation:
-                galleryMove 38s linear infinite;
-        }
-
-
-        .right .track {
-
-            animation-direction: reverse;
-
-            animation-duration: 43s;
-        }
-
-
-        .side img {
 
             width: 100%;
-
-            height: 125px;
-
-            object-fit: cover;
-
-            border-radius: 12px;
-
-            opacity: .78;
-
-            filter:
-
-                brightness(.78)
-                saturate(1.05)
-                contrast(1.05);
-
-            border:
-                1px solid
-                rgba(255, 120, 160, .35);
-
-            box-shadow:
-
-                0 5px 30px
-                rgba(255, 0, 100, .18);
-
-            transition: .5s;
-        }
-
-
-        .side img:hover {
-
-            opacity: 1;
-
-            filter:
-
-                brightness(1)
-                saturate(1.2)
-                contrast(1.1);
-
-            transform:
-                scale(1.05);
-        }
-
-
-        @keyframes galleryMove {
-
-            from {
-
-                transform:
-                    translateY(0);
-            }
-
-            to {
-
-                transform:
-                    translateY(-50%);
-            }
-
-        }
-
-
-        /* =====================================================
-           MAIN
-        ===================================================== */
-
-        main {
-
-            width:
-                calc(100% - 125px);
-
-            max-width: 600px;
-
-            margin: auto;
-
-            position: relative;
-
-            z-index: 10;
-        }
-
-
-        /* =====================================================
-           GLASS CONTENT
-        ===================================================== */
-
-        .glass {
-
-            background:
-                rgba(5, 3, 7, .70);
-
-            backdrop-filter:
-                blur(7px);
-
-            -webkit-backdrop-filter:
-                blur(7px);
-
-            border:
-                1px solid
-                rgba(255, 100, 150, .15);
-
-            box-shadow:
-
-                0 20px 70px
-                rgba(0, 0, 0, .45);
-        }
-
-
-        /* =====================================================
-           HERO
-        ===================================================== */
-
-        .hero {
-
-            min-height: 100svh;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
 
             text-align: center;
 
-            padding:
-                30px 0;
+            z-index: 500;
 
-            position: relative;
+            pointer-events: none;
         }
 
-
-        .hero-content {
-
-            width: 100%;
-
-            padding:
-                35px 15px;
-
-            border-radius: 25px;
-
-            background:
-                rgba(5, 3, 7, .55);
-
-            backdrop-filter:
-                blur(4px);
-
-            -webkit-backdrop-filter:
-                blur(4px);
-
-            animation:
-                heroIn 1.5s
-                cubic-bezier(.2, .8, .2, 1);
-        }
-
-
-        @keyframes heroIn {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    translateY(40px)
-                    scale(.95);
-
-                filter: blur(10px);
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-                    translateY(0)
-                    scale(1);
-
-                filter: blur(0);
-            }
-
-        }
-
-
-        .eyebrow {
-
-            color: #ff7298;
-
-            letter-spacing: 3px;
-
-            font-size: 9px;
-
-            margin-bottom: 18px;
-        }
-
-
-        .hero h1 {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(45px, 13vw, 70px);
-
-            line-height: .95;
-
-            font-weight: 500;
-        }
-
-
-        .hero h1 span {
-
+        .header small {
             display: block;
 
-            background:
+            font-family: var(--font-tech);
+            font-size: 9px;
+            font-weight: 500;
 
+            letter-spacing: 8px;
+
+            opacity: .5;
+        }
+
+        .header h1 {
+            margin-top: 8px;
+
+            font-family: var(--font-display);
+            font-weight: 600;
+
+            font-size:
+                clamp(35px, 6vw, 75px);
+
+            letter-spacing: 6px;
+
+            background:
                 linear-gradient(
                     90deg,
-                    #ff315f,
-                    #ffb0c2,
-                    #ff315f
+                    #fff,
+                    #ff5cab,
+                    #fff,
+                    #9d75ff,
+                    #5cecff,
+                    #fff
                 );
 
-            background-size: 300%;
+            background-size: 400%;
 
             -webkit-background-clip: text;
-
-            background-clip: text;
 
             color: transparent;
 
             animation:
-                textGradient 5s linear infinite;
+                gradientText 8s linear infinite;
         }
 
+        @keyframes gradientText {
 
-        @keyframes textGradient {
+            from {
+                background-position: 0%;
+            }
 
             to {
-
-                background-position:
-                    300% center;
+                background-position: 400%;
             }
+
         }
 
 
-        .hero-description {
+        /* =========================================================
+           CAMERA
+        ========================================================= */
 
-            margin-top: 25px;
-
-            color: #ddd;
-
-            line-height: 2;
-
-            font-size: 13px;
-
-            font-weight: 300;
-        }
-
-
-        /* =====================================================
-           SCROLL
-        ===================================================== */
-
-        .scroll {
-
+        .camera {
             position: absolute;
 
-            bottom: 25px;
+            width: 100%;
+            height: 100%;
+
+            left: 0;
+            top: 0;
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform .15s ease-out;
+
+            z-index: 20;
+        }
+
+        .system {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
 
             left: 50%;
+            top: 50%;
 
             transform:
-                translateX(-50%);
+                translate(-50%, -50%);
 
-            color: #aaa;
-
-            font-size: 20px;
-
-            animation:
-                scrollBounce 2s infinite;
+            transform-style: preserve-3d;
         }
 
 
-        @keyframes scrollBounce {
+        /* =========================================================
+           CORE LIGHT
+        ========================================================= */
+
+        .core {
+            position: absolute;
+
+            width: 550px;
+            height: 550px;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, .8),
+                    rgba(255, 0, 160, .3) 15%,
+                    rgba(100, 0, 255, .12) 40%,
+                    transparent 70%
+                );
+
+            filter: blur(25px);
+
+            animation:
+                corePulse 4s infinite;
+        }
+
+        @keyframes corePulse {
 
             0%,
             100% {
-
                 transform:
-                    translate(-50%, 0);
+                    translate(-50%, -50%)
+                    scale(.8);
+
+                opacity: .6;
             }
 
             50% {
-
                 transform:
-                    translate(-50%, 8px);
+                    translate(-50%, -50%)
+                    scale(1.25);
+
+                opacity: 1;
             }
+
         }
 
 
-        /* =====================================================
-           STORY
-        ===================================================== */
+        /* =========================================================
+           PHOTO SYSTEM
+        ========================================================= */
 
-        .story {
+        .photo-system {
+            position: absolute;
 
-            min-height: 100svh;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            text-align: center;
-
-            padding:
-                80px 0;
-        }
-
-
-        .story-inner {
+            inset: 0;
 
             width: 100%;
+            height: 100%;
 
-            padding:
-                30px 18px;
+            transform-style: preserve-3d;
 
-            border-radius: 25px;
+            pointer-events: none;
+        }
 
-            background:
-                rgba(5, 3, 7, .72);
 
-            backdrop-filter:
-                blur(8px);
+        /* =========================================================
+           PHOTO ORBITS
+        ========================================================= */
 
-            -webkit-backdrop-filter:
-                blur(8px);
+        .photo-orbit {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            border-radius: 50%;
 
             border:
                 1px solid
-                rgba(255, 100, 150, .15);
-
-            box-shadow:
-
-                0 20px 70px
-                rgba(0, 0, 0, .5);
-
-            opacity: 0;
+                rgba(255, 255, 255, .12);
 
             transform:
-                translateY(50px);
+                translate(-50%, -50%)
+                rotateX(68deg);
 
-            transition:
-                1.3s
-                cubic-bezier(.2, .8, .2, 1);
+            transform-style: preserve-3d;
+
+            animation:
+                photoOrbitRotate
+                var(--orbit-speed)
+                linear infinite;
         }
 
+        .photo-orbit::before {
+            content: "";
 
-        .story-inner.show {
+            position: absolute;
 
-            opacity: 1;
+            inset: -2px;
 
-            transform:
-                translateY(0);
-        }
+            border-radius: 50%;
 
-
-        .story-label {
-
-            color: #ff668d;
-
-            letter-spacing: 4px;
-
-            font-size: 9px;
-        }
-
-
-        .story h2 {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(29px, 8vw, 48px);
-
-            font-weight: 500;
-
-            line-height: 1.2;
-
-            margin-top: 18px;
-        }
-
-
-        .story h2 span {
-
-            color: #ff668d;
-        }
-
-
-        .divider {
-
-            width: 50px;
-
-            height: 2px;
-
-            background: #ff668d;
-
-            margin:
-                25px auto;
+            border:
+                1px solid
+                rgba(255, 80, 190, .08);
 
             box-shadow:
-                0 0 15px #ff668d;
+                0 0 20px
+                rgba(255, 0, 180, .15);
+        }
+
+        @keyframes photoOrbitRotate {
+
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotateX(68deg)
+                    rotateZ(0deg);
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotateX(68deg)
+                    rotateZ(360deg);
+            }
+
         }
 
 
-        .story p {
+        /* =========================================================
+           ORBIT PHOTO
+        ========================================================= */
 
-            color: #ddd;
+        .orbit-photo {
+            position: absolute;
 
-            line-height: 2;
+            width: 105px;
+            height: 105px;
 
-            font-size: 13px;
+            padding: 5px;
 
-            font-weight: 300;
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    from 0deg,
+                    #ff0088,
+                    #7c3cff,
+                    #00eaff,
+                    #ffffff,
+                    #ff0088
+                );
+
+            box-shadow:
+                0 0 15px #ff0088,
+                0 0 35px rgba(120, 40, 255, .8),
+                0 0 60px rgba(0, 220, 255, .25);
+
+            transform-style: preserve-3d;
+
+            animation:
+                photoFloat 3s
+                ease-in-out infinite;
+
+            pointer-events: auto;
         }
 
-
-        /* =====================================================
-           STORY PHOTO
-        ===================================================== */
-
-        .story p img {
-
+        .orbit-photo img {
             width: 100%;
-
-            max-width: 330px;
-
-            height: auto;
+            height: 100%;
 
             display: block;
 
-            margin:
-                0 auto 22px;
+            object-fit: cover;
 
-            border-radius: 16px;
+            border-radius: 50%;
 
             border:
-                1px solid
-                rgba(255, 100, 150, .35);
+                3px solid
+                rgba(255, 255, 255, .9);
+
+            transition: .5s;
+        }
+
+        .orbit-photo:hover {
+            z-index: 1000;
+        }
+
+        .orbit-photo:hover img {
+            transform:
+                scale(1.25);
 
             box-shadow:
+                0 0 30px white;
+        }
 
-                0 15px 50px
-                rgba(255, 0, 100, .25);
+        @keyframes photoFloat {
+
+            0%,
+            100% {
+                margin-top: 0;
+            }
+
+            50% {
+                margin-top: -12px;
+            }
+
         }
 
 
-        /* =====================================================
-           FINAL
-        ===================================================== */
+        /* =========================================================
+           PHOTO SIZES
+        ========================================================= */
 
-        .final {
+        .orbit-photo.small {
+            width: 75px;
+            height: 75px;
 
-            min-height: 100svh;
+            padding: 4px;
+        }
+
+        .orbit-photo.tiny {
+            width: 55px;
+            height: 55px;
+
+            padding: 3px;
+        }
+
+
+        /* =========================================================
+           PHOTO HIGHLIGHT
+        ========================================================= */
+
+        .orbit-photo::after {
+            content: "";
+
+            position: absolute;
+
+            width: 15px;
+            height: 15px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            top: 8px;
+            left: 15px;
+
+            filter: blur(5px);
+
+            opacity: .8;
+        }
+
+
+        /* =========================================================
+           ENERGY RINGS
+        ========================================================= */
+
+        .energy {
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%)
+                rotateX(70deg);
+
+            border-radius: 50%;
+
+            border:
+                2px solid
+                rgba(255, 0, 160, .35);
+
+            box-shadow:
+                0 0 30px
+                rgba(255, 0, 160, .5);
+
+            animation:
+                energyRotate 9s linear infinite;
+        }
+
+        .energy2 {
+            width: 360px;
+            height: 360px;
+
+            border-color:
+                rgba(0, 220, 255, .3);
+
+            animation-duration: 13s;
+            animation-direction: reverse;
+        }
+
+        .energy3 {
+            width: 430px;
+            height: 430px;
+
+            border-color:
+                rgba(150, 50, 255, .2);
+
+            animation-duration: 20s;
+        }
+
+        @keyframes energyRotate {
+
+            from {
+                transform:
+                    translate(-50%, -50%)
+                    rotateX(70deg)
+                    rotateZ(0);
+            }
+
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotateX(70deg)
+                    rotateZ(360deg);
+            }
+
+        }
+
+
+        /* =========================================================
+           HEART SUN
+        ========================================================= */
+
+        .sun {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            width: 250px;
+            height: 250px;
+
+            transform:
+                translate(-50%, -50%);
+
+            z-index: 100;
 
             display: flex;
 
-            justify-content: center;
-
             align-items: center;
-
-            text-align: center;
-
-            padding:
-                90px 0;
+            justify-content: center;
         }
 
+        .heart {
+            position: absolute;
 
-        .final-box {
-
-            width: 100%;
-
-            padding:
-                35px 18px;
-
-            border-radius: 25px;
+            width: 135px;
+            height: 135px;
 
             background:
-                rgba(5, 3, 7, .74);
+                radial-gradient(
+                    circle at 30% 25%,
+                    #fff,
+                    #ffb2dc 6%,
+                    #ff3c9e 25%,
+                    #ff007f 55%,
+                    #76003d 85%,
+                    #250018
+                );
 
-            backdrop-filter:
-                blur(8px);
+            transform:
+                rotate(-45deg);
 
-            -webkit-backdrop-filter:
-                blur(8px);
-
-            border:
-                1px solid
-                rgba(255, 100, 150, .15);
+            border-radius:
+                20px 0 20px 0;
 
             box-shadow:
-
-                0 20px 70px
-                rgba(0, 0, 0, .5);
-
-            opacity: 0;
-
-            transform:
-                translateY(60px);
-
-            transition:
-                1.3s ease;
-        }
-
-
-        .final-box.show {
-
-            opacity: 1;
-
-            transform:
-                translateY(0);
-        }
-
-
-        .final-heart {
-
-            font-size: 65px;
-
-            display: inline-block;
+                0 0 25px #ff0088,
+                0 0 60px #ff0088,
+                0 0 110px #ff0088,
+                0 0 180px #ff0088,
+                0 0 250px rgba(255, 0, 150, .5);
 
             animation:
-                heartBeat 1.3s infinite;
-
-            filter:
-
-                drop-shadow(
-                    0 0 20px
-                    rgba(255, 50, 100, .7)
-                );
+                heartBeat 1.4s infinite;
         }
 
+        .heart::before,
+        .heart::after {
+            content: "";
+
+            position: absolute;
+
+            width: 135px;
+            height: 135px;
+
+            background: inherit;
+
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -67px;
+        }
+
+        .heart::after {
+            left: 67px;
+        }
 
         @keyframes heartBeat {
 
             0%,
             100% {
+                transform:
+                    rotate(-45deg)
+                    scale(1);
+            }
+
+            12% {
+                transform:
+                    rotate(-45deg)
+                    scale(1.14);
+            }
+
+            25% {
+                transform:
+                    rotate(-45deg)
+                    scale(1);
+            }
+
+            38% {
+                transform:
+                    rotate(-45deg)
+                    scale(1.08);
+            }
+
+        }
+
+
+        /* =========================================================
+           HEART TEXT
+        ========================================================= */
+
+        .heart-text {
+            position: absolute;
+
+            z-index: 120;
+
+            width: 300px;
+
+            text-align: center;
+
+            pointer-events: none;
+        }
+
+        .heart-text h2 {
+            font-family: var(--font-display);
+
+            font-size: 28px;
+            font-weight: 600;
+
+            line-height: 1.2;
+
+            letter-spacing: 5px;
+
+            text-shadow:
+                0 0 15px white,
+                0 0 35px #ff1688;
+        }
+
+        .heart-text span {
+            display: block;
+
+            margin-top: 10px;
+
+            font-family: var(--font-thai);
+
+            font-size: 10px;
+            font-weight: 300;
+
+            line-height: 1.8;
+
+            letter-spacing: 0;
+
+            opacity: .9;
+
+            text-shadow:
+                0 0 8px
+                rgba(255, 100, 190, .8);
+        }
+
+
+        /* =========================================================
+           BUTTERFLIES
+        ========================================================= */
+
+        .butterflies {
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: 350;
+
+            overflow: hidden;
+        }
+
+        .butterfly {
+            position: absolute;
+
+            width: 50px;
+            height: 45px;
+
+            transform-style: preserve-3d;
+
+            filter:
+                drop-shadow(0 0 8px #ff4fc3)
+                drop-shadow(0 0 20px #7b5cff);
+
+            animation:
+                butterflyFly
+                var(--time)
+                linear forwards;
+        }
+
+        .butterfly::before,
+        .butterfly::after {
+            content: "";
+
+            position: absolute;
+
+            top: 3px;
+
+            width: 25px;
+            height: 35px;
+
+            border-radius:
+                80% 20% 70% 30%;
+
+            background:
+                radial-gradient(
+                    circle at 40% 30%,
+                    white,
+                    #ffb8e3 8%,
+                    #ff36a3 35%,
+                    #8d3cff 70%,
+                    #18002e
+                );
+
+            border:
+                1px solid
+                rgba(255, 255, 255, .8);
+
+            box-shadow:
+                0 0 10px #ff2fa0,
+                0 0 25px #753cff;
+        }
+
+        .butterfly::before {
+            left: 0;
+
+            transform-origin: right center;
+
+            animation:
+                wingLeft .16s
+                infinite alternate;
+        }
+
+        .butterfly::after {
+            right: 0;
+
+            transform:
+                scaleX(-1);
+
+            transform-origin: left center;
+
+            animation:
+                wingRight .16s
+                infinite alternate;
+        }
+
+        .butterfly-body {
+            position: absolute;
+
+            width: 6px;
+            height: 32px;
+
+            left: 50%;
+            top: 7px;
+
+            transform:
+                translateX(-50%);
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    white,
+                    #ff7bd0,
+                    #7d3cff
+                );
+
+            box-shadow:
+                0 0 8px white,
+                0 0 18px #ff3cac;
+
+            z-index: 5;
+        }
+
+        @keyframes wingLeft {
+
+            from {
+                transform:
+                    rotateY(15deg)
+                    rotateZ(-5deg);
+            }
+
+            to {
+                transform:
+                    rotateY(70deg)
+                    rotateZ(-5deg);
+            }
+
+        }
+
+        @keyframes wingRight {
+
+            from {
+                transform:
+                    scaleX(-1)
+                    rotateY(15deg)
+                    rotateZ(-5deg);
+            }
+
+            to {
+                transform:
+                    scaleX(-1)
+                    rotateY(70deg)
+                    rotateZ(-5deg);
+            }
+
+        }
+
+
+        /* =========================================================
+           BUTTERFLY COLORS
+        ========================================================= */
+
+        .butterfly.blue {
+            filter:
+                drop-shadow(0 0 10px #00eaff)
+                drop-shadow(0 0 25px #315dff);
+        }
+
+        .butterfly.blue::before,
+        .butterfly.blue::after {
+            background:
+                radial-gradient(
+                    circle at 40% 30%,
+                    white,
+                    #b5faff,
+                    #21d9ff 35%,
+                    #315dff 70%,
+                    #050035
+                );
+        }
+
+        .butterfly.gold {
+            filter:
+                drop-shadow(0 0 10px #ffe66d)
+                drop-shadow(0 0 25px #ff9900);
+        }
+
+        .butterfly.gold::before,
+        .butterfly.gold::after {
+            background:
+                radial-gradient(
+                    circle at 40% 30%,
+                    white,
+                    #fff4a0,
+                    #ffd21f 35%,
+                    #ff7200 70%,
+                    #401000
+                );
+        }
+
+
+        /* =========================================================
+           BUTTERFLY FLIGHT
+        ========================================================= */
+
+        @keyframes butterflyFly {
+
+            0% {
+                transform:
+                    translate(-100px, 100vh)
+                    rotate(-20deg)
+                    scale(.5);
+
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            25% {
+                transform:
+                    translate(20vw, 70vh)
+                    rotate(20deg)
+                    scale(.8);
+            }
+
+            45% {
+                transform:
+                    translate(45vw, 30vh)
+                    rotate(-15deg)
+                    scale(1.1);
+            }
+
+            65% {
+                transform:
+                    translate(70vw, 55vh)
+                    rotate(25deg)
+                    scale(.9);
+            }
+
+            85% {
+                transform:
+                    translate(90vw, 25vh)
+                    rotate(-20deg)
+                    scale(.7);
+            }
+
+            100% {
+                transform:
+                    translate(110vw, -10vh)
+                    rotate(20deg)
+                    scale(.4);
+
+                opacity: 0;
+            }
+
+        }
+
+
+        /* =========================================================
+           BUTTERFLY TRAIL
+        ========================================================= */
+
+        .trail {
+            position: fixed;
+
+            width: 4px;
+            height: 4px;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+
+            background: #ff7bd5;
+
+            box-shadow:
+                0 0 8px #ff7bd5,
+                0 0 18px #7c4dff,
+                0 0 25px #4deaff;
+
+            z-index: 340;
+
+            animation:
+                trailFade 1s forwards;
+        }
+
+        @keyframes trailFade {
+
+            from {
+                opacity: 1;
 
                 transform:
                     scale(1);
             }
 
-            50% {
+            to {
+                opacity: 0;
 
                 transform:
-                    scale(1.2);
+                    scale(0);
             }
+
         }
 
 
-        .final h2 {
+        /* =========================================================
+           COUNTER
+        ========================================================= */
 
-            font-family:
-                "Playfair Display",
-                serif;
+        .counter {
+            position: fixed;
 
-            font-size:
-                clamp(29px, 8vw, 48px);
+            left: 50%;
+            bottom: 25px;
 
+            transform:
+                translateX(-50%);
+
+            z-index: 600;
+
+            padding:
+                14px 30px;
+
+            min-width: 360px;
+
+            text-align: center;
+
+            border-radius: 50px;
+
+            background:
+                rgba(0, 0, 10, .5);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, .2);
+
+            backdrop-filter:
+                blur(20px);
+        }
+
+        .counter-label {
+            font-family: var(--font-tech);
+
+            font-size: 8px;
             font-weight: 500;
 
-            line-height: 1.2;
+            letter-spacing: 4px;
 
-            margin-top: 22px;
+            opacity: .5;
+        }
+
+        #time {
+            margin-top: 5px;
+
+            color: #ffb8dd;
+
+            font-family: var(--font-tech);
+
+            font-size: 14px;
+
+            text-shadow:
+                0 0 15px #ff0088;
         }
 
 
-        .final h2 span {
+        /* =========================================================
+           ZOOM UI
+        ========================================================= */
 
-            color: #ff668d;
+        .zoom-ui {
+            position: fixed;
+
+            right: 25px;
+            bottom: 30px;
+
+            z-index: 700;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
         }
 
+        .zoom-ui button {
+            width: 45px;
+            height: 45px;
 
-        .final-text {
+            border-radius: 50%;
 
-            margin-top: 28px;
+            border:
+                1px solid
+                rgba(255, 255, 255, .25);
 
-            color: #ddd;
+            background:
+                rgba(0, 0, 0, .45);
 
-            line-height: 2.05;
-
-            font-size: 13px;
-
-            font-weight: 300;
-
-            text-align: left;
-
-            white-space: pre-line;
-        }
-
-
-        .forever {
-
-            margin-top: 30px;
-
-            font-family:
-                "Playfair Display",
-                serif;
+            color: white;
 
             font-size: 22px;
 
-            color: #ff8ba8;
+            cursor: pointer;
 
-            text-shadow:
+            backdrop-filter:
+                blur(15px);
 
-                0 0 15px
-                rgba(255, 80, 130, .5);
+            transition: .3s;
+        }
+
+        .zoom-ui button:hover {
+            background: #ff1688;
+
+            box-shadow:
+                0 0 30px #ff1688;
+
+            transform:
+                scale(1.1);
+        }
+
+        .zoom-value {
+            position: fixed;
+
+            right: 25px;
+            bottom: 170px;
+
+            z-index: 700;
+
+            padding:
+                7px 13px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(0, 0, 0, .4);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, .15);
+
+            font-family: var(--font-tech);
+
+            font-size: 8px;
+
+            letter-spacing: 2px;
+
+            opacity: .7;
         }
 
 
-        /* =====================================================
-           FLOATING HEART
-        ===================================================== */
+        /* =========================================================
+           PARTICLE EXPLOSION
+        ========================================================= */
 
-        .heart {
-
+        .particle {
             position: fixed;
 
-            bottom: -30px;
+            z-index: 1000;
 
             pointer-events: none;
 
-            z-index: 80;
+            font-size: 20px;
 
             animation:
-                heartFloat linear forwards;
+                explode 1.5s
+                ease-out forwards;
         }
 
-
-        @keyframes heartFloat {
-
-            0% {
-
-                transform:
-                    translateY(0)
-                    rotate(0)
-                    scale(.5);
-
-                opacity: 0;
-            }
-
-            15% {
-                opacity: 1;
-            }
-
-            100% {
-
-                transform:
-                    translateY(-110vh)
-                    rotate(360deg)
-                    scale(1.3);
-
-                opacity: 0;
-            }
-        }
-
-
-        /* =====================================================
-           CLICK BURST
-        ===================================================== */
-
-        .burst {
-
-            position: fixed;
-
-            pointer-events: none;
-
-            z-index: 200;
-
-            font-size: 18px;
-
-            animation:
-                burstAnim 1s ease forwards;
-        }
-
-
-        @keyframes burstAnim {
+        @keyframes explode {
 
             from {
-
                 transform:
                     translate(0, 0)
-                    scale(.5);
+                    scale(.3);
 
                 opacity: 1;
             }
 
             to {
-
                 transform:
                     translate(
                         var(--x),
                         var(--y)
                     )
-                    scale(1.5);
+                    scale(1.5)
+                    rotate(360deg);
 
                 opacity: 0;
             }
-        }
-
-
-        /* =====================================================
-           MOBILE 380px
-        ===================================================== */
-
-        @media(max-width:380px) {
-
-            .side {
-
-                width: 24vw;
-
-                max-width: 100px;
-            }
-
-
-            .side img {
-
-                height: 105px;
-            }
-
-
-            main {
-
-                width:
-                    calc(100% - 90px);
-            }
-
-
-            .hero h1 {
-
-                font-size: 42px;
-            }
-
-
-            .story h2 {
-
-                font-size: 28px;
-            }
-
-
-            .final h2 {
-
-                font-size: 27px;
-            }
-
-
-            .final-text,
-            .story p {
-
-                font-size: 12px;
-
-                line-height: 1.95;
-            }
 
         }
 
 
-        /* =====================================================
-           TABLET / DESKTOP
-        ===================================================== */
+        /* =========================================================
+           INTRO
+        ========================================================= */
 
-        @media(min-width:501px) {
+        .intro {
+            position: fixed;
 
-            .side {
+            inset: 0;
 
-                width: 21vw;
+            z-index: 2000;
 
-                max-width: 180px;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #21002f,
+                    #020005 70%
+                );
+
+            transition:
+                opacity 2s,
+                visibility 2s;
+        }
+
+        .intro.hide {
+            opacity: 0;
+
+            visibility: hidden;
+        }
+
+        .intro-content {
+            animation:
+                introIn 2.5s ease;
+        }
+
+        .intro-small {
+            font-family: var(--font-tech);
+
+            font-size: 9px;
+
+            letter-spacing: 8px;
+
+            opacity: .5;
+        }
+
+        .intro-title {
+            margin-top: 15px;
+
+            font-family: var(--font-display);
+
+            font-size:
+                clamp(45px, 8vw, 100px);
+
+            font-weight: 600;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #fff,
+                    #ff4ca5,
+                    #fff
+                );
+
+            -webkit-background-clip: text;
+
+            color: transparent;
+        }
+
+        .enter {
+            margin-top: 35px;
+
+            padding:
+                14px 35px;
+
+            border-radius: 50px;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, .3);
+
+            background:
+                rgba(255, 255, 255, .05);
+
+            color: white;
+
+            font-family: var(--font-tech);
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            cursor: pointer;
+
+            transition: .4s;
+        }
+
+        .enter:hover {
+            background: #ff0088;
+
+            box-shadow:
+                0 0 40px #ff0088;
+
+            transform:
+                scale(1.08);
+        }
+
+        @keyframes introIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    scale(.5)
+                    translateY(50px);
             }
 
+            to {
+                opacity: 1;
 
-            .side img {
-
-                height: 180px;
+                transform:
+                    scale(1)
+                    translateY(0);
             }
 
+        }
 
-            main {
 
-                width: 55%;
+        /* =========================================================
+           MUSIC BUTTON
+        ========================================================= */
 
-                max-width: 650px;
+        .music {
+            position: fixed;
+
+            right: 25px;
+            top: 25px;
+
+            width: 45px;
+            height: 45px;
+
+            z-index: 800;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255, 255, 255, .25);
+
+            background:
+                rgba(0, 0, 0, .45);
+
+            color: white;
+
+            font-family: var(--font-tech);
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+            backdrop-filter:
+                blur(15px);
+
+            transition: .3s;
+        }
+
+        .music:hover {
+            background: #ff1688;
+
+            box-shadow:
+                0 0 30px #ff1688;
+
+            transform:
+                scale(1.1);
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media(max-width: 600px) {
+
+            .header {
+                top: 18px;
             }
 
+            .header h1 {
+                font-size: 30px;
 
-            .hero-content,
-            .story-inner,
-            .final-box {
+                letter-spacing: 3px;
+            }
+
+            .header small {
+                letter-spacing: 3px;
+            }
+
+            .heart-galaxy {
+                width: 430px;
+                height: 390px;
+            }
+
+            .orbit-photo {
+                width: 72px;
+                height: 72px;
+            }
+
+            .orbit-photo.small {
+                width: 55px;
+                height: 55px;
+            }
+
+            .orbit-photo.tiny {
+                width: 42px;
+                height: 42px;
+            }
+
+            .heart {
+                width: 90px;
+                height: 90px;
+            }
+
+            .heart::before,
+            .heart::after {
+                width: 90px;
+                height: 90px;
+            }
+
+            .heart::before {
+                top: -45px;
+            }
+
+            .heart::after {
+                left: 45px;
+            }
+
+            .heart-text h2 {
+                font-size: 20px;
+            }
+
+            .counter {
+                min-width: 90%;
+
+                bottom: 12px;
 
                 padding:
-                    50px 35px;
+                    10px 15px;
             }
 
+            #time {
+                font-size: 9px;
+            }
 
-            .final-text {
+            .zoom-ui {
+                right: 12px;
+                bottom: 90px;
+            }
 
-                font-size: 15px;
+            .music {
+                right: 12px;
+                top: 12px;
             }
 
         }
-
 
     </style>
 
@@ -1130,47 +1809,36 @@
 
 
     <!-- =====================================================
-         MOUSE LIGHT
-    ===================================================== -->
+         INTRO
+    ====================================================== -->
 
-    <div id="mouseLight"></div>
+    <div
+        class="intro"
+        id="intro"
+    >
 
+        <div
+            class="intro-content"
+        >
 
-    <!-- =====================================================
-         PARTICLES
-    ===================================================== -->
+            <div
+                class="intro-small"
+            >
+                Happy Anniversary My Love
+            </div>
 
-    <div id="particles"></div>
+            <div
+                class="intro-title"
+            >
+                Gift & Nay
+            </div>
 
-
-    <!-- =====================================================
-         LEFT GALLERY
-    ===================================================== -->
-
-    <div class="side left">
-
-        <div class="track">
-
-            <img src="14.jpg">
-            <img src="15.jpg">
-            <img src="16.jpg">
-            <img src="17.jpg">
-            <img src="18.jpg">
-            <img src="19.jpg">
-
-            <img src="20.jpg">
-            <img src="21.jpg">
-            <img src="22.jpg">
-            <img src="23.jpg">
-            <img src="24.jpg">
-            <img src="25.jpg">
-
-            <!-- สำรองเพื่อให้เลื่อนต่อเนื่อง -->
-
-            <img src="14.jpg">
-            <img src="15.jpg">
-            <img src="16.jpg">
-            <img src="17.jpg">
+            <button
+                class="enter"
+                id="enter"
+            >
+                จิ้มตรงนี้เลยยย ❤️
+            </button>
 
         </div>
 
@@ -1178,33 +1846,154 @@
 
 
     <!-- =====================================================
-         RIGHT GALLERY
-    ===================================================== -->
+         UNIVERSE
+    ====================================================== -->
 
-    <div class="side right">
+    <div class="universe">
 
-        <div class="track">
+        <canvas
+            id="stars"
+        ></canvas>
 
-            <img src="06.jpg">
-            <img src="05.jpg">
-            <img src="04.jpg">
-            <img src="03.jpg">
-            <img src="02.jpg">
-            <img src="07.jpg">
+        <div class="galaxy"></div>
 
-            <img src="08.jpg">
-            <img src="09.jpg">
-            <img src="10.jpg">
-            <img src="11.jpg">
-            <img src="12.jpg">
-            <img src="13.jpg">
+        <div class="galaxy2"></div>
 
-            <!-- สำรองเพื่อให้เลื่อนต่อเนื่อง -->
+        <div class="nebula nebula1"></div>
 
-            <img src="06.jpg">
-            <img src="05.jpg">
-            <img src="04.jpg">
-            <img src="03.jpg">
+        <div class="nebula nebula2"></div>
+
+        <div class="nebula nebula3"></div>
+
+
+        <!-- ดาวเรียงเป็นรูปหัวใจ -->
+
+        <div
+            class="heart-galaxy"
+            id="heartGalaxy"
+        ></div>
+
+    </div>
+
+
+    <!-- =====================================================
+         BUTTERFLIES
+    ====================================================== -->
+
+    <div
+        class="butterflies"
+        id="butterflies"
+    ></div>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="header">
+
+        <small>
+            OUR LOVE • OUR UNIVERSE
+        </small>
+
+        <h1>
+            HAPPY ANNIVERSARY
+        </h1>
+
+    </div>
+
+
+    <!-- =====================================================
+         MUSIC
+    ====================================================== -->
+
+    <button
+        class="music"
+        id="musicBtn"
+    >
+        ♫
+    </button>
+
+    <audio
+        id="music"
+        loop
+    >
+        <source
+            src="โลกอิจฉา - เอ๊ะ จิรากร [Official Lyrics Video].mp4"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <!-- =====================================================
+         CAMERA / ORBIT SYSTEM
+    ====================================================== -->
+
+    <div
+        class="camera"
+        id="camera"
+    >
+
+        <div
+            class="system"
+            id="system"
+        >
+
+            <div class="core"></div>
+
+
+            <!-- รูปจำนวนมากจะถูกสร้างด้วย JavaScript -->
+
+            <div
+                class="photo-system"
+                id="photoSystem"
+            ></div>
+
+
+            <!-- พลังงานรอบหัวใจ -->
+
+            <div class="energy"></div>
+
+            <div class="energy energy2"></div>
+
+            <div class="energy energy3"></div>
+
+
+            <!-- หัวใจตรงกลาง -->
+
+            <div class="sun">
+
+                <div class="heart"></div>
+
+                <div class="heart-text">
+
+                    <h2>
+                        TeeRakMeRaiJaBok
+                    </h2>
+
+                    <span>
+                        สุขสันต์วันครบรอบนะ ❤️
+
+                        ขอบคุณที่ให้โอกาสเค้ากลับมาคบกับเธออีกครั้ง ขอบคุณที่ยังเลือกจับมือกัน และอยู่สร้างทุกอย่างไปด้วยกัน ถึงระหว่างทางจะมีทั้งวันที่มีความสุข วันที่เหนื่อย หรือวันที่เราไม่เข้าใจกันบ้าง แต่เค้าดีใจนะที่ทุกครั้งเรายังเลือกที่จะอยู่ข้างกันเสมอ
+
+                        ขอบคุณที่คอยอยู่เคียงข้าง คอยเป็นกำลังใจ และคอยเดินไปด้วยกันในทุกๆ เรื่อง จากวันแรกจนถึงวันนี้ เราสร้างอะไรหลายๆ อย่างมาด้วยกัน และเค้าอยากให้ต่อจากนี้เรายังคงสร้างอนาคตของเราไปด้วยกันแบบนี้เรื่อยๆ
+
+                        เค้าอาจจะไม่ได้เป็นคนที่ดีที่สุด แต่เค้าจะพยายามเป็นคนที่ดีขึ้นเพื่อเธอในทุกๆ วันนะ ❤️
+
+                        ขอบคุณสำหรับทุกอย่างที่ผ่านมา และขอบคุณที่กลับมาเป็นส่วนหนึ่งในชีวิตเค้าอีกครั้งนะ
+
+                        รักเธอ และอยากมีเธอกับมินนิทอยู่ข้างๆ แบบนี้ไปนานๆ เลยนะ 🥰❤️
+
+                        รักกิ๊ฟทู๊กกกกวัน 🤍
+
+                        ถ้าให้เลือกอีกกี่ครั้ง
+
+                        เค้าก็ยังเลือกเธอเหมือนเดิม
+                    </span>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -1212,410 +2001,1254 @@
 
 
     <!-- =====================================================
-         MAIN
-    ===================================================== -->
+         ZOOM
+    ====================================================== -->
 
-    <main>
+    <div class="zoom-value">
 
+        ZOOM:
 
-        <!-- =================================================
-             HERO
-        ================================================= -->
+        <span id="zoomText">
+            100%
+        </span>
 
-        <section class="hero">
+    </div>
 
-            <div class="hero-content">
 
-                <div class="eyebrow">
-                    VISANU & TIDAPA
-                </div>
+    <div class="zoom-ui">
 
+        <button id="zoomIn">
+            +
+        </button>
 
-                <h1>
+        <button id="zoomReset">
+            ⟳
+        </button>
 
-                    Happy
+        <button id="zoomOut">
+            −
+        </button>
 
-                    <br>
+    </div>
 
-                    <span>
-                        Anniversary
-                    </span>
-
-                </h1>
-
-
-                <p class="hero-description">
-
-                    เค้ามีบางอย่างอยากให้เธอดู ❤️
-
-                    <br>
-
-                    เลื่อนลงไปดูนะ
-
-                    <br>
-
-                    ↓
-
-                </p>
-
-            </div>
-
-
-            <div class="scroll">
-
-                ↓
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             STORY
-        ================================================= -->
-
-        <section class="story" id="story">
-
-            <div class="story-inner">
-
-                <div class="story-label">
-
-                    STORY
-
-                </div>
-
-
-                <h2>
-
-                    จำนี่ที่เธอเขียนแล้วส่งมาให้เค้า
-
-                    <br>
-
-                    <span>
-                        เราคาสายกันทุกคืนเลยย
-                    </span>
-
-                </h2>
-
-
-                <div class="divider"></div>
-
-
-                <p>
-
-                    <img src="01.jpg">
-
-
-                    ตอนนั้นเค้ามีความสุขมากๆเลย
-
-                    <br>
-
-                    แต่เค้าก็ทำมันพัง
-
-                    <br><br>
-
-                    ขอบคุณที่ให้โอกาสนะ ❤️
-
-                </p>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             FINAL
-        ================================================= -->
-
-        <section class="final">
-
-            <div class="final-box">
-
-                <div class="final-heart">
-
-                    ❤️
-
-                </div>
-
-
-                <div class="eyebrow">
-
-                    TO MY FAVORITE PERSON
-
-                </div>
-
-
-                <h2>
-
-                    ขอบคุณที่เข้ามา
-
-                    <br>
-
-                    <span>
-                        เป็นความสุขของเค้า
-                    </span>
-
-                </h2>
-
-
-                <p class="final-text">
-
-สุขสันต์วันครบรอบนะ ❤️
-
-ขอบคุณที่ให้โอกาสเค้ากลับมาคบกับเธออีกครั้ง ขอบคุณที่ยังเลือกจับมือกัน และอยู่สร้างทุกอย่างไปด้วยกัน ถึงระหว่างทางจะมีทั้งวันที่มีความสุข วันที่เหนื่อย หรือวันที่เราไม่เข้าใจกันบ้าง แต่เค้าดีใจนะที่ทุกครั้งเรายังเลือกที่จะอยู่ข้างกันเสมอ
-
-ขอบคุณที่คอยอยู่เคียงข้าง คอยเป็นกำลังใจ และคอยเดินไปด้วยกันในทุกๆ เรื่อง จากวันแรกจนถึงวันนี้ เราสร้างอะไรหลายๆ อย่างมาด้วยกัน และเค้าอยากให้ต่อจากนี้เรายังคงสร้างอนาคตของเราไปด้วยกันแบบนี้เรื่อยๆ
-
-เค้าอาจจะไม่ได้เป็นคนที่ดีที่สุด แต่เค้าจะพยายามเป็นคนที่ดีขึ้นเพื่อเธอในทุกๆ วันนะ ❤️
-
-ขอบคุณสำหรับทุกอย่างที่ผ่านมา และขอบคุณที่กลับมาเป็นส่วนหนึ่งในชีวิตเค้าอีกครั้งนะ
-
-รักเธอ และอยากมีเธอกับมินนิทอยู่ข้างๆ แบบนี้ไปนานๆ เลยนะ 🥰❤️
-
-รักกิ๊ฟทู๊กกกกวัน 🤍
-
-ถ้าให้เลือกอีกกี่ครั้ง
-
-เค้าก็ยังเลือกเธอเหมือนเดิม
-
-                </p>
-
-
-                <div class="forever">
-
-                    Nay Love Gift ❤️
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ===================================================== -->
 
     <script>
 
 
-        /* =====================================================
-           MOUSE LIGHT
-        ===================================================== */
+        /* =========================================================
+           INTRO
+        ========================================================= */
 
-        const mouseLight =
-            document.getElementById("mouseLight");
+        const intro =
+            document.getElementById("intro");
+
+        const enter =
+            document.getElementById("enter");
+
+        const music =
+            document.getElementById("music");
+
+        const musicBtn =
+            document.getElementById("musicBtn");
 
 
-        document.addEventListener(
-            "mousemove",
-            function(e) {
+        enter.addEventListener(
+            "click",
+            () => {
 
-                mouseLight.style.left =
-                    e.clientX + "px";
+                intro.classList.add("hide");
 
-                mouseLight.style.top =
-                    e.clientY + "px";
+                music.play().catch(
+                    () => {}
+                );
+
+                createExplosion(
+                    window.innerWidth / 2,
+                    window.innerHeight / 2
+                );
 
             }
         );
 
 
-        /* =====================================================
-           PARTICLES
-        ===================================================== */
+        /* =========================================================
+           MUSIC BUTTON
+        ========================================================= */
 
-        const particles =
-            document.getElementById("particles");
+        musicBtn.addEventListener(
+            "click",
+            () => {
+
+                if (music.paused) {
+
+                    music.play().catch(
+                        () => {}
+                    );
+
+                    musicBtn.innerHTML = "♫";
+
+                }
+                else {
+
+                    music.pause();
+
+                    musicBtn.innerHTML = "🔇";
+
+                }
+
+            }
+        );
 
 
-        const particleCount =
-            window.innerWidth <= 500
-                ? 25
-                : 70;
+        /* =========================================================
+           BACKGROUND STARS
+        ========================================================= */
+
+        const canvas =
+            document.getElementById("stars");
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        let stars = [];
+
+
+        function resizeCanvas() {
+
+            canvas.width =
+                window.innerWidth;
+
+            canvas.height =
+                window.innerHeight;
+
+        }
+
+
+        resizeCanvas();
+
+
+        window.addEventListener(
+            "resize",
+            resizeCanvas
+        );
 
 
         for (
             let i = 0;
-            i < particleCount;
+            i < 900;
             i++
         ) {
 
-            const p =
-                document.createElement("div");
+            stars.push({
 
+                x:
+                    Math.random()
+                    * window.innerWidth,
 
-            p.className =
-                "particle";
+                y:
+                    Math.random()
+                    * window.innerHeight,
 
+                size:
+                    Math.random() * 2,
 
-            p.style.left =
-                Math.random() * 100 + "%";
+                speed:
+                    .1 +
+                    Math.random() * .5,
 
+                alpha:
+                    .2 +
+                    Math.random() * .8,
 
-            p.style.animationDuration =
-                (
-                    Math.random() * 10 + 8
-                ) + "s";
+                twinkle:
+                    Math.random()
+                    * Math.PI * 2
 
-
-            p.style.animationDelay =
-                Math.random() * 10 + "s";
-
-
-            p.style.transform =
-                `scale(${Math.random() + .3})`;
-
-
-            particles.appendChild(p);
+            });
 
         }
 
 
-        /* =====================================================
-           SCROLL ANIMATION
-        ===================================================== */
+        function drawStars() {
 
-        const story =
-            document.querySelector(
-                ".story-inner"
+            ctx.clearRect(
+                0,
+                0,
+                canvas.width,
+                canvas.height
             );
 
 
-        const finalBox =
-            document.querySelector(
-                ".final-box"
-            );
+            stars.forEach(
+                star => {
+
+                    star.twinkle += .02;
 
 
-        const observer =
-            new IntersectionObserver(
+                    const alpha =
+                        star.alpha +
+                        Math.sin(
+                            star.twinkle
+                        ) * .25;
 
-                function(entries) {
 
-                    entries.forEach(
-                        function(entry) {
+                    ctx.beginPath();
 
-                            if (
-                                entry.isIntersecting
-                            ) {
 
-                                entry.target
-                                    .classList
-                                    .add("show");
-
-                            }
-
-                        }
+                    ctx.arc(
+                        star.x,
+                        star.y,
+                        star.size,
+                        0,
+                        Math.PI * 2
                     );
 
-                },
 
-                {
-                    threshold: .15
+                    ctx.fillStyle =
+                        `rgba(
+                            255,
+                            255,
+                            255,
+                            ${Math.max(
+                                .1,
+                                alpha
+                            )}
+                        )`;
+
+
+                    ctx.fill();
+
+
+                    star.y +=
+                        star.speed;
+
+
+                    if (
+                        star.y >
+                        canvas.height
+                    ) {
+
+                        star.y = 0;
+
+                        star.x =
+                            Math.random()
+                            * canvas.width;
+
+                    }
+
                 }
-
             );
 
 
-        observer.observe(story);
-
-        observer.observe(finalBox);
-
-
-
-        /* =====================================================
-           FLOATING HEART
-        ===================================================== */
-
-        function createHeart() {
-
-            const heart =
-                document.createElement("div");
-
-
-            heart.className =
-                "heart";
-
-
-            heart.innerHTML =
-
-                [
-                    "❤️",
-                    "💗",
-                    "💖",
-                    "💕",
-                    "✨"
-                ]
-                [
-                    Math.floor(
-                        Math.random() * 5
-                    )
-                ];
-
-
-            heart.style.left =
-                Math.random() * 100 + "vw";
-
-
-            heart.style.fontSize =
-                (
-                    Math.random() * 20 + 12
-                ) + "px";
-
-
-            heart.style.animationDuration =
-                (
-                    Math.random() * 5 + 5
-                ) + "s";
-
-
-            document.body.appendChild(
-                heart
-            );
-
-
-            setTimeout(
-                function() {
-
-                    heart.remove();
-
-                },
-                10000
+            requestAnimationFrame(
+                drawStars
             );
 
         }
 
 
-        /*
-           มือถือสร้างหัวใจช้าลง
-           เพื่อไม่ให้เครื่องทำงานหนัก
-        */
+        drawStars();
 
-        setInterval(
-            createHeart,
-            window.innerWidth <= 500
-                ? 800
-                : 500
+
+        /* =========================================================
+           HEART GALAXY
+        ========================================================= */
+
+        const heartGalaxy =
+            document.getElementById(
+                "heartGalaxy"
+            );
+
+
+        const heartNebula =
+            document.createElement(
+                "div"
+            );
+
+        heartNebula.className =
+            "heart-nebula";
+
+        heartGalaxy.appendChild(
+            heartNebula
         );
 
 
+        /*
+            สมการหัวใจ
 
-        /* =====================================================
-           CLICK BURST
-        ===================================================== */
+            x = 16 sin³(t)
+
+            y =
+            13 cos(t)
+            - 5 cos(2t)
+            - 2 cos(3t)
+            - cos(4t)
+        */
+
+
+        const centerX = 310;
+
+        const centerY = 270;
+
+        const heartScale = 18;
+
+
+        /*
+            สร้างดาว 1,200 ดวง
+        */
+
+        for (
+            let i = 0;
+            i < 1200;
+            i++
+        ) {
+
+            const t =
+                Math.random()
+                * Math.PI
+                * 2;
+
+
+            const thickness =
+                Math.pow(
+                    Math.random(),
+                    1.8
+                ) * 48;
+
+
+            let x =
+                16 *
+                Math.pow(
+                    Math.sin(t),
+                    3
+                );
+
+
+            let y =
+                13 *
+                Math.cos(t)
+                - 5 *
+                Math.cos(2 * t)
+                - 2 *
+                Math.cos(3 * t)
+                - Math.cos(4 * t);
+
+
+            x =
+                centerX +
+                x * heartScale;
+
+
+            y =
+                centerY -
+                y * heartScale;
+
+
+            x +=
+                (
+                    Math.random() -
+                    .5
+                ) * thickness;
+
+
+            y +=
+                (
+                    Math.random() -
+                    .5
+                ) * thickness;
+
+
+            const star =
+                document.createElement(
+                    "div"
+                );
+
+
+            star.className =
+                "heart-star";
+
+
+            if (
+                Math.random() < .09
+            ) {
+
+                star.classList.add(
+                    "big"
+                );
+
+            }
+
+
+            const color =
+                Math.random();
+
+
+            if (
+                color < .12
+            ) {
+
+                star.classList.add(
+                    "blue"
+                );
+
+            }
+            else if (
+                color < .21
+            ) {
+
+                star.classList.add(
+                    "gold"
+                );
+
+            }
+
+
+            star.style.left =
+                x + "px";
+
+
+            star.style.top =
+                y + "px";
+
+
+            star.style.setProperty(
+                "--twinkle",
+                (
+                    1 +
+                    Math.random() * 3
+                ) + "s"
+            );
+
+
+            star.style.animationDelay =
+                (
+                    Math.random() * 3
+                ) + "s";
+
+
+            heartGalaxy.appendChild(
+                star
+            );
+
+        }
+
+
+        /* =========================================================
+           PHOTO LIST
+        ========================================================= */
+
+        const photos = [
+
+            "01.jpg",
+            "02.jpg",
+            "03.jpg",
+            "04.jpg",
+            "05.jpg",
+            "06.jpg",
+            "07.jpg",
+            "08.jpg",
+            "09.jpg",
+            "10.jpg",
+            "11.jpg",
+            "12.jpg",
+            "13.jpg",
+            "14.jpg",
+            "15.jpg",
+            "16.jpg",
+            "17.jpg",
+            "18.jpg",
+            "19.jpg",
+            "20.jpg",
+            "21.jpg",
+            "22.jpg",
+            "23.jpg",
+            "24.jpg",
+            "25.jpg"
+
+        ];
+
+
+        /* =========================================================
+           PHOTO ORBIT SYSTEM
+        ========================================================= */
+
+        const photoSystem =
+            document.getElementById(
+                "photoSystem"
+            );
+
+
+        const orbitCount = 5;
+
+
+        for (
+            let o = 0;
+            o < orbitCount;
+            o++
+        ) {
+
+            const orbit =
+                document.createElement(
+                    "div"
+                );
+
+
+            orbit.className =
+                "photo-orbit";
+
+
+            const size =
+                360 +
+                o * 130;
+
+
+            orbit.style.width =
+                size + "px";
+
+
+            orbit.style.height =
+                size + "px";
+
+
+            const speed =
+                19 +
+                o * 9;
+
+
+            orbit.style.setProperty(
+                "--orbit-speed",
+                speed + "s"
+            );
+
+
+            if (
+                o % 2 === 1
+            ) {
+
+                orbit.style.animationDirection =
+                    "reverse";
+
+            }
+
+
+            photoSystem.appendChild(
+                orbit
+            );
+
+        }
+
+
+        /* =========================================================
+           GET ORBITS
+        ========================================================= */
+
+        const orbitElements =
+            document.querySelectorAll(
+                ".photo-orbit"
+            );
+
+
+        /* =========================================================
+           GROUP PHOTOS
+        ========================================================= */
+
+        const groupedPhotos = [];
+
+
+        for (
+            let i = 0;
+            i < orbitElements.length;
+            i++
+        ) {
+
+            groupedPhotos.push([]);
+
+        }
+
+
+        photos.forEach(
+            (src, index) => {
+
+                groupedPhotos[
+                    index %
+                    orbitElements.length
+                ].push(src);
+
+            }
+        );
+
+
+        /* =========================================================
+           CREATE PHOTOS
+        ========================================================= */
+
+        photos.forEach(
+            (src, index) => {
+
+                const orbitIndex =
+                    index %
+                    orbitElements.length;
+
+
+                const orbit =
+                    orbitElements[
+                        orbitIndex
+                    ];
+
+
+                const group =
+                    groupedPhotos[
+                        orbitIndex
+                    ];
+
+
+                const position =
+                    group.indexOf(src);
+
+
+                const total =
+                    group.length;
+
+
+                const photo =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                photo.className =
+                    "orbit-photo";
+
+
+                if (
+                    index % 7 === 0
+                ) {
+
+                    photo.classList.add(
+                        "tiny"
+                    );
+
+                }
+                else if (
+                    index % 3 === 0
+                ) {
+
+                    photo.classList.add(
+                        "small"
+                    );
+
+                }
+
+
+                const img =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                img.src = src;
+
+                img.loading = "lazy";
+
+
+                img.onerror =
+                    function () {
+
+                        this.style.opacity =
+                            ".2";
+
+                    };
+
+
+                photo.appendChild(img);
+
+
+                const angle =
+                    (
+                        position /
+                        total
+                    ) * 360;
+
+
+                const radius =
+                    parseFloat(
+                        orbit.style.width
+                    ) / 2;
+
+
+                const rad =
+                    angle *
+                    Math.PI /
+                    180;
+
+
+                const x =
+                    Math.cos(rad) *
+                    radius;
+
+
+                const y =
+                    Math.sin(rad) *
+                    radius;
+
+
+                photo.style.left =
+                    (
+                        radius +
+                        x -
+                        52
+                    ) + "px";
+
+
+                photo.style.top =
+                    (
+                        radius +
+                        y -
+                        52
+                    ) + "px";
+
+
+                photo.style.animationDelay =
+                    (
+                        Math.random() * 3
+                    ) + "s";
+
+
+                orbit.appendChild(
+                    photo
+                );
+
+            }
+        );
+
+
+        /* =========================================================
+           BUTTERFLIES
+        ========================================================= */
+
+        const butterflyLayer =
+            document.getElementById(
+                "butterflies"
+            );
+
+
+        function createButterfly() {
+
+            const butterfly =
+                document.createElement(
+                    "div"
+                );
+
+
+            butterfly.className =
+                "butterfly";
+
+
+            const color =
+                Math.random();
+
+
+            if (
+                color < .33
+            ) {
+
+                butterfly.classList.add(
+                    "blue"
+                );
+
+            }
+            else if (
+                color < .66
+            ) {
+
+                butterfly.classList.add(
+                    "gold"
+                );
+
+            }
+
+
+            const body =
+                document.createElement(
+                    "div"
+                );
+
+
+            body.className =
+                "butterfly-body";
+
+
+            butterfly.appendChild(
+                body
+            );
+
+
+            butterfly.style.left =
+                (
+                    -100 +
+                    Math.random() * 200
+                ) + "px";
+
+
+            butterfly.style.top =
+                (
+                    20 +
+                    Math.random() * 80
+                ) + "vh";
+
+
+            const duration =
+                10 +
+                Math.random() * 12;
+
+
+            butterfly.style.setProperty(
+                "--time",
+                duration + "s"
+            );
+
+
+            butterflyLayer.appendChild(
+                butterfly
+            );
+
+
+            const trailTimer =
+                setInterval(
+                    () => {
+
+                        if (
+                            !document.body.contains(
+                                butterfly
+                            )
+                        ) {
+
+                            clearInterval(
+                                trailTimer
+                            );
+
+                            return;
+
+                        }
+
+
+                        const rect =
+                            butterfly.getBoundingClientRect();
+
+
+                        const trail =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        trail.className =
+                            "trail";
+
+
+                        trail.style.left =
+                            (
+                                rect.left +
+                                rect.width / 2
+                            ) + "px";
+
+
+                        trail.style.top =
+                            (
+                                rect.top +
+                                rect.height / 2
+                            ) + "px";
+
+
+                        butterflyLayer.appendChild(
+                            trail
+                        );
+
+
+                        setTimeout(
+                            () =>
+                                trail.remove(),
+                            1000
+                        );
+
+                    },
+                    120
+                );
+
+
+            setTimeout(
+                () => {
+
+                    clearInterval(
+                        trailTimer
+                    );
+
+                    butterfly.remove();
+
+                },
+                duration * 1000
+            );
+
+        }
+
+
+        for (
+            let i = 0;
+            i < 15;
+            i++
+        ) {
+
+            setTimeout(
+                createButterfly,
+                i * 350
+            );
+
+        }
+
+
+        setInterval(
+            createButterfly,
+            1200
+        );
+
+
+        /* =========================================================
+           ZOOM
+        ========================================================= */
+
+        const camera =
+            document.getElementById(
+                "camera"
+            );
+
+
+        const zoomText =
+            document.getElementById(
+                "zoomText"
+            );
+
+
+        let zoom = 1;
+
+
+        function setZoom(value) {
+
+            zoom =
+                Math.max(
+                    .35,
+                    Math.min(
+                        2.8,
+                        value
+                    )
+                );
+
+
+            camera.style.transform =
+                `scale(${zoom})`;
+
+
+            zoomText.innerHTML =
+                Math.round(
+                    zoom * 100
+                ) + "%";
+
+        }
+
+
+        /* =========================================================
+           ZOOM BUTTONS
+        ========================================================= */
+
+        document.getElementById(
+            "zoomIn"
+        ).addEventListener(
+            "click",
+            () => {
+
+                setZoom(
+                    zoom + .15
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "zoomOut"
+        ).addEventListener(
+            "click",
+            () => {
+
+                setZoom(
+                    zoom - .15
+                );
+
+            }
+        );
+
+
+        document.getElementById(
+            "zoomReset"
+        ).addEventListener(
+            "click",
+            () => {
+
+                setZoom(1);
+
+            }
+        );
+
+
+        /* =========================================================
+           MOUSE WHEEL ZOOM
+        ========================================================= */
+
+        window.addEventListener(
+            "wheel",
+            e => {
+
+                e.preventDefault();
+
+
+                if (
+                    e.deltaY < 0
+                ) {
+
+                    setZoom(
+                        zoom + .08
+                    );
+
+                }
+                else {
+
+                    setZoom(
+                        zoom - .08
+                    );
+
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        /* =========================================================
+           DRAG ROTATE
+        ========================================================= */
+
+        const system =
+            document.getElementById(
+                "system"
+            );
+
+
+        let dragging = false;
+
+        let lastX = 0;
+
+        let lastY = 0;
+
+        let rotateX = 0;
+
+        let rotateY = 0;
+
+
+        window.addEventListener(
+            "mousedown",
+            e => {
+
+                dragging = true;
+
+                lastX =
+                    e.clientX;
+
+                lastY =
+                    e.clientY;
+
+                document.body.classList.add(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mouseup",
+            () => {
+
+                dragging = false;
+
+                document.body.classList.remove(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mousemove",
+            e => {
+
+                if (!dragging) {
+                    return;
+                }
+
+
+                const dx =
+                    e.clientX -
+                    lastX;
+
+
+                const dy =
+                    e.clientY -
+                    lastY;
+
+
+                rotateY +=
+                    dx * .25;
+
+
+                rotateX -=
+                    dy * .25;
+
+
+                rotateX =
+                    Math.max(
+                        -35,
+                        Math.min(
+                            35,
+                            rotateX
+                        )
+                    );
+
+
+                system.style.transform =
+                    `translate(-50%, -50%)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)`;
+
+
+                lastX =
+                    e.clientX;
+
+
+                lastY =
+                    e.clientY;
+
+            }
+        );
+
+
+        /* =========================================================
+           TOUCH PINCH ZOOM
+        ========================================================= */
+
+        let initialDistance = null;
+
+        let initialZoom = 1;
+
+
+        window.addEventListener(
+            "touchmove",
+            e => {
+
+                if (
+                    e.touches.length !== 2
+                ) {
+                    return;
+                }
+
+
+                const a =
+                    e.touches[0];
+
+                const b =
+                    e.touches[1];
+
+
+                const dx =
+                    a.clientX -
+                    b.clientX;
+
+
+                const dy =
+                    a.clientY -
+                    b.clientY;
+
+
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+
+                if (
+                    initialDistance === null
+                ) {
+
+                    initialDistance =
+                        distance;
+
+                    initialZoom =
+                        zoom;
+
+                    return;
+
+                }
+
+
+                const scale =
+                    distance /
+                    initialDistance;
+
+
+                setZoom(
+                    initialZoom *
+                    scale
+                );
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        window.addEventListener(
+            "touchend",
+            () => {
+
+                initialDistance =
+                    null;
+
+            }
+        );
+
+
+        /* =========================================================
+           CLICK EXPLOSION
+        ========================================================= */
 
         document.addEventListener(
             "click",
-            function(e) {
+            e => {
 
-                createBurst(
+                if (
+                    e.target.closest(
+                        "button"
+                    )
+                ) {
+                    return;
+                }
+
+
+                createExplosion(
                     e.clientX,
                     e.clientY
                 );
@@ -1624,81 +3257,100 @@
         );
 
 
-        function createBurst(x, y) {
+        /* =========================================================
+           PARTICLE EXPLOSION FUNCTION
+        ========================================================= */
+
+        function createExplosion(x, y) {
+
+            const symbols = [
+                "❤️",
+                "💖",
+                "💕",
+                "✨",
+                "💗",
+                "💜",
+                "🤍"
+            ];
+
 
             for (
                 let i = 0;
-                i < 8;
+                i < 18;
                 i++
             ) {
 
-                const b =
-                    document.createElement("div");
+                const particle =
+                    document.createElement(
+                        "div"
+                    );
 
 
-                b.className =
-                    "burst";
+                particle.className =
+                    "particle";
 
 
-                b.innerHTML =
-
-                    [
-                        "❤️",
-                        "✨",
-                        "💗",
-                        "💕"
-                    ]
-                    [
+                particle.innerHTML =
+                    symbols[
                         Math.floor(
-                            Math.random() * 4
+                            Math.random() *
+                            symbols.length
                         )
                     ];
 
 
-                b.style.left =
+                particle.style.left =
                     x + "px";
 
 
-                b.style.top =
+                particle.style.top =
                     y + "px";
 
 
                 const angle =
                     Math.random() *
-                    Math.PI * 2;
+                    Math.PI *
+                    2;
 
 
                 const distance =
+                    50 +
                     Math.random() *
-                    100 + 50;
+                    180;
 
 
-                b.style.setProperty(
+                particle.style.setProperty(
                     "--x",
                     Math.cos(angle) *
-                    distance + "px"
+                    distance +
+                    "px"
                 );
 
 
-                b.style.setProperty(
+                particle.style.setProperty(
                     "--y",
                     Math.sin(angle) *
-                    distance + "px"
+                    distance +
+                    "px"
                 );
+
+
+                particle.style.fontSize =
+                    (
+                        12 +
+                        Math.random() * 18
+                    ) + "px";
 
 
                 document.body.appendChild(
-                    b
+                    particle
                 );
 
 
                 setTimeout(
-                    function() {
-
-                        b.remove();
-
-                    },
-                    1000
+                    () =>
+                        particle.remove(),
+                    1500
                 );
 
             }
@@ -1706,8 +3358,225 @@
         }
 
 
-    </script>
+        /* =========================================================
+           SHOOTING STARS
+        ========================================================= */
 
+        function shootingStar() {
+
+            const star =
+                document.createElement(
+                    "div"
+                );
+
+
+            star.style.position =
+                "fixed";
+
+            star.style.width =
+                "200px";
+
+            star.style.height =
+                "2px";
+
+            star.style.background =
+                "linear-gradient(90deg,transparent,white)";
+
+            star.style.left =
+                Math.random() * 70 + "%";
+
+            star.style.top =
+                Math.random() * 60 + "%";
+
+            star.style.transform =
+                "rotate(-35deg)";
+
+            star.style.zIndex =
+                "300";
+
+            star.style.filter =
+                "drop-shadow(0 0 8px white)";
+
+
+            document.body.appendChild(
+                star
+            );
+
+
+            const animation =
+                star.animate(
+
+                    [
+
+                        {
+                            transform:
+                                "translate(0,0) rotate(-35deg)",
+                            opacity: 0
+                        },
+
+                        {
+                            transform:
+                                "translate(300px,200px) rotate(-35deg)",
+                            opacity: 1
+                        },
+
+                        {
+                            transform:
+                                "translate(700px,500px) rotate(-35deg)",
+                            opacity: 0
+                        }
+
+                    ],
+
+                    {
+                        duration: 1800,
+                        easing: "ease-out"
+                    }
+
+                );
+
+
+            animation.onfinish =
+                () =>
+                    star.remove();
+
+        }
+
+
+        setInterval(
+            shootingStar,
+            3500
+        );
+
+
+        /* =========================================================
+           FLOATING HEARTS
+        ========================================================= */
+
+        function floatingHeart() {
+
+            const heart =
+                document.createElement(
+                    "div"
+                );
+
+
+            heart.style.position =
+                "fixed";
+
+            heart.style.bottom =
+                "-50px";
+
+            heart.style.left =
+                Math.random() * 100 + "%";
+
+            heart.style.color =
+                "#ff1688";
+
+            heart.style.fontSize =
+                10 +
+                Math.random() * 25 +
+                "px";
+
+            heart.style.zIndex =
+                "200";
+
+            heart.style.pointerEvents =
+                "none";
+
+
+            heart.innerHTML =
+                [
+                    "♥",
+                    "❤",
+                    "♡",
+                    "💖",
+                    "💕"
+                ][
+                    Math.floor(
+                        Math.random() * 5
+                    )
+                ];
+
+
+            const duration =
+                5 +
+                Math.random() * 8;
+
+
+            heart.animate(
+
+                [
+
+                    {
+                        transform:
+                            "translateY(0) rotate(0) scale(.5)",
+                        opacity: 0
+                    },
+
+                    {
+                        transform:
+                            "translateY(-20vh) rotate(80deg) scale(1)",
+                        opacity: 1
+                    },
+
+                    {
+                        transform:
+                            "translateY(-110vh) rotate(360deg) scale(1.5)",
+                        opacity: 0
+                    }
+
+                ],
+
+                {
+                    duration:
+                        duration * 1000,
+
+                    easing:
+                        "linear"
+                }
+
+            );
+
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(
+                () =>
+                    heart.remove(),
+                duration * 1000
+            );
+
+        }
+
+
+        setInterval(
+            floatingHeart,
+            600
+        );
+
+
+        /* =========================================================
+           PERIODIC HEART EXPLOSION
+        ========================================================= */
+
+        setInterval(
+            () => {
+
+                createExplosion(
+                    window.innerWidth / 2,
+                    window.innerHeight / 2
+                );
+
+            },
+            12000
+        );
+
+
+    </script>
 
 </body>
 
