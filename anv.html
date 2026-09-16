@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="th">
 
@@ -10,22 +11,12 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     >
 
-    <meta
-        name="theme-color"
-        content="#030006"
-    >
-
-    <meta
-        name="description"
-        content="Our Galaxy ❤️ Happy Anniversary My Love"
-    >
-
     <title>Our Galaxy ❤️</title>
 
 
-    <!-- =====================================================
+    <!-- =========================================================
          GOOGLE FONTS
-    ====================================================== -->
+    ========================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -36,16 +27,16 @@
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Charmonman:wght@400;700&family=Sarabun:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
 
     <style>
 
-        /* =====================================================
+        /* =========================================================
            RESET
-        ====================================================== */
+        ========================================================== */
 
         * {
             margin: 0;
@@ -62,48 +53,330 @@
 
             overflow: hidden;
 
-            background: #030006;
+            background:
+                radial-gradient(
+                    circle at center,
+                    #17051f 0%,
+                    #09020d 45%,
+                    #020106 100%
+                );
 
-            color: white;
-
-            font-family: "Kanit", sans-serif;
+            font-family:
+                "Sarabun",
+                sans-serif;
 
             touch-action: none;
-
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-touch-callout: none;
-
         }
 
 
         body {
+
             position: relative;
+
+            color: white;
+
+            user-select: none;
+
+            -webkit-user-select: none;
+
+            overflow: hidden;
         }
 
 
-        button {
+        /* =========================================================
+           SPACE
+        ========================================================== */
 
-            font-family: inherit;
-
-            -webkit-tap-highlight-color: transparent;
-
-            touch-action: manipulation;
-
-        }
-
-
-        /* =====================================================
-           INTRO
-        ====================================================== */
-
-        #intro {
+        #space {
 
             position: fixed;
 
             inset: 0;
 
-            z-index: 99999;
+            overflow: hidden;
+
+            cursor: grab;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(255, 40, 180, .08),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 50% 50%,
+                    rgba(100, 40, 255, .06),
+                    transparent 55%
+                );
+        }
+
+
+        #space.dragging {
+
+            cursor: grabbing;
+        }
+
+
+        /* =========================================================
+           WORLD
+        ========================================================== */
+
+        #world {
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            width: 1px;
+            height: 1px;
+
+            transform:
+                translate(0px, 0px)
+                scale(.55);
+
+            transform-origin:
+                center center;
+
+            will-change:
+                transform;
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================================
+           HEART PARTICLES
+        ========================================================== */
+
+        .heart-particle {
+
+            position: absolute;
+
+            width: 3px;
+            height: 3px;
+
+            margin-left: -1.5px;
+            margin-top: -1.5px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            box-shadow:
+
+                0 0 4px white,
+
+                0 0 9px
+                rgba(255, 100, 220, .9),
+
+                0 0 18px
+                rgba(255, 50, 190, .5);
+
+            pointer-events: none;
+        }
+
+
+        .heart-particle.small {
+
+            width: 2px;
+            height: 2px;
+
+            margin-left: -1px;
+            margin-top: -1px;
+
+            opacity: .6;
+        }
+
+
+        .heart-particle.glow {
+
+            animation:
+                heartTwinkle
+                2.8s
+                ease-in-out
+                infinite;
+        }
+
+
+        @keyframes heartTwinkle {
+
+            0%,
+            100% {
+
+                opacity: .35;
+
+                transform:
+                    scale(.7);
+            }
+
+            50% {
+
+                opacity: 1;
+
+                transform:
+                    scale(1.8);
+            }
+        }
+
+
+        /* =========================================================
+           BACKGROUND STARS
+        ========================================================== */
+
+        .star {
+
+            position: fixed;
+
+            width: 2px;
+            height: 2px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            box-shadow:
+                0 0 5px white;
+
+            animation:
+                starBlink
+                var(--duration)
+                ease-in-out
+                infinite;
+
+            animation-delay:
+                var(--delay);
+
+            pointer-events: none;
+        }
+
+
+        @keyframes starBlink {
+
+            0%,
+            100% {
+
+                opacity: .15;
+
+                transform:
+                    scale(.7);
+            }
+
+            50% {
+
+                opacity: .9;
+
+                transform:
+                    scale(1.5);
+            }
+        }
+
+
+        /* =========================================================
+           PHOTOS
+        ========================================================== */
+
+        #photos {
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 1px;
+            height: 1px;
+        }
+
+
+        .photo-item {
+
+            position: absolute;
+
+            width: 90px;
+            height: 90px;
+
+            margin-left: -45px;
+            margin-top: -45px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            pointer-events: none;
+        }
+
+
+        .photo {
+
+            width: 68px;
+            height: 68px;
+
+            object-fit: cover;
+
+            border-radius: 50%;
+
+            border:
+                2px solid
+                rgba(255,255,255,.9);
+
+            background:
+                #160516;
+
+            box-shadow:
+
+                0 0 8px
+                rgba(255,255,255,.8),
+
+                0 0 18px
+                rgba(255,80,210,.75),
+
+                0 0 35px
+                rgba(255,40,180,.35);
+
+            transform:
+                scale(.015);
+
+            opacity: .08;
+
+            transition:
+                transform .18s ease,
+                opacity .18s ease;
+
+            will-change:
+                transform,
+                opacity;
+        }
+
+
+        /* =========================================================
+           LOVE MESSAGE
+           
+           สำคัญ:
+           #world มีขนาด 1px
+           ดังนั้นห้ามใช้ max-width: 50%
+           
+           เรากำหนดขนาดกล่องเอง
+        ========================================================== */
+
+        .love-message {
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 390px;
+            height: 330px;
+
+            transform:
+                translate(-50%, -50%);
+
+            z-index: 100;
+
+            pointer-events: none;
 
             display: flex;
 
@@ -113,857 +386,287 @@
 
             justify-content: center;
 
-            text-align: center;
-
-            padding: 25px;
-
-            background:
-
-                radial-gradient(
-                    circle at center,
-                    rgba(105, 0, 160, 0.35),
-                    rgba(4, 0, 10, 0.98) 65%
-                );
-
-            transition:
-                opacity 1s ease,
-                visibility 1s ease;
-
-        }
-
-
-        #intro.hide {
-
-            opacity: 0;
-
-            visibility: hidden;
-
-            pointer-events: none;
-
-        }
-
-
-        .intro-small {
-
-            font-family: "Orbitron", sans-serif;
-
-            font-size:
-                clamp(10px, 2vw, 15px);
-
-            letter-spacing: 5px;
-
-            opacity: 0.7;
-
-            margin-bottom: 15px;
-
-        }
-
-
-        .intro-title {
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(42px, 10vw, 95px);
-
-            line-height: 1.1;
-
-            background:
-
-                linear-gradient(
-                    90deg,
-                    #ffffff,
-                    #ffb5eb,
-                    #d37aff,
-                    #ffffff
-                );
-
-            background-size: 300% auto;
-
-            -webkit-background-clip: text;
-
-            -webkit-text-fill-color: transparent;
-
-            animation:
-                titleGradient 5s linear infinite;
-
-        }
-
-
-        @keyframes titleGradient {
-
-            0% {
-                background-position: 0% center;
-            }
-
-            100% {
-                background-position: 300% center;
-            }
-
-        }
-
-
-        .intro-subtitle {
-
-            margin-top: 15px;
-
-            font-size:
-                clamp(16px, 4vw, 27px);
-
-            opacity: 0.85;
-
-        }
-
-
-        #enterBtn {
-
-            margin-top: 45px;
+            gap: 5px;
 
             padding:
-                15px 32px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.5);
-
-            border-radius: 999px;
-
-            background:
-                rgba(255,255,255,0.08);
+                25px 55px;
 
             color: white;
 
-            font-size: 18px;
+            text-align: center;
 
-            cursor: pointer;
+            overflow: hidden;
 
-            backdrop-filter:
-                blur(10px);
+            text-shadow:
 
-            box-shadow:
+                0 0 4px
+                rgba(255,255,255,.9),
+
+                0 0 10px
+                rgba(255,80,210,.45);
+        }
+
+
+        /* =========================================================
+           ANNIVERSARY
+        ========================================================== */
+
+        .love-title {
+
+            font-family:
+                "Alex Brush",
+                cursive;
+
+            font-size: 32px;
+
+            line-height: 1;
+
+            color: white;
+
+            white-space: nowrap;
+
+            text-shadow:
+
+                0 0 6px white,
+
+                0 0 14px
+                rgba(255,100,220,.9),
+
                 0 0 25px
-                rgba(255,50,200,0.4);
-
-            transition:
-                transform 0.3s ease,
-                background 0.3s ease,
-                box-shadow 0.3s ease;
-
+                rgba(255,50,190,.6);
         }
 
 
-        #enterBtn:hover {
+        /* =========================================================
+           THAI TITLE
+        ========================================================== */
 
-            transform:
-                translateY(-4px)
-                scale(1.05);
+        .love-subtitle {
 
-            background:
-                rgba(255,255,255,0.15);
+            font-family:
+                "Charmonman",
+                cursive;
 
-            box-shadow:
-                0 0 45px
-                rgba(255,50,200,0.8);
+            font-size: 15px;
 
+            font-weight: 700;
+
+            line-height: 1.2;
+
+            color: white;
+
+            white-space: nowrap;
+
+            text-shadow:
+
+                0 0 4px white,
+
+                0 0 10px
+                rgba(255,100,220,.8);
         }
 
 
-        #enterBtn:active {
+        /* =========================================================
+           MAIN MESSAGE
+        ========================================================== */
 
-            transform: scale(0.94);
+        .love-text {
 
+            width: 100%;
+
+            margin-top: 3px;
+
+            font-family:
+                "Sarabun",
+                sans-serif;
+
+            font-size: 8px;
+
+            font-weight: 400;
+
+            line-height: 1.35;
+
+            color:
+                rgba(255,245,252,.95);
+
+            text-align: center;
+
+            white-space: pre-line;
+
+            overflow: hidden;
+
+            text-shadow:
+
+                0 0 3px
+                rgba(255,100,220,.4);
         }
 
 
-        /* =====================================================
-           MAIN
-        ====================================================== */
+        /* =========================================================
+           HIGHLIGHT
+        ========================================================== */
 
-        #main {
+        .love-highlight {
+
+            margin-top: 4px;
+
+            font-family:
+                "Charmonman",
+                cursive;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            line-height: 1.3;
+
+            color:
+                #ffd9f7;
+
+            text-align: center;
+
+            text-shadow:
+
+                0 0 5px white,
+
+                0 0 12px
+                rgba(255,80,210,.9);
+        }
+
+
+        /* =========================================================
+           TOP TITLE
+        ========================================================== */
+
+        .galaxy-title {
 
             position: fixed;
 
-            inset: 0;
-
-            overflow: hidden;
-
-            opacity: 0;
-
-            transition:
-                opacity 1.5s ease;
-
-        }
-
-
-        #main.show {
-
-            opacity: 1;
-
-        }
-
-
-        /* =====================================================
-           BACKGROUND
-        ====================================================== */
-
-        .space {
-
-            position: absolute;
-
-            inset: 0;
-
-            overflow: hidden;
-
-            background:
-
-                radial-gradient(
-                    ellipse at center,
-                    rgba(95, 0, 140, 0.25),
-                    transparent 60%
-                );
-
-        }
-
-
-        .nebula {
-
-            position: absolute;
-
-            width: 85vw;
-            height: 85vw;
-
-            max-width: 1100px;
-            max-height: 1100px;
-
-            left: 50%;
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            border-radius: 50%;
-
-            background:
-
-                conic-gradient(
-                    from 0deg,
-                    rgba(255,0,200,0.05),
-                    rgba(100,0,255,0.1),
-                    rgba(0,180,255,0.05),
-                    rgba(255,0,100,0.08),
-                    rgba(255,0,200,0.05)
-                );
-
-            filter: blur(45px);
-
-            animation:
-                nebulaRotate 30s linear infinite;
-
-        }
-
-
-        @keyframes nebulaRotate {
-
-            0% {
-
-                transform:
-                    translate(-50%, -50%)
-                    rotate(0deg)
-                    scale(1);
-
-            }
-
-            50% {
-
-                transform:
-                    translate(-50%, -50%)
-                    rotate(180deg)
-                    scale(1.15);
-
-            }
-
-            100% {
-
-                transform:
-                    translate(-50%, -50%)
-                    rotate(360deg)
-                    scale(1);
-
-            }
-
-        }
-
-
-        /* =====================================================
-           HEADER
-        ====================================================== */
-
-        .top {
-
-            position: absolute;
-
-            top: 20px;
+            top: 18px;
 
             left: 50%;
 
             transform:
                 translateX(-50%);
 
-            width: 100%;
-
-            z-index: 500;
-
-            text-align: center;
-
-            padding: 0 20px;
-
-            pointer-events: none;
-
-        }
-
-
-        .top-small {
-
-            font-family: "Orbitron", sans-serif;
-
-            font-size:
-                clamp(8px, 2vw, 13px);
-
-            letter-spacing: 4px;
-
-            opacity: 0.6;
-
-        }
-
-
-        .top-title {
-
-            margin-top: 5px;
-
-            font-family:
-                "Playfair Display",
-                serif;
-
-            font-size:
-                clamp(26px, 6vw, 55px);
-
-            letter-spacing: 3px;
-
-            text-shadow:
-                0 0 15px
-                rgba(255,100,220,0.7);
-
-        }
-
-
-        .top-subtitle {
-
-            font-family:
-                "Orbitron",
-                sans-serif;
-
-            font-size:
-                clamp(8px, 1.7vw, 12px);
-
-            letter-spacing: 4px;
-
-            opacity: 0.55;
-
-        }
-
-
-        /* =====================================================
-           UNIVERSE
-        ====================================================== */
-
-        .universe {
-
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            width: 1px;
-            height: 1px;
-
-            transform:
-                translate(-50%, -50%);
-
-            perspective: 1200px;
-
-            transform-style: preserve-3d;
-
-            touch-action: none;
-
-        }
-
-
-        #system {
-
-            position: absolute;
-
-            left: 0;
-            top: 0;
-
-            width: 1px;
-            height: 1px;
-
-            transform-style: preserve-3d;
-
-            transition:
-                transform 0.08s linear;
-
-        }
-
-
-        /* =====================================================
-           HEART STARS
-        ====================================================== */
-
-        .heart-star {
-
-            position: absolute;
-
-            width: 4px;
-            height: 4px;
-
-            transform-style: preserve-3d;
-
-            animation:
-                twinkle
-                var(--duration)
-                ease-in-out
-                infinite alternate;
-
-        }
-
-
-        .heart-star::before {
-
-            content: "❤";
-
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            font-size:
-                var(--size);
-
-            color: currentColor;
-
-            text-shadow:
-                0 0 5px currentColor,
-                0 0 12px currentColor;
-
-        }
-
-
-        @keyframes twinkle {
-
-            from {
-
-                opacity: 0.15;
-
-                transform: scale(0.7);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform: scale(1.2);
-
-            }
-
-        }
-
-
-        /* =====================================================
-           ORBITS
-        ====================================================== */
-
-        .orbit {
-
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.08);
-
-            border-radius: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            transform-style: preserve-3d;
-
-            pointer-events: none;
-
-        }
-
-
-        .orbit:nth-child(1) {
-
-            width: 180px;
-            height: 180px;
-
-        }
-
-
-        .orbit:nth-child(2) {
-
-            width: 300px;
-            height: 300px;
-
-        }
-
-
-        .orbit:nth-child(3) {
-
-            width: 430px;
-            height: 430px;
-
-        }
-
-
-        .orbit:nth-child(4) {
-
-            width: 560px;
-            height: 560px;
-
-        }
-
-
-        .orbit:nth-child(5) {
-
-            width: 690px;
-            height: 690px;
-
-        }
-
-
-        /* =====================================================
-           PHOTOS
-        ====================================================== */
-
-        .photo {
-
-            position: absolute;
-
-            width: 90px;
-            height: 110px;
-
-            object-fit: cover;
-
-            border-radius: 12px;
-
-            border:
-                2px solid
-                rgba(255,255,255,0.6);
-
-            box-shadow:
-
-                0 0 15px
-                rgba(255,80,210,0.5),
-
-                0 0 35px
-                rgba(130,50,255,0.3);
-
-            transform-style: preserve-3d;
-
-            pointer-events: auto;
-
-            cursor: pointer;
-
-            transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
-
-        }
-
-
-        .photo:hover {
-
-            transform:
-                scale(1.15);
-
-            box-shadow:
-
-                0 0 25px
-                rgba(255,100,220,0.9),
-
-                0 0 55px
-                rgba(130,50,255,0.6);
-
-            z-index: 100;
-
-        }
-
-
-        /* =====================================================
-           CENTER HEART
-        ====================================================== */
-
-        .center-heart {
-
-            position: absolute;
-
-            left: 50%;
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
-            font-size:
-                clamp(50px, 12vw, 100px);
-
-            color: #ff4fbd;
-
-            text-shadow:
-
-                0 0 10px #ff4fbd,
-
-                0 0 30px #ff4fbd,
-
-                0 0 70px #ff008c;
-
-            animation:
-                heartBeat 1.4s ease-in-out infinite;
-
-            z-index: 50;
-
-        }
-
-
-        @keyframes heartBeat {
-
-            0%,
-            100% {
-
-                transform:
-                    translate(-50%, -50%)
-                    scale(1);
-
-            }
-
-            50% {
-
-                transform:
-                    translate(-50%, -50%)
-                    scale(1.18);
-
-            }
-
-        }
-
-
-        /* =====================================================
-           BUTTERFLY
-        ====================================================== */
-
-        .butterfly {
-
-            position: fixed;
-
-            z-index: 400;
-
-            pointer-events: none;
-
-            font-size: 20px;
-
-            filter:
-                drop-shadow(
-                    0 0 8px
-                    rgba(255,120,230,0.8)
-                );
-
-            animation:
-                butterflyFloat
-                var(--duration)
-                linear forwards;
-
-        }
-
-
-        @keyframes butterflyFloat {
-
-            0% {
-
-                transform:
-                    translate(
-                        var(--start-x),
-                        110vh
-                    )
-                    rotate(
-                        var(--rotate)
-                    );
-
-                opacity: 0;
-
-            }
-
-            10% {
-
-                opacity: 1;
-
-            }
-
-            90% {
-
-                opacity: 1;
-
-            }
-
-            100% {
-
-                transform:
-                    translate(
-                        var(--end-x),
-                        -20vh
-                    )
-                    rotate(
-                        calc(
-                            var(--rotate) + 360deg
-                        )
-                    );
-
-                opacity: 0;
-
-            }
-
-        }
-
-
-        /* =====================================================
-           FLOAT HEART
-        ====================================================== */
-
-        .floating-heart {
-
-            position: fixed;
-
-            pointer-events: none;
-
             z-index: 300;
 
-            color:
-                rgba(255,100,200,0.9);
+            font-family:
+                "Alex Brush",
+                cursive;
+
+            font-size:
+                clamp(28px, 5vw, 46px);
+
+            color: white;
 
             text-shadow:
-                0 0 10px currentColor;
 
-            animation:
-                floatHeart 5s ease-out forwards;
+                0 0 8px white,
 
+                0 0 18px
+                rgba(255,80,210,.8),
+
+                0 0 35px
+                rgba(255,40,180,.4);
+
+            pointer-events: none;
         }
 
 
-        @keyframes floatHeart {
+        /* =========================================================
+           CONTROLS
+        ========================================================== */
 
-            from {
-
-                opacity: 0;
-
-                transform:
-                    translateY(0)
-                    scale(0.5);
-
-            }
-
-            15% {
-
-                opacity: 1;
-
-            }
-
-            to {
-
-                opacity: 0;
-
-                transform:
-                    translateY(-250px)
-                    scale(1.4)
-                    rotate(25deg);
-
-            }
-
-        }
-
-
-        /* =====================================================
-           MUSIC BUTTON
-        ====================================================== */
-
-        #musicBtn {
+        #controls {
 
             position: fixed;
 
             right: 20px;
             bottom: 20px;
 
-            z-index: 5000;
+            z-index: 500;
 
-            width: 52px;
-            height: 52px;
+            display: flex;
 
-            border-radius: 50%;
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .control-btn {
+
+            width: 42px;
+            height: 42px;
 
             border:
                 1px solid
-                rgba(255,255,255,0.4);
+                rgba(255,255,255,.25);
+
+            border-radius: 50%;
 
             background:
-                rgba(255,255,255,0.1);
+                rgba(255,255,255,.08);
 
             color: white;
 
-            font-size: 22px;
+            font-size: 20px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
 
             cursor: pointer;
 
             backdrop-filter:
-                blur(10px);
+                blur(8px);
+
+            -webkit-backdrop-filter:
+                blur(8px);
 
             box-shadow:
-                0 0 20px
-                rgba(255,50,200,0.35);
+
+                0 0 12px
+                rgba(255,80,210,.15);
 
             transition:
-                0.3s ease;
-
+                .25s ease;
         }
 
 
-        #musicBtn:hover {
+        .control-btn:hover {
 
-            transform: scale(1.1);
+            background:
+                rgba(255,80,210,.25);
+
+            border-color:
+                rgba(255,255,255,.7);
 
             box-shadow:
-                0 0 35px
-                rgba(255,50,200,0.7);
 
+                0 0 15px
+                rgba(255,80,210,.6),
+
+                0 0 30px
+                rgba(255,50,180,.25);
+
+            transform:
+                scale(1.08);
         }
 
 
-        /* =====================================================
-           HINT
-        ====================================================== */
+        /* =========================================================
+           ZOOM TEXT
+        ========================================================== */
 
-        .hint {
+        #zoomText {
 
             position: fixed;
 
             left: 50%;
+
             bottom: 20px;
 
             transform:
@@ -972,282 +675,173 @@
             z-index: 500;
 
             padding:
-                8px 15px;
+                6px 12px;
 
-            border-radius: 999px;
-
-            background:
-                rgba(0,0,0,0.3);
-
-            border:
-                1px solid
-                rgba(255,255,255,0.1);
-
-            backdrop-filter:
-                blur(8px);
+            border-radius: 20px;
 
             font-size: 12px;
 
-            opacity: 0.6;
-
-            text-align: center;
-
-            white-space: nowrap;
-
-        }
-
-
-        /* =====================================================
-           EXPLOSION
-        ====================================================== */
-
-        .explosion-heart {
-
-            position: fixed;
-
-            pointer-events: none;
-
-            z-index: 9000;
-
-            font-size: 20px;
-
-            color: #ff69c7;
-
-            text-shadow:
-
-                0 0 10px #ff69c7,
-
-                0 0 25px #ff008c;
-
-            animation:
-                explodeHeart 1s ease-out forwards;
-
-        }
-
-
-        @keyframes explodeHeart {
-
-            from {
-
-                opacity: 1;
-
-                transform:
-                    translate(-50%, -50%)
-                    scale(0.4);
-
-            }
-
-            to {
-
-                opacity: 0;
-
-                transform:
-                    translate(
-                        var(--tx),
-                        var(--ty)
-                    )
-                    scale(1.5)
-                    rotate(
-                        var(--rotation)
-                    );
-
-            }
-
-        }
-
-
-        /* =====================================================
-           SHOOTING STAR
-        ====================================================== */
-
-        .shooting-star {
-
-            position: fixed;
-
-            width: 100px;
-            height: 2px;
+            color:
+                rgba(255,255,255,.75);
 
             background:
+                rgba(255,255,255,.06);
 
-                linear-gradient(
-                    90deg,
-                    transparent,
-                    white
-                );
+            border:
+                1px solid
+                rgba(255,255,255,.1);
 
-            border-radius: 999px;
-
-            transform:
-                rotate(-35deg);
+            backdrop-filter:
+                blur(5px);
 
             pointer-events: none;
-
-            z-index: 100;
-
-            animation:
-                shootingStar
-                1.5s
-                linear
-                forwards;
-
         }
 
 
-        @keyframes shootingStar {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    translate(0,0)
-                    rotate(-35deg);
-
-            }
-
-            10% {
-
-                opacity: 1;
-
-            }
-
-            to {
-
-                opacity: 0;
-
-                transform:
-                    translate(
-                        -400px,
-                        400px
-                    )
-                    rotate(-35deg);
-
-            }
-
-        }
-
-
-        /* =====================================================
+        /* =========================================================
            MOBILE
-        ====================================================== */
+        ========================================================== */
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
 
-
-            .top {
+            .galaxy-title {
 
                 top: 10px;
 
+                font-size:
+                    clamp(27px, 9vw, 40px);
             }
 
 
-            .top-title {
+            .love-message {
 
-                letter-spacing: 1px;
+                width: 280px;
 
+                height: 250px;
+
+                padding:
+                    20px 40px;
+
+                gap: 3px;
             }
 
 
-            .top-subtitle {
+            .love-title {
 
-                letter-spacing: 2px;
+                font-size: 24px;
+            }
 
+
+            .love-subtitle {
+
+                font-size: 11px;
+
+                line-height: 1.15;
+            }
+
+
+            .love-text {
+
+                font-size: 6px;
+
+                line-height: 1.3;
+            }
+
+
+            .love-highlight {
+
+                font-size: 8px;
+
+                line-height: 1.2;
+            }
+
+
+            .photo-item {
+
+                width: 70px;
+                height: 70px;
+
+                margin-left: -35px;
+                margin-top: -35px;
             }
 
 
             .photo {
 
-                width: 65px;
-                height: 82px;
+                width: 52px;
+                height: 52px;
 
-                border-radius: 9px;
-
+                border-width: 1.5px;
             }
 
 
-            .orbit:nth-child(1) {
+            #controls {
 
-                width: 120px;
-                height: 120px;
+                right: 10px;
 
+                bottom: 10px;
             }
 
 
-            .orbit:nth-child(2) {
+            .control-btn {
 
-                width: 200px;
-                height: 200px;
+                width: 38px;
+                height: 38px;
 
+                font-size: 17px;
             }
 
 
-            .orbit:nth-child(3) {
+            #zoomText {
 
-                width: 285px;
-                height: 285px;
-
-            }
-
-
-            .orbit:nth-child(4) {
-
-                width: 370px;
-                height: 370px;
-
-            }
-
-
-            .orbit:nth-child(5) {
-
-                width: 455px;
-                height: 455px;
-
-            }
-
-
-            #musicBtn {
-
-                width: 46px;
-                height: 46px;
-
-                right: 14px;
-                bottom: 14px;
-
-                font-size: 19px;
-
-            }
-
-
-            .hint {
-
-                bottom: 15px;
+                bottom: 10px;
 
                 font-size: 10px;
-
-                max-width: 70%;
-
-                white-space: normal;
-
             }
-
         }
 
 
-        @media (max-height: 600px) {
+        /* =========================================================
+           SMALL MOBILE
+        ========================================================== */
 
-            .top {
+        @media (max-width: 400px) {
 
-                top: 6px;
+            .love-message {
 
+                width: 230px;
+
+                height: 210px;
+
+                padding:
+                    15px 30px;
             }
 
 
-            .hint {
+            .love-title {
 
-                display: none;
-
+                font-size: 20px;
             }
 
+
+            .love-subtitle {
+
+                font-size: 9px;
+            }
+
+
+            .love-text {
+
+                font-size: 5px;
+
+                line-height: 1.25;
+            }
+
+
+            .love-highlight {
+
+                font-size: 7px;
+            }
         }
 
     </style>
@@ -1258,816 +852,154 @@
 <body>
 
 
-    <!-- =====================================================
-         MUSIC
-    ====================================================== -->
+    <!-- =========================================================
+         SPACE
+    ========================================================== -->
 
-    <audio
-        id="music"
-        loop
-        preload="auto"
-    >
-
-        <source
-            src="โลกอิจฉา - เอ๊ะ จิรากร [Official Lyrics Video].mp4"
-            type="audio/mp4"
-        >
-
-    </audio>
+    <div id="space">
 
 
-    <!-- =====================================================
-         INTRO
-    ====================================================== -->
-
-    <section id="intro">
-
-        <div class="intro-small">
-            HAPPY ANNIVERSARY MY LOVE
-        </div>
+       
 
 
-        <div class="intro-title">
-            Gift & Nay
-        </div>
+        <!-- =====================================================
+             WORLD
+        ====================================================== -->
+
+        <div id="world">
 
 
-        <div class="intro-subtitle">
-            ❤️
-        </div>
+            <!-- =================================================
+                 HEART
+            ================================================== -->
+
+            <div id="heart"></div>
 
 
-        <button id="enterBtn">
-            จิ้มตรงนี้เลยยย ❤️
-        </button>
+            <!-- =================================================
+                 PHOTOS
+            ================================================== -->
 
-    </section>
-
-
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
-
-    <main id="main">
+            <div id="photos"></div>
 
 
-        <div class="space">
+            <!-- =================================================
+                 MESSAGE
+            ================================================== -->
 
-            <div class="nebula"></div>
-
-        </div>
-
-
-        <!-- TOP -->
-
-        <div class="top">
-
-            <div class="top-small">
-                OUR LOVE • OUR UNIVERSE
-            </div>
+            <div class="love-message">
 
 
-            <div class="top-title">
-                OUR GALAXY
-            </div>
+                <div class="love-title">
 
+                    Anniversary ❤️
 
-            <div class="top-subtitle">
-                HAPPY ANNIVERSARY
-            </div>
-
-        </div>
-
-
-        <!-- UNIVERSE -->
-
-        <div class="universe">
-
-            <div id="system">
-
-
-                <!-- CENTER HEART -->
-
-                <div class="center-heart">
-                    ❤
                 </div>
 
 
-                <!-- ORBITS -->
+                <div class="love-subtitle">
 
-                <div class="orbit"></div>
+                   
 
-                <div class="orbit"></div>
+                </div>
 
-                <div class="orbit"></div>
 
-                <div class="orbit"></div>
+                <div class="love-text">
 
-                <div class="orbit"></div>
+วันนี้นายอยากขอโทษกิ๊ฟสำหรับทุกเรื่องที่ผ่านมา
+ขอโทษสำหรับสิ่งที่นายเคยทำผิด เคยทำให้กิ๊ฟเสียใจ หรือทำให้กิ๊ฟต้องรู้สึกไม่ดี
+
+บางเรื่องนายอาจย้อนกลับไปแก้ไขไม่ได้
+แต่ทุกอย่างที่เกิดขึ้นทำให้นายได้เรียนรู้
+และนายสัญญาว่าจะทำให้ดีที่สุด จะไม่ทำผิดซ้ำแบบเดิมอีก
+
+ขอบคุณกิ๊ฟนะ ที่ยังอยู่ตรงนี้
+ขอบคุณที่ยังให้โอกาสนายได้แก้ตัว ได้พิสูจน์ตัวเอง และได้เดินต่อไปด้วยกัน
+
+นายอาจสัญญาไม่ได้ว่าจากนี้ทุกอย่างจะสมบูรณ์แบบ
+แต่สิ่งที่นายสัญญาได้คือ นายจะพยายามทำทุกอย่างให้ดีที่สุด
+จะใส่ใจกิ๊ฟให้มากขึ้น จะดูแลความรู้สึกของกิ๊ฟให้มากขึ้น
+และจะพยายามเป็นคนที่ดีขึ้นสำหรับกิ๊ฟในทุก ๆ วัน
+
+นายอยากสร้างอนาคตไปพร้อมกับกิ๊ฟ
+อยากมีทั้งวันที่เรามีความสุข วันที่เหนื่อย และวันที่เจอปัญหา
+ไม่ว่าจะต้องเจออะไร นายก็อยากจับมือกิ๊ฟแล้วค่อย ๆ ผ่านมันไปด้วยกัน
+
+                </div>
+
+
+                <div class="love-highlight">
+
+                    รักกิ๊ฟนะ ❤️
+
+                    <br>
+
+                    นายอยากมีแค่กิ๊ฟอยู่ข้าง ๆ
+                    และสร้างอนาคตของเราไปด้วยกัน
+
+                </div>
 
 
             </div>
 
-        </div>
-
-
-        <!-- MUSIC -->
-
-        <button
-            id="musicBtn"
-            title="เปิด/ปิดเพลง"
-        >
-            🎵
-        </button>
-
-
-        <!-- HINT -->
-
-        <div class="hint">
-
-            ลากเพื่อหมุน Galaxy
-            •
-            ใช้ 2 นิ้วเพื่อ Zoom ❤️
 
         </div>
 
 
-    </main>
+        <!-- =====================================================
+             CONTROLS
+        ====================================================== -->
+
+        <div id="controls">
+
+
+            <button
+                class="control-btn"
+                id="zoomIn"
+                aria-label="Zoom In"
+            >
+                +
+            </button>
+
+
+            <button
+                class="control-btn"
+                id="reset"
+                aria-label="Reset"
+            >
+                ↺
+            </button>
+
+
+            <button
+                class="control-btn"
+                id="zoomOut"
+                aria-label="Zoom Out"
+            >
+                −
+            </button>
+
+
+        </div>
+
+
+        <div id="zoomText">
+
+            Zoom 55%
+
+        </div>
+
+
+    </div>
 
 
     <script>
 
-
-        /* =====================================================
-           ELEMENTS
-        ====================================================== */
-
-        const intro =
-            document.getElementById("intro");
-
-
-        const main =
-            document.getElementById("main");
-
-
-        const enterBtn =
-            document.getElementById("enterBtn");
-
-
-        const music =
-            document.getElementById("music");
-
-
-        const musicBtn =
-            document.getElementById("musicBtn");
-
-
-        const system =
-            document.getElementById("system");
-
-
-        /* =====================================================
-           VARIABLES
-        ====================================================== */
-
-        let rotateX = -8;
-
-        let rotateY = 0;
-
-        let zoom = 1;
-
-        let mouseDown = false;
-
-        let lastX = 0;
-
-        let lastY = 0;
-
-        let initialDistance = null;
-
-        let initialZoom = 1;
-
-        let touchDragging = false;
-
-        let touchLastX = 0;
-
-        let touchLastY = 0;
-
-
-        /* =====================================================
-           ENTER WEBSITE
-        ====================================================== */
-
-        enterBtn.addEventListener(
-            "click",
-            function () {
-
-
-                intro.classList.add(
-                    "hide"
-                );
-
-
-                main.classList.add(
-                    "show"
-                );
-
-
-                /* PLAY MUSIC */
-
-                music.play()
-                    .then(
-                        function () {
-
-                            musicBtn.textContent =
-                                "🔊";
-
-                        }
-                    )
-                    .catch(
-                        function () {
-
-                            musicBtn.textContent =
-                                "🎵";
-
-                        }
-                    );
-
-
-                /* HEART EFFECT */
-
-                createHeartExplosion(
-                    window.innerWidth / 2,
-                    window.innerHeight / 2,
-                    35
-                );
-
-            }
-        );
-
-
-        /* =====================================================
-           MUSIC BUTTON
-        ====================================================== */
-
-        musicBtn.addEventListener(
-            "click",
-            function () {
-
-
-                if (
-                    music.paused
-                ) {
-
-                    music.play()
-                        .then(
-                            function () {
-
-                                musicBtn.textContent =
-                                    "🔊";
-
-                            }
-                        )
-                        .catch(
-                            function () {
-
-                                musicBtn.textContent =
-                                    "🎵";
-
-                            }
-                        );
-
-                } else {
-
-                    music.pause();
-
-                    musicBtn.textContent =
-                        "🔇";
-
-                }
-
-            }
-        );
-
-
-        /* =====================================================
-           ZOOM
-        ====================================================== */
-
-        function setZoom(value) {
-
-
-            zoom =
-                Math.max(
-                    0.55,
-                    Math.min(
-                        1.8,
-                        value
-                    )
-                );
-
-
-            updateSystem();
-
-        }
-
-
-        /* =====================================================
-           UPDATE SYSTEM
-        ====================================================== */
-
-        function updateSystem() {
-
-
-            system.style.transform =
-
-                `
-                rotateX(${rotateX}deg)
-                rotateY(${rotateY}deg)
-                scale(${zoom})
-                `;
-
-        }
-
-
-        updateSystem();
-
-
-        /* =====================================================
-           MOUSE DOWN
-        ====================================================== */
-
-        window.addEventListener(
-            "mousedown",
-            function (e) {
-
-
-                mouseDown = true;
-
-                lastX =
-                    e.clientX;
-
-                lastY =
-                    e.clientY;
-
-            }
-        );
-
-
-        /* =====================================================
-           MOUSE MOVE
-        ====================================================== */
-
-        window.addEventListener(
-            "mousemove",
-            function (e) {
-
-
-                if (!mouseDown) {
-                    return;
-                }
-
-
-                const dx =
-                    e.clientX -
-                    lastX;
-
-
-                const dy =
-                    e.clientY -
-                    lastY;
-
-
-                rotateY +=
-                    dx * 0.35;
-
-
-                rotateX -=
-                    dy * 0.25;
-
-
-                rotateX =
-                    Math.max(
-                        -35,
-                        Math.min(
-                            35,
-                            rotateX
-                        )
-                    );
-
-
-                lastX =
-                    e.clientX;
-
-
-                lastY =
-                    e.clientY;
-
-
-                updateSystem();
-
-            }
-        );
-
-
-        /* =====================================================
-           MOUSE UP
-        ====================================================== */
-
-        window.addEventListener(
-            "mouseup",
-            function () {
-
-                mouseDown = false;
-
-            }
-        );
-
-
-        /* =====================================================
-           WHEEL ZOOM
-        ====================================================== */
-
-        window.addEventListener(
-            "wheel",
-            function (e) {
-
-
-                e.preventDefault();
-
-
-                setZoom(
-                    zoom -
-                    e.deltaY * 0.001
-                );
-
-            },
-            {
-                passive: false
-            }
-        );
-
-
-        /* =====================================================
-           MOBILE TOUCH START
-        ====================================================== */
-
-        window.addEventListener(
-            "touchstart",
-            function (e) {
-
-
-                /* ONE FINGER */
-
-                if (
-                    e.touches.length === 1
-                ) {
-
-
-                    touchDragging = true;
-
-
-                    touchLastX =
-                        e.touches[0].clientX;
-
-
-                    touchLastY =
-                        e.touches[0].clientY;
-
-                }
-
-
-                /* TWO FINGERS */
-
-                if (
-                    e.touches.length === 2
-                ) {
-
-
-                    touchDragging = false;
-
-
-                    const a =
-                        e.touches[0];
-
-
-                    const b =
-                        e.touches[1];
-
-
-                    const dx =
-                        a.clientX -
-                        b.clientX;
-
-
-                    const dy =
-                        a.clientY -
-                        b.clientY;
-
-
-                    initialDistance =
-                        Math.sqrt(
-                            dx * dx +
-                            dy * dy
-                        );
-
-
-                    initialZoom =
-                        zoom;
-
-                }
-
-            },
-            {
-                passive: true
-            }
-        );
-
-
-        /* =====================================================
-           MOBILE TOUCH MOVE
-        ====================================================== */
-
-        window.addEventListener(
-            "touchmove",
-            function (e) {
-
-
-                /* TWO FINGER ZOOM */
-
-                if (
-                    e.touches.length === 2
-                ) {
-
-
-                    e.preventDefault();
-
-
-                    const a =
-                        e.touches[0];
-
-
-                    const b =
-                        e.touches[1];
-
-
-                    const dx =
-                        a.clientX -
-                        b.clientX;
-
-
-                    const dy =
-                        a.clientY -
-                        b.clientY;
-
-
-                    const distance =
-                        Math.sqrt(
-                            dx * dx +
-                            dy * dy
-                        );
-
-
-                    if (
-                        initialDistance
-                    ) {
-
-
-                        const scale =
-                            distance /
-                            initialDistance;
-
-
-                        setZoom(
-                            initialZoom *
-                            scale
-                        );
-
-                    }
-
-
-                    return;
-
-                }
-
-
-                /* ONE FINGER ROTATE */
-
-                if (
-                    e.touches.length === 1 &&
-                    touchDragging
-                ) {
-
-
-                    e.preventDefault();
-
-
-                    const currentX =
-                        e.touches[0].clientX;
-
-
-                    const currentY =
-                        e.touches[0].clientY;
-
-
-                    const dx =
-                        currentX -
-                        touchLastX;
-
-
-                    const dy =
-                        currentY -
-                        touchLastY;
-
-
-                    rotateY +=
-                        dx * 0.35;
-
-
-                    rotateX -=
-                        dy * 0.25;
-
-
-                    rotateX =
-                        Math.max(
-                            -35,
-                            Math.min(
-                                35,
-                                rotateX
-                            )
-                        );
-
-
-                    touchLastX =
-                        currentX;
-
-
-                    touchLastY =
-                        currentY;
-
-
-                    updateSystem();
-
-                }
-
-            },
-            {
-                passive: false
-            }
-        );
-
-
-        /* =====================================================
-           TOUCH END
-        ====================================================== */
-
-        window.addEventListener(
-            "touchend",
-            function () {
-
-
-                touchDragging = false;
-
-                initialDistance = null;
-
-            }
-        );
-
-
-        /* =====================================================
-           HEART STAR COUNT
-        ====================================================== */
-
-        const isMobile =
-            window.innerWidth <= 600;
-
-
-        const heartStarCount =
-            isMobile
-                ? 500
-                : 900;
-
-
-        /* =====================================================
-           CREATE HEART STARS
-        ====================================================== */
-
-        for (
-            let i = 0;
-            i < heartStarCount;
-            i++
-        ) {
-
-
-            const star =
-                document.createElement(
-                    "div"
-                );
-
-
-            star.className =
-                "heart-star";
-
-
-            const angle =
-                Math.random() *
-                Math.PI *
-                2;
-
-
-            const radius =
-                120 +
-                Math.random() *
-                (
-                    isMobile
-                        ? 450
-                        : 750
-                );
-
-
-            const x =
-                Math.cos(angle) *
-                radius;
-
-
-            const y =
-                Math.sin(angle) *
-                radius;
-
-
-            const z =
-                (
-                    Math.random() -
-                    0.5
-                ) *
-                900;
-
-
-            star.style.left =
-                `${x}px`;
-
-
-            star.style.top =
-                `${y}px`;
-
-
-            star.style.transform =
-                `translateZ(${z}px)`;
-
-
-            star.style.setProperty(
-                "--size",
-                `${
-                    3 +
-                    Math.random() * 7
-                }px`
-            );
-
-
-            star.style.setProperty(
-                "--duration",
-                `${
-                    1 +
-                    Math.random() * 3
-                }s`
-            );
-
-
-            const colors = [
-
-                "#ff9de2",
-
-                "#ffd4f3",
-
-                "#d49cff",
-
-                "#ffffff",
-
-                "#ff70c8"
-
-            ];
-
-
-            star.style.color =
-                colors[
-                    Math.floor(
-                        Math.random() *
-                        colors.length
-                    )
-                ];
-
-
-            system.appendChild(
-                star
-            );
-
-        }
-
-
-        /* =====================================================
+        /* =========================================================
            PHOTOS
-        ====================================================== */
+        ========================================================== */
 
-        const photos = [
+        const PHOTOS = [
 
             "01.jpg",
             "02.jpg",
@@ -2089,377 +1021,170 @@
             "18.jpg",
             "19.jpg",
             "20.jpg",
-            "21.jpg",
-            "22.jpg",
-            "23.jpg",
-            "24.jpg",
-            "25.jpg"
+            "21.jpg"
 
         ];
 
 
-        const orbits =
-            document.querySelectorAll(
-                ".orbit"
-            );
+        /* =========================================================
+           ELEMENTS
+        ========================================================== */
+
+        const space =
+            document.getElementById("space");
 
 
-        /* =====================================================
-           CREATE PHOTO ORBITS
-        ====================================================== */
+        const world =
+            document.getElementById("world");
 
-        photos.forEach(
-            function (
-                photoName,
-                index
+
+        const photosContainer =
+            document.getElementById("photos");
+
+
+        const zoomText =
+            document.getElementById("zoomText");
+
+
+        const zoomIn =
+            document.getElementById("zoomIn");
+
+
+        const zoomOut =
+            document.getElementById("zoomOut");
+
+
+        const resetBtn =
+            document.getElementById("reset");
+
+
+        /* =========================================================
+           SETTINGS
+        ========================================================== */
+
+        let zoom = .55;
+
+        const MIN_ZOOM = .45;
+
+        const MAX_ZOOM = 6;
+
+        let panX = 0;
+
+        let panY = 0;
+
+        let heartSize = 500;
+
+
+        /* =========================================================
+           HEART CURVE
+        ========================================================== */
+
+        function heartCurve(t) {
+
+            const x =
+                16 *
+                Math.pow(
+                    Math.sin(t),
+                    3
+                );
+
+
+            const y =
+                -(
+                    13 * Math.cos(t)
+                    -
+                    5 * Math.cos(2 * t)
+                    -
+                    2 * Math.cos(3 * t)
+                    -
+                    Math.cos(4 * t)
+                );
+
+
+            return {
+
+                x: x,
+
+                y: y
+
+            };
+
+        }
+
+
+        /* =========================================================
+           EQUAL DISTANCE POINTS
+        ========================================================== */
+
+        function getEqualHeartPoints(count) {
+
+            const samples = 2000;
+
+            const points = [];
+
+            const distances = [];
+
+            let totalLength = 0;
+
+            let previous =
+                heartCurve(0);
+
+
+            points.push(previous);
+
+            distances.push(0);
+
+
+            for (
+                let i = 1;
+                i <= samples;
+                i++
             ) {
 
-
-                const orbitIndex =
-                    index %
-                    orbits.length;
-
-
-                const orbit =
-                    orbits[
-                        orbitIndex
-                    ];
+                const t =
+                    (Math.PI * 2) *
+                    (i / samples);
 
 
-                const img =
-                    document.createElement(
-                        "img"
+                const current =
+                    heartCurve(t);
+
+
+                const dx =
+                    current.x -
+                    previous.x;
+
+
+                const dy =
+                    current.y -
+                    previous.y;
+
+
+                const distance =
+                    Math.sqrt(
+                        dx * dx +
+                        dy * dy
                     );
 
 
-                img.className =
-                    "photo";
+                totalLength +=
+                    distance;
 
 
-                img.src =
-                    photoName;
+                points.push(current);
 
-
-                img.alt =
-                    `รูปความทรงจำ ${index + 1}`;
-
-
-                img.loading =
-                    "lazy";
-
-
-                img.draggable =
-                    false;
-
-
-                const orbitSize =
-                    180 +
-                    (
-                        orbitIndex *
-                        120
-                    );
-
-
-                const itemsPerOrbit =
-                    Math.ceil(
-                        photos.length /
-                        orbits.length
-                    );
-
-
-                const angle =
-                    (
-                        index %
-                        itemsPerOrbit
-                    ) *
-                    (
-                        360 /
-                        itemsPerOrbit
-                    );
-
-
-                const rad =
-                    angle *
-                    Math.PI /
-                    180;
-
-
-                const x =
-                    Math.cos(rad) *
-                    (
-                        orbitSize / 2
-                    );
-
-
-                const y =
-                    Math.sin(rad) *
-                    (
-                        orbitSize / 2
-                    );
-
-
-                img.style.left =
-                    `${x}px`;
-
-
-                img.style.top =
-                    `${y}px`;
-
-
-                img.style.transform =
-
-                    `
-                    translate(-50%, -50%)
-                    rotateZ(${angle}deg)
-                    translateZ(${
-                        Math.random() * 100
-                    }px)
-                    `;
-
-
-                /* PHOTO CLICK */
-
-                img.addEventListener(
-                    "click",
-                    function (e) {
-
-
-                        e.stopPropagation();
-
-
-                        createHeartExplosion(
-                            e.clientX,
-                            e.clientY,
-                            20
-                        );
-
-                    }
+                distances.push(
+                    totalLength
                 );
 
 
-                /* IMAGE ERROR */
-
-                img.addEventListener(
-                    "error",
-                    function () {
-
-
-                        img.style.opacity =
-                            "0.3";
-
-                    }
-                );
-
-
-                orbit.appendChild(
-                    img
-                );
+                previous =
+                    current;
 
             }
-        );
 
 
-        /* =====================================================
-           BUTTERFLY
-        ====================================================== */
-
-        function createButterfly() {
-
-
-            const butterfly =
-                document.createElement(
-                    "div"
-                );
-
-
-            butterfly.className =
-                "butterfly";
-
-
-            butterfly.textContent =
-                Math.random() > 0.15
-                    ? "🦋"
-                    : "✨";
-
-
-            const startX =
-                Math.random() *
-                100;
-
-
-            const endX =
-                startX +
-                (
-                    Math.random() *
-                    30 -
-                    15
-                );
-
-
-            butterfly.style.setProperty(
-                "--start-x",
-                `${startX}vw`
-            );
-
-
-            butterfly.style.setProperty(
-                "--end-x",
-                `${endX}vw`
-            );
-
-
-            butterfly.style.setProperty(
-                "--rotate",
-                `${
-                    Math.random() *
-                    60 -
-                    30
-                }deg`
-            );
-
-
-            butterfly.style.setProperty(
-                "--duration",
-                `${
-                    6 +
-                    Math.random() *
-                    6
-                }s`
-            );
-
-
-            butterfly.style.fontSize =
-                `${
-                    16 +
-                    Math.random() *
-                    14
-                }px`;
-
-
-            document.body.appendChild(
-                butterfly
-            );
-
-
-            setTimeout(
-                function () {
-
-                    butterfly.remove();
-
-                },
-                13000
-            );
-
-        }
-
-
-        /* INITIAL BUTTERFLIES */
-
-        const initialButterflies =
-            isMobile
-                ? 6
-                : 15;
-
-
-        for (
-            let i = 0;
-            i < initialButterflies;
-            i++
-        ) {
-
-
-            setTimeout(
-                createButterfly,
-                i * 500
-            );
-
-        }
-
-
-        /* NEW BUTTERFLY */
-
-        setInterval(
-            createButterfly,
-            isMobile
-                ? 2200
-                : 1200
-        );
-
-
-        /* =====================================================
-           FLOATING HEART
-        ====================================================== */
-
-        function createFloatingHeart() {
-
-
-            const heart =
-                document.createElement(
-                    "div"
-                );
-
-
-            heart.className =
-                "floating-heart";
-
-
-            heart.textContent =
-                "❤";
-
-
-            heart.style.left =
-                `${
-                    Math.random() *
-                    100
-                }vw`;
-
-
-            heart.style.bottom =
-                "-20px";
-
-
-            heart.style.fontSize =
-                `${
-                    12 +
-                    Math.random() *
-                    20
-                }px`;
-
-
-            document.body.appendChild(
-                heart
-            );
-
-
-            setTimeout(
-                function () {
-
-                    heart.remove();
-
-                },
-                5500
-            );
-
-        }
-
-
-        setInterval(
-            createFloatingHeart,
-            isMobile
-                ? 1800
-                : 1000
-        );
-
-
-        /* =====================================================
-           HEART EXPLOSION
-        ====================================================== */
-
-        function createHeartExplosion(
-            x,
-            y,
-            count
-        ) {
+            const result = [];
 
 
             for (
@@ -2468,249 +1193,1092 @@
                 i++
             ) {
 
+                const target =
+                    (
+                        totalLength *
+                        i
+                    ) /
+                    count;
 
-                const heart =
+
+                let low = 0;
+
+                let high =
+                    distances.length - 1;
+
+
+                while (
+                    low < high
+                ) {
+
+                    const mid =
+                        Math.floor(
+                            (
+                                low +
+                                high
+                            ) / 2
+                        );
+
+
+                    if (
+                        distances[mid] <
+                        target
+                    ) {
+
+                        low =
+                            mid + 1;
+
+                    } else {
+
+                        high =
+                            mid;
+
+                    }
+
+                }
+
+
+                const index =
+                    low;
+
+
+                if (
+                    index === 0
+                ) {
+
+                    result.push(
+                        points[0]
+                    );
+
+                    continue;
+
+                }
+
+
+                const d1 =
+                    distances[
+                        index - 1
+                    ];
+
+
+                const d2 =
+                    distances[
+                        index
+                    ];
+
+
+                const p1 =
+                    points[
+                        index - 1
+                    ];
+
+
+                const p2 =
+                    points[
+                        index
+                    ];
+
+
+                const ratio =
+                    (
+                        target -
+                        d1
+                    ) /
+                    (
+                        d2 -
+                        d1
+                    );
+
+
+                result.push({
+
+                    x:
+                        p1.x +
+                        (
+                            p2.x -
+                            p1.x
+                        ) *
+                        ratio,
+
+                    y:
+                        p1.y +
+                        (
+                            p2.y -
+                            p1.y
+                        ) *
+                        ratio
+
+                });
+
+            }
+
+
+            return result;
+
+        }
+
+
+        /* =========================================================
+           CREATE HEART
+        ========================================================== */
+
+        function createHeart() {
+
+            const heart =
+                document.getElementById(
+                    "heart"
+                );
+
+
+            heart.innerHTML = "";
+
+
+            const mainAmount = 600;
+
+            const extraAmount = 270;
+
+
+            /* =====================================================
+               MAIN HEART
+            ====================================================== */
+
+            for (
+                let i = 0;
+                i < mainAmount;
+                i++
+            ) {
+
+                const t =
+                    (
+                        Math.PI * 2
+                    ) *
+                    (
+                        i /
+                        mainAmount
+                    );
+
+
+                const p =
+                    heartCurve(t);
+
+
+                const particle =
                     document.createElement(
                         "div"
                     );
 
 
-                heart.className =
-                    "explosion-heart";
+                particle.className =
+                    "heart-particle glow";
 
 
-                heart.textContent =
-                    Math.random() > 0.3
-                        ? "❤"
-                        : "✨";
+                const jitterX =
+                    (
+                        Math.random() -
+                        .5
+                    ) * 5;
 
 
-                heart.style.left =
-                    `${x}px`;
+                const jitterY =
+                    (
+                        Math.random() -
+                        .5
+                    ) * 5;
 
 
-                heart.style.top =
-                    `${y}px`;
+                const x =
+                    p.x *
+                    heartSize /
+                    32;
 
 
-                const angle =
-                    Math.random() *
-                    Math.PI *
-                    2;
+                const y =
+                    p.y *
+                    heartSize /
+                    32;
 
 
-                const distance =
-                    60 +
-                    Math.random() *
-                    180;
+                particle.style.left =
+                    (
+                        x +
+                        jitterX
+                    ) + "px";
 
 
-                const tx =
-                    Math.cos(angle) *
-                    distance;
+                particle.style.top =
+                    (
+                        y +
+                        jitterY
+                    ) + "px";
 
 
-                const ty =
-                    Math.sin(angle) *
-                    distance;
+                particle.style.animationDelay =
+                    (
+                        -Math.random() * 3
+                    ) + "s";
 
 
-                heart.style.setProperty(
-                    "--tx",
-                    `${tx}px`
-                );
-
-
-                heart.style.setProperty(
-                    "--ty",
-                    `${ty}px`
-                );
-
-
-                heart.style.setProperty(
-                    "--rotation",
-                    `${
-                        Math.random() *
-                        720 -
-                        360
-                    }deg`
-                );
-
-
-                heart.style.fontSize =
-                    `${
-                        12 +
-                        Math.random() *
-                        18
-                    }px`;
-
-
-                document.body.appendChild(
-                    heart
-                );
-
-
-                setTimeout(
-                    function () {
-
-                        heart.remove();
-
-                    },
-                    1100
+                heart.appendChild(
+                    particle
                 );
 
             }
 
-        }
 
+            /* =====================================================
+               EXTRA GLOW
+            ====================================================== */
 
-        /* =====================================================
-           CLICK SCREEN
-        ====================================================== */
+            for (
+                let i = 0;
+                i < extraAmount;
+                i++
+            ) {
 
-        document.addEventListener(
-            "click",
-            function (e) {
-
-
-                if (
-                    e.target.closest(
-                        "#enterBtn"
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                if (
-                    e.target.closest(
-                        "#musicBtn"
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                createHeartExplosion(
-                    e.clientX,
-                    e.clientY,
-                    isMobile
-                        ? 10
-                        : 16
-                );
-
-            }
-        );
-
-
-        /* =====================================================
-           SHOOTING STAR
-        ====================================================== */
-
-        function createShootingStar() {
-
-
-            const star =
-                document.createElement(
-                    "div"
-                );
-
-
-            star.className =
-                "shooting-star";
-
-
-            star.style.left =
-                `${
-                    60 +
-                    Math.random() *
-                    40
-                }vw`;
-
-
-            star.style.top =
-                `${
-                    Math.random() *
-                    35
-                }vh`;
-
-
-            document.body.appendChild(
-                star
-            );
-
-
-            setTimeout(
-                function () {
-
-                    star.remove();
-
-                },
-                1600
-            );
-
-        }
-
-
-        setInterval(
-            createShootingStar,
-            isMobile
-                ? 4500
-                : 3000
-        );
-
-
-        /* =====================================================
-           PERIODIC HEART EXPLOSION
-        ====================================================== */
-
-        setInterval(
-            function () {
-
-
-                if (
-                    main.classList.contains(
-                        "show"
-                    )
-                ) {
-
-
-                    createHeartExplosion(
-                        window.innerWidth / 2,
-                        window.innerHeight / 2,
-                        isMobile
-                            ? 12
-                            : 22
+                const t =
+                    (
+                        Math.PI * 2
+                    ) *
+                    (
+                        i /
+                        extraAmount
                     );
+
+
+                const p =
+                    heartCurve(t);
+
+
+                const particle =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                particle.className =
+                    "heart-particle small";
+
+
+                const jitterX =
+                    (
+                        Math.random() -
+                        .5
+                    ) * 12;
+
+
+                const jitterY =
+                    (
+                        Math.random() -
+                        .5
+                    ) * 12;
+
+
+                const x =
+                    p.x *
+                    heartSize /
+                    32;
+
+
+                const y =
+                    p.y *
+                    heartSize /
+                    32;
+
+
+                particle.style.left =
+                    (
+                        x +
+                        jitterX
+                    ) + "px";
+
+
+                particle.style.top =
+                    (
+                        y +
+                        jitterY
+                    ) + "px";
+
+
+                particle.style.opacity =
+                    .25 +
+                    Math.random() * .45;
+
+
+                heart.appendChild(
+                    particle
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
+           CREATE PHOTOS
+        ========================================================== */
+
+        const photoItems = [];
+
+
+        function createPhotos() {
+
+            photosContainer.innerHTML =
+                "";
+
+
+            photoItems.length = 0;
+
+
+            PHOTOS.forEach(
+                (
+                    photo,
+                    index
+                ) => {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "photo-item";
+
+
+                    const img =
+                        document.createElement(
+                            "img"
+                        );
+
+
+                    img.className =
+                        "photo";
+
+
+                    img.src =
+                        photo;
+
+
+                    img.alt =
+                        "Memory " +
+                        (
+                            index + 1
+                        );
+
+
+                    img.draggable =
+                        false;
+
+
+                    item.appendChild(
+                        img
+                    );
+
+
+                    photosContainer.appendChild(
+                        item
+                    );
+
+
+                    photoItems.push({
+
+                        element:
+                            item,
+
+                        image:
+                            img
+
+                    });
+
+                }
+            );
+
+
+            updatePhotos();
+
+        }
+
+
+        /* =========================================================
+           POSITION PHOTOS
+        ========================================================== */
+
+        function updatePhotos() {
+
+            const count =
+                photoItems.length;
+
+
+            const positions =
+                getEqualHeartPoints(
+                    count
+                );
+
+
+            photoItems.forEach(
+                (
+                    item,
+                    index
+                ) => {
+
+                    const p =
+                        positions[
+                            index
+                        ];
+
+
+                    const x =
+                        p.x *
+                        heartSize /
+                        32;
+
+
+                    const y =
+                        p.y *
+                        heartSize /
+                        32;
+
+
+                    item.element.style.left =
+                        x + "px";
+
+
+                    item.element.style.top =
+                        y + "px";
+
+                }
+            );
+
+        }
+
+
+        /* =========================================================
+           PHOTO SCALE
+        ========================================================== */
+
+        function updatePhotoScale() {
+
+            photoItems.forEach(
+                item => {
+
+                    let scale;
+
+                    let opacity;
+
+
+                    if (
+                        zoom < .60
+                    ) {
+
+                        scale =
+                            .015;
+
+                        opacity =
+                            .08;
+
+                    }
+
+
+                    else if (
+                        zoom < .90
+                    ) {
+
+                        const progress =
+                            (
+                                zoom -
+                                .60
+                            ) /
+                            .30;
+
+
+                        scale =
+                            .015 +
+                            progress *
+                            (
+                                .08 -
+                                .015
+                            );
+
+
+                        opacity =
+                            .08 +
+                            progress *
+                            (
+                                .30 -
+                                .08
+                            );
+
+                    }
+
+
+                    else if (
+                        zoom < 1.30
+                    ) {
+
+                        const progress =
+                            (
+                                zoom -
+                                .90
+                            ) /
+                            .40;
+
+
+                        scale =
+                            .08 +
+                            progress *
+                            (
+                                .45 -
+                                .08
+                            );
+
+
+                        opacity =
+                            .30 +
+                            progress *
+                            (
+                                .85 -
+                                .30
+                            );
+
+                    }
+
+
+                    else if (
+                        zoom < 1.80
+                    ) {
+
+                        const progress =
+                            (
+                                zoom -
+                                1.30
+                            ) /
+                            .50;
+
+
+                        scale =
+                            .45 +
+                            progress *
+                            .55;
+
+
+                        opacity =
+                            1;
+
+                    }
+
+
+                    else {
+
+                        scale =
+                            1;
+
+                        opacity =
+                            1;
+
+                    }
+
+
+                    item.image.style.transform =
+                        `scale(${scale})`;
+
+
+                    item.image.style.opacity =
+                        opacity;
+
+                }
+            );
+
+        }
+
+
+        /* =========================================================
+           UPDATE WORLD
+        ========================================================== */
+
+        function updateWorld() {
+
+            world.style.transform =
+                `
+                translate(
+                    ${panX}px,
+                    ${panY}px
+                )
+                scale(
+                    ${zoom}
+                )
+                `;
+
+
+            zoomText.textContent =
+                "Zoom " +
+                Math.round(
+                    zoom * 100
+                ) +
+                "%";
+
+
+            updatePhotoScale();
+
+        }
+
+
+        /* =========================================================
+           ZOOM
+        ========================================================== */
+
+        function setZoom(
+            newZoom,
+            centerX =
+                window.innerWidth / 2,
+            centerY =
+                window.innerHeight / 2
+        ) {
+
+            const oldZoom =
+                zoom;
+
+
+            newZoom =
+                Math.max(
+                    MIN_ZOOM,
+                    Math.min(
+                        MAX_ZOOM,
+                        newZoom
+                    )
+                );
+
+
+            if (
+                newZoom ===
+                oldZoom
+            ) {
+
+                return;
+
+            }
+
+
+            const worldX =
+                (
+                    centerX -
+                    window.innerWidth / 2 -
+                    panX
+                ) /
+                oldZoom;
+
+
+            const worldY =
+                (
+                    centerY -
+                    window.innerHeight / 2 -
+                    panY
+                ) /
+                oldZoom;
+
+
+            zoom =
+                newZoom;
+
+
+            panX =
+                centerX -
+                window.innerWidth / 2 -
+                worldX *
+                zoom;
+
+
+            panY =
+                centerY -
+                window.innerHeight / 2 -
+                worldY *
+                zoom;
+
+
+            updateWorld();
+
+        }
+
+
+        /* =========================================================
+           MOUSE DRAG
+        ========================================================== */
+
+        let mouseDown = false;
+
+        let mouseStartX = 0;
+
+        let mouseStartY = 0;
+
+        let startPanX = 0;
+
+        let startPanY = 0;
+
+
+        space.addEventListener(
+            "mousedown",
+            event => {
+
+                mouseDown = true;
+
+                mouseStartX =
+                    event.clientX;
+
+                mouseStartY =
+                    event.clientY;
+
+                startPanX =
+                    panX;
+
+                startPanY =
+                    panY;
+
+
+                space.classList.add(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mousemove",
+            event => {
+
+                if (
+                    !mouseDown
+                ) {
+
+                    return;
+
+                }
+
+
+                panX =
+                    startPanX +
+                    (
+                        event.clientX -
+                        mouseStartX
+                    );
+
+
+                panY =
+                    startPanY +
+                    (
+                        event.clientY -
+                        mouseStartY
+                    );
+
+
+                updateWorld();
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mouseup",
+            () => {
+
+                mouseDown = false;
+
+                space.classList.remove(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+        /* =========================================================
+           MOUSE WHEEL ZOOM
+        ========================================================== */
+
+        space.addEventListener(
+            "wheel",
+            event => {
+
+                event.preventDefault();
+
+
+                const direction =
+                    event.deltaY < 0
+                        ? 1
+                        : -1;
+
+
+                const amount =
+                    direction === 1
+                        ? 1.12
+                        : .89;
+
+
+                setZoom(
+                    zoom * amount,
+                    event.clientX,
+                    event.clientY
+                );
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        /* =========================================================
+           TOUCH
+        ========================================================== */
+
+        let touchMode = null;
+
+        let touchStartX = 0;
+
+        let touchStartY = 0;
+
+        let touchPanStartX = 0;
+
+        let touchPanStartY = 0;
+
+        let initialDistance = 0;
+
+        let initialZoom = 1;
+
+
+        function getTouchDistance(
+            touch1,
+            touch2
+        ) {
+
+            const dx =
+                touch1.clientX -
+                touch2.clientX;
+
+
+            const dy =
+                touch1.clientY -
+                touch2.clientY;
+
+
+            return Math.sqrt(
+                dx * dx +
+                dy * dy
+            );
+
+        }
+
+
+        space.addEventListener(
+            "touchstart",
+            event => {
+
+                event.preventDefault();
+
+
+                if (
+                    event.touches.length ===
+                    1
+                ) {
+
+                    touchMode =
+                        "pan";
+
+
+                    const touch =
+                        event.touches[0];
+
+
+                    touchStartX =
+                        touch.clientX;
+
+
+                    touchStartY =
+                        touch.clientY;
+
+
+                    touchPanStartX =
+                        panX;
+
+
+                    touchPanStartY =
+                        panY;
+
+                }
+
+
+                else if (
+                    event.touches.length ===
+                    2
+                ) {
+
+                    touchMode =
+                        "pinch";
+
+
+                    initialDistance =
+                        getTouchDistance(
+                            event.touches[0],
+                            event.touches[1]
+                        );
+
+
+                    initialZoom =
+                        zoom;
 
                 }
 
             },
-            isMobile
-                ? 9000
-                : 6500
+            {
+                passive: false
+            }
         );
 
 
-        /* =====================================================
-           PREVENT IMAGE DRAG
-        ====================================================== */
+        space.addEventListener(
+            "touchmove",
+            event => {
 
-        document.addEventListener(
-            "dragstart",
-            function (e) {
+                event.preventDefault();
 
 
                 if (
-                    e.target.tagName ===
-                    "IMG"
+                    touchMode === "pan" &&
+                    event.touches.length === 1
                 ) {
 
-                    e.preventDefault();
+                    const touch =
+                        event.touches[0];
+
+
+                    panX =
+                        touchPanStartX +
+                        (
+                            touch.clientX -
+                            touchStartX
+                        );
+
+
+                    panY =
+                        touchPanStartY +
+                        (
+                            touch.clientY -
+                            touchStartY
+                        );
+
+
+                    updateWorld();
+
+                }
+
+
+                else if (
+                    touchMode === "pinch" &&
+                    event.touches.length === 2
+                ) {
+
+                    const distance =
+                        getTouchDistance(
+                            event.touches[0],
+                            event.touches[1]
+                        );
+
+
+                    if (
+                        initialDistance <= 0
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const ratio =
+                        distance /
+                        initialDistance;
+
+
+                    const newZoom =
+                        initialZoom *
+                        ratio;
+
+
+                    const centerX =
+                        (
+                            event.touches[0].clientX +
+                            event.touches[1].clientX
+                        ) / 2;
+
+
+                    const centerY =
+                        (
+                            event.touches[0].clientY +
+                            event.touches[1].clientY
+                        ) / 2;
+
+
+                    setZoom(
+                        newZoom,
+                        centerX,
+                        centerY
+                    );
+
+
+                    initialDistance =
+                        distance;
+
+
+                    initialZoom =
+                        zoom;
+
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        space.addEventListener(
+            "touchend",
+            event => {
+
+                if (
+                    event.touches.length === 0
+                ) {
+
+                    touchMode =
+                        null;
+
+                }
+
+
+                else if (
+                    event.touches.length === 1
+                ) {
+
+                    touchMode =
+                        "pan";
+
+
+                    const touch =
+                        event.touches[0];
+
+
+                    touchStartX =
+                        touch.clientX;
+
+
+                    touchStartY =
+                        touch.clientY;
+
+
+                    touchPanStartX =
+                        touch.clientX;
+
+
+                    touchPanStartY =
+                        touch.clientY;
 
                 }
 
@@ -2718,17 +2286,196 @@
         );
 
 
-        /* =====================================================
+        /* =========================================================
+           BUTTONS
+        ========================================================== */
+
+        zoomIn.addEventListener(
+            "click",
+            () => {
+
+                setZoom(
+                    zoom * 1.2
+                );
+
+            }
+        );
+
+
+        zoomOut.addEventListener(
+            "click",
+            () => {
+
+                setZoom(
+                    zoom * .83
+                );
+
+            }
+        );
+
+
+        resetBtn.addEventListener(
+            "click",
+            () => {
+
+                zoom =
+                    .55;
+
+                panX =
+                    0;
+
+                panY =
+                    0;
+
+
+                updateWorld();
+
+            }
+        );
+
+
+        /* =========================================================
+           CREATE STARS
+        ========================================================== */
+
+        function createStars() {
+
+            const amount = 150;
+
+
+            for (
+                let i = 0;
+                i < amount;
+                i++
+            ) {
+
+                const star =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                star.className =
+                    "star";
+
+
+                star.style.left =
+                    Math.random() *
+                    100 +
+                    "%";
+
+
+                star.style.top =
+                    Math.random() *
+                    100 +
+                    "%";
+
+
+                star.style.setProperty(
+                    "--duration",
+
+                    (
+                        1.5 +
+                        Math.random() * 3
+                    ) +
+                    "s"
+                );
+
+
+                star.style.setProperty(
+                    "--delay",
+
+                    (
+                        -Math.random() * 3
+                    ) +
+                    "s"
+                );
+
+
+                space.appendChild(
+                    star
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
            RESIZE
-        ====================================================== */
+        ========================================================== */
+
+        function resize() {
+
+            if (
+                window.innerWidth >
+                1200
+            ) {
+
+                heartSize =
+                    Math.min(
+                        window.innerWidth,
+                        window.innerHeight
+                    ) *
+                    .82;
+
+            }
+
+
+            else if (
+                window.innerWidth >
+                700
+            ) {
+
+                heartSize =
+                    Math.min(
+                        window.innerWidth,
+                        window.innerHeight
+                    ) *
+                    .76;
+
+            }
+
+
+            else {
+
+                heartSize =
+                    Math.min(
+                        window.innerWidth,
+                        window.innerHeight
+                    ) *
+                    .82;
+
+            }
+
+
+            createHeart();
+
+            updatePhotos();
+
+        }
+
+
+        /* =========================================================
+           START
+        ========================================================== */
+
+        createStars();
+
+        resize();
+
+        createPhotos();
+
+        updateWorld();
+
+
+        /* =========================================================
+           WINDOW RESIZE
+        ========================================================== */
 
         window.addEventListener(
             "resize",
-            function () {
-
-                updateSystem();
-
-            }
+            resize
         );
 
     </script>
@@ -2736,3 +2483,4 @@
 </body>
 
 </html>
+```
