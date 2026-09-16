@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="th">
 
@@ -49,9 +48,7 @@
         body {
 
             width: 100%;
-            height: 100%;
-
-            overflow: hidden;
+            min-height: 100%;
 
             background:
                 radial-gradient(
@@ -65,7 +62,8 @@
                 "Sarabun",
                 sans-serif;
 
-            touch-action: none;
+            color: white;
+
         }
 
 
@@ -73,13 +71,12 @@
 
             position: relative;
 
-            color: white;
+            overflow: hidden;
 
             user-select: none;
 
             -webkit-user-select: none;
 
-            overflow: hidden;
         }
 
 
@@ -110,12 +107,16 @@
                     rgba(100, 40, 255, .06),
                     transparent 55%
                 );
+
+            touch-action: none;
+
         }
 
 
         #space.dragging {
 
             cursor: grabbing;
+
         }
 
 
@@ -144,12 +145,28 @@
                 transform;
 
             pointer-events: none;
+
         }
 
 
         /* =========================================================
-           HEART PARTICLES
+           HEART
         ========================================================== */
+
+        #heart {
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 1px;
+            height: 1px;
+
+            pointer-events: none;
+
+        }
+
 
         .heart-particle {
 
@@ -169,12 +186,14 @@
 
                 0 0 4px white,
 
-                0 0 8px
-                rgba(255, 100, 220, .85);
+                0 0 9px
+                rgba(255, 100, 220, .9),
+
+                0 0 18px
+                rgba(255, 50, 190, .5);
 
             pointer-events: none;
 
-            will-change: opacity, transform;
         }
 
 
@@ -187,6 +206,7 @@
             margin-top: -1px;
 
             opacity: .6;
+
         }
 
 
@@ -194,9 +214,10 @@
 
             animation:
                 heartTwinkle
-                2.8s
+                3.2s
                 ease-in-out
                 infinite;
+
         }
 
 
@@ -208,7 +229,8 @@
                 opacity: .35;
 
                 transform:
-                    scale(.7);
+                    scale(.75);
+
             }
 
             50% {
@@ -216,8 +238,138 @@
                 opacity: 1;
 
                 transform:
-                    scale(1.8);
+                    scale(1.6);
+
             }
+
+        }
+
+
+        /* =========================================================
+           CENTER HEART CLICK AREA
+        ========================================================== */
+
+        #heartButton {
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 180px;
+            height: 180px;
+
+            margin-left: -90px;
+            margin-top: -90px;
+
+            border: none;
+
+            background: transparent;
+
+            cursor: pointer;
+
+            pointer-events: auto;
+
+            z-index: 500;
+
+            -webkit-tap-highlight-color:
+                transparent;
+
+        }
+
+
+        #heartButton::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            width: 95px;
+            height: 95px;
+
+            transform:
+                translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            background:
+                rgba(255, 60, 190, .025);
+
+            box-shadow:
+                0 0 35px
+                rgba(255, 60, 190, .12);
+
+            transition:
+                .3s ease;
+
+        }
+
+
+        #heartButton:hover::after {
+
+            width: 120px;
+            height: 120px;
+
+            background:
+                rgba(255, 60, 190, .06);
+
+        }
+
+
+        /* =========================================================
+           CLICK TEXT
+        ========================================================== */
+
+        #clickText {
+
+            position: fixed;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, 115px);
+
+            z-index: 600;
+
+            font-family:
+                "Charmonman",
+                cursive;
+
+            font-size: 15px;
+
+            color:
+                rgba(255,255,255,.9);
+
+            text-shadow:
+
+                0 0 5px white,
+
+                0 0 14px
+                rgba(255,70,200,.9);
+
+            pointer-events: none;
+
+            transition:
+
+                opacity .5s ease,
+
+                transform .5s ease;
+
+        }
+
+
+        #clickText.hide {
+
+            opacity: 0;
+
+            transform:
+                translate(-50%, 100px)
+                scale(.8);
+
         }
 
 
@@ -240,6 +392,7 @@
                 0 0 5px white;
 
             animation:
+
                 starBlink
                 var(--duration)
                 ease-in-out
@@ -249,6 +402,7 @@
                 var(--delay);
 
             pointer-events: none;
+
         }
 
 
@@ -261,6 +415,7 @@
 
                 transform:
                     scale(.7);
+
             }
 
             50% {
@@ -268,8 +423,10 @@
                 opacity: .9;
 
                 transform:
-                    scale(1.5);
+                    scale(1.4);
+
             }
+
         }
 
 
@@ -286,6 +443,7 @@
 
             width: 1px;
             height: 1px;
+
         }
 
 
@@ -305,6 +463,7 @@
             justify-content: center;
 
             pointer-events: none;
+
         }
 
 
@@ -336,28 +495,34 @@
                 rgba(255,40,180,.35);
 
             transform:
-                scale(.015);
+                scale(.01);
 
-            opacity: .08;
+            opacity: 0;
 
             transition:
-                transform .18s ease,
-                opacity .18s ease;
+
+                transform .45s ease,
+
+                opacity .45s ease;
 
             will-change:
                 transform,
                 opacity;
+
         }
 
 
         /* =========================================================
            LOVE MESSAGE
-           
-           สำคัญ:
-           #world มีขนาด 1px
-           ดังนั้นห้ามใช้ max-width: 50%
-           
-           เรากำหนดขนาดกล่องเอง
+
+           ก่อนเปิด:
+           opacity 0
+           visibility hidden
+           transform scale(.5)
+
+           หลังเปิด:
+           opacity 1
+           visibility visible
         ========================================================== */
 
         .love-message {
@@ -368,10 +533,15 @@
             top: 0;
 
             width: 390px;
-            height: 330px;
+
+            min-height: 330px;
 
             transform:
-                translate(-50%, -50%);
+                translate(-50%, -50%)
+                scale(.35);
+
+            transform-origin:
+                center center;
 
             z-index: 100;
 
@@ -394,7 +564,17 @@
 
             text-align: center;
 
-            overflow: hidden;
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition:
+
+                opacity .8s ease,
+
+                transform .9s cubic-bezier(.2,.8,.2,1),
+
+                visibility 0s linear .9s;
 
             text-shadow:
 
@@ -403,6 +583,32 @@
 
                 0 0 10px
                 rgba(255,80,210,.45);
+
+        }
+
+
+        /* =========================================================
+           OPENED MESSAGE
+        ========================================================== */
+
+        body.opened .love-message {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+
+            transition:
+
+                opacity .8s ease .25s,
+
+                transform .9s cubic-bezier(.2,.8,.2,1) .25s,
+
+                visibility 0s linear 0s;
+
         }
 
 
@@ -433,6 +639,7 @@
 
                 0 0 25px
                 rgba(255,50,190,.6);
+
         }
 
 
@@ -462,6 +669,7 @@
 
                 0 0 10px
                 rgba(255,100,220,.8);
+
         }
 
 
@@ -498,6 +706,7 @@
 
                 0 0 3px
                 rgba(255,100,220,.4);
+
         }
 
 
@@ -530,11 +739,14 @@
 
                 0 0 12px
                 rgba(255,80,210,.9);
+
         }
 
 
         /* =========================================================
            TOP TITLE
+
+           ซ่อนไว้ก่อนเปิด
         ========================================================== */
 
         .galaxy-title {
@@ -546,7 +758,8 @@
             left: 50%;
 
             transform:
-                translateX(-50%);
+                translateX(-50%)
+                translateY(-15px);
 
             z-index: 300;
 
@@ -570,11 +783,31 @@
                 rgba(255,40,180,.4);
 
             pointer-events: none;
+
+            opacity: 0;
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+
+        }
+
+
+        body.opened .galaxy-title {
+
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+
         }
 
 
         /* =========================================================
            CONTROLS
+
+           ก่อนเปิดซ่อนทั้งหมด
         ========================================================== */
 
         #controls {
@@ -582,6 +815,7 @@
             position: fixed;
 
             right: 20px;
+
             bottom: 20px;
 
             z-index: 500;
@@ -591,6 +825,23 @@
             flex-direction: column;
 
             gap: 8px;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity .6s ease;
+
+        }
+
+
+        body.opened #controls {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
         }
 
 
@@ -620,10 +871,10 @@
             cursor: pointer;
 
             backdrop-filter:
-                blur(3px);
+                blur(8px);
 
             -webkit-backdrop-filter:
-                blur(5px);
+                blur(8px);
 
             box-shadow:
 
@@ -632,6 +883,7 @@
 
             transition:
                 .25s ease;
+
         }
 
 
@@ -653,6 +905,7 @@
 
             transform:
                 scale(1.08);
+
         }
 
 
@@ -691,9 +944,22 @@
                 rgba(255,255,255,.1);
 
             backdrop-filter:
-                blur(3px);
+                blur(5px);
 
             pointer-events: none;
+
+            opacity: 0;
+
+            transition:
+                opacity .6s ease;
+
+        }
+
+
+        body.opened #zoomText {
+
+            opacity: 1;
+
         }
 
 
@@ -703,31 +969,24 @@
 
         @media (max-width: 700px) {
 
-            .galaxy-title {
-
-                top: 10px;
-
-                font-size:
-                    clamp(27px, 9vw, 40px);
-            }
-
-
             .love-message {
 
                 width: 280px;
 
-                height: 250px;
+                min-height: 250px;
 
                 padding:
                     20px 40px;
 
                 gap: 3px;
+
             }
 
 
             .love-title {
 
                 font-size: 24px;
+
             }
 
 
@@ -736,6 +995,7 @@
                 font-size: 11px;
 
                 line-height: 1.15;
+
             }
 
 
@@ -744,6 +1004,7 @@
                 font-size: 6px;
 
                 line-height: 1.3;
+
             }
 
 
@@ -752,25 +1013,52 @@
                 font-size: 8px;
 
                 line-height: 1.2;
+
             }
 
 
             .photo-item {
 
                 width: 70px;
+
                 height: 70px;
 
                 margin-left: -35px;
+
                 margin-top: -35px;
+
             }
 
 
             .photo {
 
                 width: 52px;
+
                 height: 52px;
 
                 border-width: 1.5px;
+
+            }
+
+
+            #heartButton {
+
+                width: 150px;
+                height: 150px;
+
+                margin-left: -75px;
+                margin-top: -75px;
+
+            }
+
+
+            #clickText {
+
+                font-size: 13px;
+
+                transform:
+                    translate(-50%, 95px);
+
             }
 
 
@@ -779,15 +1067,18 @@
                 right: 10px;
 
                 bottom: 10px;
+
             }
 
 
             .control-btn {
 
                 width: 38px;
+
                 height: 38px;
 
                 font-size: 17px;
+
             }
 
 
@@ -796,7 +1087,9 @@
                 bottom: 10px;
 
                 font-size: 10px;
+
             }
+
         }
 
 
@@ -810,22 +1103,25 @@
 
                 width: 230px;
 
-                height: 210px;
+                min-height: 210px;
 
                 padding:
                     15px 30px;
+
             }
 
 
             .love-title {
 
                 font-size: 20px;
+
             }
 
 
             .love-subtitle {
 
                 font-size: 9px;
+
             }
 
 
@@ -834,14 +1130,18 @@
                 font-size: 5px;
 
                 line-height: 1.25;
+
             }
 
 
             .love-highlight {
 
                 font-size: 7px;
+
             }
+
         }
+
 
     </style>
 
@@ -858,7 +1158,15 @@
     <div id="space">
 
 
-       
+        <!-- =====================================================
+             TOP TITLE
+
+             ซ่อนก่อนเปิด
+        ====================================================== -->
+
+        <div class="galaxy-title">
+            Visanu & Tidapa ❤️
+        </div>
 
 
         <!-- =====================================================
@@ -869,7 +1177,7 @@
 
 
             <!-- =================================================
-                 HEART
+                 HEART PARTICLES
             ================================================== -->
 
             <div id="heart"></div>
@@ -898,30 +1206,28 @@
 
                 <div class="love-subtitle">
 
-                   
-
                 </div>
 
 
                 <div class="love-text">
 
-วันนี้นายอยากขอโทษกิ๊ฟสำหรับทุกเรื่องที่ผ่านมา
-ขอโทษสำหรับสิ่งที่นายเคยทำผิด เคยทำให้กิ๊ฟเสียใจ หรือทำให้กิ๊ฟต้องรู้สึกไม่ดี
+วันนี้นายอยากขอโทษกิ๊ฟสำหรับทุกเรื่องที่ผ่านมา 
+ขอโทษสำหรับสิ่งที่นายเคยทำผิด เคยทำให้กิ๊ฟเสียใจ หรือทำให้กิ๊ฟต้องรู้สึกไม่ดี 
 
-บางเรื่องนายอาจย้อนกลับไปแก้ไขไม่ได้
-แต่ทุกอย่างที่เกิดขึ้นทำให้นายได้เรียนรู้
-และนายสัญญาว่าจะทำให้ดีที่สุด จะไม่ทำผิดซ้ำแบบเดิมอีก
+บางเรื่องนายอาจย้อนกลับไปแก้ไขไม่ได้ 
+แต่ทุกอย่างที่เกิดขึ้นทำให้นายได้เรียนรู้ 
+และนายสัญญาว่าจะทำให้ดีที่สุด จะไม่ทำผิดซ้ำแบบเดิมอีก 
 
-ขอบคุณกิ๊ฟนะ ที่ยังอยู่ตรงนี้
-ขอบคุณที่ยังให้โอกาสนายได้แก้ตัว ได้พิสูจน์ตัวเอง และได้เดินต่อไปด้วยกัน
+ขอบคุณกิ๊ฟนะ ที่ยังอยู่ตรงนี้ 
+ขอบคุณที่ยังให้โอกาสนายได้แก้ตัว ได้พิสูจน์ตัวเอง และได้เดินต่อไปด้วยกัน 
 
-นายอาจสัญญาไม่ได้ว่าจากนี้ทุกอย่างจะสมบูรณ์แบบ
-แต่สิ่งที่นายสัญญาได้คือ นายจะพยายามทำทุกอย่างให้ดีที่สุด
-จะใส่ใจกิ๊ฟให้มากขึ้น จะดูแลความรู้สึกของกิ๊ฟให้มากขึ้น
-และจะพยายามเป็นคนที่ดีขึ้นสำหรับกิ๊ฟในทุก ๆ วัน
+นายอาจสัญญาไม่ได้ว่าจากนี้ทุกอย่างจะสมบูรณ์แบบ 
+แต่สิ่งที่นายสัญญาได้คือ นายจะพยายามทำทุกอย่างให้ดีที่สุด 
+จะใส่ใจกิ๊ฟให้มากขึ้น จะดูแลความรู้สึกของกิ๊ฟให้มากขึ้น 
+และจะพยายามเป็นคนที่ดีขึ้นสำหรับกิ๊ฟในทุก ๆ วัน 
 
-นายอยากสร้างอนาคตไปพร้อมกับกิ๊ฟ
-อยากมีทั้งวันที่เรามีความสุข วันที่เหนื่อย และวันที่เจอปัญหา
+นายอยากสร้างอนาคตไปพร้อมกับกิ๊ฟ 
+อยากมีทั้งวันที่เรามีความสุข วันที่เหนื่อย และวันที่เจอปัญหา 
 ไม่ว่าจะต้องเจออะไร นายก็อยากจับมือกิ๊ฟแล้วค่อย ๆ ผ่านมันไปด้วยกัน
 
                 </div>
@@ -941,6 +1247,27 @@
 
             </div>
 
+
+            <!-- =================================================
+                 CENTER CLICK BUTTON
+            ================================================== -->
+
+            <button
+                id="heartButton"
+                aria-label="เปิดข้อความ"
+            ></button>
+
+
+        </div>
+
+
+        <!-- =====================================================
+             CLICK TEXT
+        ====================================================== -->
+
+        <div id="clickText">
+
+            
 
         </div>
 
@@ -994,6 +1321,7 @@
 
     <script>
 
+
         /* =========================================================
            PHOTOS
         ========================================================== */
@@ -1037,6 +1365,10 @@
             document.getElementById("world");
 
 
+        const heart =
+            document.getElementById("heart");
+
+
         const photosContainer =
             document.getElementById("photos");
 
@@ -1057,6 +1389,14 @@
             document.getElementById("reset");
 
 
+        const heartButton =
+            document.getElementById("heartButton");
+
+
+        const clickText =
+            document.getElementById("clickText");
+
+
         /* =========================================================
            SETTINGS
         ========================================================== */
@@ -1072,6 +1412,8 @@
         let panY = 0;
 
         let heartSize = 500;
+
+        let opened = false;
 
 
         /* =========================================================
@@ -1117,7 +1459,7 @@
 
         function getEqualHeartPoints(count) {
 
-            const samples = 2000;
+            const samples = 1000;
 
             const points = [];
 
@@ -1323,18 +1665,17 @@
 
         function createHeart() {
 
-            const heart =
-                document.getElementById(
-                    "heart"
-                );
-
-
             heart.innerHTML = "";
 
 
-            const mainAmount = 480;
+            /*
+                ลดจำนวนอนุภาคลงเล็กน้อย
+                เพื่อให้เครื่องมือถือไม่ทำงานหนักเกินไป
+            */
 
-            const extraAmount = 180;
+            const mainAmount = 450;
+
+            const extraAmount = 160;
 
 
             /* =====================================================
@@ -1368,8 +1709,7 @@
 
 
                 particle.className =
-                    "heart-particle" +
-                    (i % 4 === 0 ? " glow" : "");
+                    "heart-particle glow";
 
 
                 const jitterX =
@@ -1654,6 +1994,15 @@
 
         /* =========================================================
            PHOTO SCALE
+
+           สำคัญ:
+
+           ก่อนเปิด:
+           รูป = scale 0
+           opacity 0
+
+           หลังเปิด:
+           รูปจะค่อย ๆ ปรากฏ
         ========================================================== */
 
         function updatePhotoScale() {
@@ -1661,23 +2010,28 @@
             photoItems.forEach(
                 item => {
 
-                    let scale;
+                    let scale = .01;
 
-                    let opacity;
+                    let opacity = 0;
 
 
-                    if (
-                        zoom < .60
-                    ) {
+                    if (!opened) {
 
-                        scale =
-                            .015;
+                        scale = .01;
 
-                        opacity =
-                            .08;
+                        opacity = 0;
 
                     }
 
+                    else if (
+                        zoom < .60
+                    ) {
+
+                        scale = .015;
+
+                        opacity = .08;
+
+                    }
 
                     else if (
                         zoom < .90
@@ -1687,8 +2041,7 @@
                             (
                                 zoom -
                                 .60
-                            ) /
-                            .30;
+                            ) / .30;
 
 
                         scale =
@@ -1710,7 +2063,6 @@
 
                     }
 
-
                     else if (
                         zoom < 1.30
                     ) {
@@ -1719,8 +2071,7 @@
                             (
                                 zoom -
                                 .90
-                            ) /
-                            .40;
+                            ) / .40;
 
 
                         scale =
@@ -1742,7 +2093,6 @@
 
                     }
 
-
                     else if (
                         zoom < 1.80
                     ) {
@@ -1751,8 +2101,7 @@
                             (
                                 zoom -
                                 1.30
-                            ) /
-                            .50;
+                            ) / .50;
 
 
                         scale =
@@ -1761,19 +2110,15 @@
                             .55;
 
 
-                        opacity =
-                            1;
+                        opacity = 1;
 
                     }
 
-
                     else {
 
-                        scale =
-                            1;
+                        scale = 1;
 
-                        opacity =
-                            1;
+                        opacity = 1;
 
                     }
 
@@ -1816,19 +2161,107 @@
                 ) +
                 "%";
 
-        }
-
-
-        function updateZoomUI() {
-            zoomText.textContent =
-                "Zoom " +
-                Math.round(
-                    zoom * 100
-                ) +
-                "%";
 
             updatePhotoScale();
+
         }
+
+
+        /* =========================================================
+           OPEN HEART
+        ========================================================== */
+
+        function openHeart() {
+
+            if (opened) {
+
+                return;
+
+            }
+
+
+            opened = true;
+
+
+            /*
+                เพิ่ม class opened
+                ให้ข้อความและรูปเริ่มแสดง
+            */
+
+            document.body.classList.add(
+                "opened"
+            );
+
+
+            /*
+                ซ่อนข้อความ
+                "กดตรงกลางหัวใจ"
+            */
+
+            clickText.classList.add(
+                "hide"
+            );
+
+
+            /*
+                เปลี่ยนให้สามารถเลื่อนหน้าได้
+            */
+
+            document.body.style.overflowY =
+                "auto";
+
+
+            /*
+                รูปค่อย ๆ ปรากฏ
+            */
+
+            setTimeout(
+                () => {
+
+                    updatePhotoScale();
+
+                },
+                250
+            );
+
+        }
+
+
+        /* =========================================================
+           CLICK HEART
+        ========================================================== */
+
+        heartButton.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+                openHeart();
+
+            }
+        );
+
+
+        /* =========================================================
+           TOUCH HEART
+        ========================================================== */
+
+        heartButton.addEventListener(
+            "touchend",
+            event => {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                openHeart();
+
+            },
+            {
+                passive: false
+            }
+        );
 
 
         /* =========================================================
@@ -1904,7 +2337,6 @@
 
 
             updateWorld();
-            updatePhotoScale();
 
         }
 
@@ -1928,16 +2360,27 @@
             "mousedown",
             event => {
 
+                if (!opened) {
+
+                    return;
+
+                }
+
+
                 mouseDown = true;
+
 
                 mouseStartX =
                     event.clientX;
 
+
                 mouseStartY =
                     event.clientY;
 
+
                 startPanX =
                     panX;
+
 
                 startPanY =
                     panY;
@@ -1951,48 +2394,37 @@
         );
 
 
-        let mouseMovePending = false;
-        let latestMouseX = 0;
-        let latestMouseY = 0;
-
         window.addEventListener(
             "mousemove",
             event => {
 
-                if (!mouseDown) {
+                if (
+                    !mouseDown ||
+                    !opened
+                ) {
+
                     return;
+
                 }
 
-                latestMouseX = event.clientX;
-                latestMouseY = event.clientY;
 
-                if (mouseMovePending) {
-                    return;
-                }
+                panX =
+                    startPanX +
+                    (
+                        event.clientX -
+                        mouseStartX
+                    );
 
-                mouseMovePending = true;
 
-                requestAnimationFrame(() => {
+                panY =
+                    startPanY +
+                    (
+                        event.clientY -
+                        mouseStartY
+                    );
 
-                    panX =
-                        startPanX +
-                        (
-                            latestMouseX -
-                            mouseStartX
-                        );
 
-                    panY =
-                        startPanY +
-                        (
-                            latestMouseY -
-                            mouseStartY
-                        );
-
-                    updateWorld();
-
-                    mouseMovePending = false;
-
-                });
+                updateWorld();
 
             }
         );
@@ -2013,12 +2445,19 @@
 
 
         /* =========================================================
-           MOUSE WHEEL ZOOM
+           MOUSE WHEEL
         ========================================================== */
 
         space.addEventListener(
             "wheel",
             event => {
+
+                if (!opened) {
+
+                    return;
+
+                }
+
 
                 event.preventDefault();
 
@@ -2094,6 +2533,13 @@
             "touchstart",
             event => {
 
+                if (!opened) {
+
+                    return;
+
+                }
+
+
                 event.preventDefault();
 
 
@@ -2127,7 +2573,6 @@
 
                 }
 
-
                 else if (
                     event.touches.length ===
                     2
@@ -2159,6 +2604,13 @@
         space.addEventListener(
             "touchmove",
             event => {
+
+                if (!opened) {
+
+                    return;
+
+                }
+
 
                 event.preventDefault();
 
@@ -2266,6 +2718,15 @@
             event => {
 
                 if (
+                    !opened
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
                     event.touches.length === 0
                 ) {
 
@@ -2273,7 +2734,6 @@
                         null;
 
                 }
-
 
                 else if (
                     event.touches.length === 1
@@ -2316,6 +2776,13 @@
             "click",
             () => {
 
+                if (!opened) {
+
+                    return;
+
+                }
+
+
                 setZoom(
                     zoom * 1.2
                 );
@@ -2327,6 +2794,13 @@
         zoomOut.addEventListener(
             "click",
             () => {
+
+                if (!opened) {
+
+                    return;
+
+                }
+
 
                 setZoom(
                     zoom * .83
@@ -2340,11 +2814,20 @@
             "click",
             () => {
 
+                if (!opened) {
+
+                    return;
+
+                }
+
+
                 zoom =
                     .55;
 
+
                 panX =
                     0;
+
 
                 panY =
                     0;
@@ -2362,7 +2845,12 @@
 
         function createStars() {
 
-            const amount = 80;
+            /*
+                ลดจาก 150 เหลือ 100
+                เพื่อช่วยลดการกระตุก
+            */
+
+            const amount = 100;
 
 
             for (
@@ -2397,7 +2885,7 @@
                     "--duration",
 
                     (
-                        1.5 +
+                        1.8 +
                         Math.random() * 3
                     ) +
                     "s"
@@ -2443,7 +2931,6 @@
 
             }
 
-
             else if (
                 window.innerWidth >
                 700
@@ -2457,7 +2944,6 @@
                     .76;
 
             }
-
 
             else {
 
@@ -2474,6 +2960,8 @@
             createHeart();
 
             updatePhotos();
+
+            updateWorld();
 
         }
 
@@ -2500,9 +2988,11 @@
             resize
         );
 
+
     </script>
+
 
 </body>
 
 </html>
-```
+
